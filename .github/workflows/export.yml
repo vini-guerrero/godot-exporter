@@ -4,6 +4,7 @@ on:
     branches: [main]
 
 env:
+  EXPORT_NAME: game
   GODOT_VERSION: 3.3.1
   GODOT_DL_SUBDIR: 3.3.1
   GODOT_RELEASE: stable
@@ -11,19 +12,16 @@ env:
 jobs:
   export:
     runs-on: ubuntu-latest
-    # container: viiniiguerrero/godot_ci:latest
+    container: viiniiguerrero/godot_ci:latest
     steps:
       - uses: actions/checkout@v2.3.2
       - name: Run Setup Script
         working-directory: .
+      - name: Android Debug Build
         run: |
-          chmod +x ./test.sh && sudo ./test.sh --godot_version $GODOT_VERSION --godot_subdir $GODOT_DL_SUBDIR --godot_release $GODOT_RELEASE
-      # chmod +x ./test.sh && sudo ./test.sh $GODOT_VERSION $GODOT_DL_SUBDIR $GODOT_RELEASE
-      # - name: Android Debug Build
-      #   run: |
-      #     cd game
-      #     mkdir -v -p build/android
-      #     godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+          cd game
+          mkdir -v -p build/android
+          godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       # - uses: actions/upload-artifact@v1
       #   with:
       #     name: Android
