@@ -13,7 +13,7 @@ jobs:
         working-directory: . 
         run : |
           chmod +x ./start.sh
-          ./start.sh
+          sudo ./start.sh
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
