@@ -10,12 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.2
       - name: Run Setup Script
-        env:
-          GODOT_VERSION: 3.3.1
-          GODOT_DL_SUBDIR: 3.3.1
-          GODOT_RELEASE: stable
+        # env:
+        #   GODOT_VERSION: 3.3.1
+        #   GODOT_DL_SUBDIR: 3.3.1
+        #   GODOT_RELEASE: stable
         working-directory: .
         run: |
+          echo "::set-env name=GODOT_VERSION::3.3.1"
+          echo "::set-env name=GODOT_DL_SUBDIR::3.3.1"
+          echo "::set-env name=GODOT_RELEASE::stable"
           chmod +x ./test.sh && sudo ./test.sh
       # - name: Android Debug Build
       #   run: |
