@@ -1,25 +1,12 @@
 name: Export
-
-
-
 on:
-
   push:
-
     branches: [ main ]
 
-  
-
 jobs:
-
-  container:
-
+  export:
     runs-on: ubuntu-latest
-
     container: vini-guerrero/ci_cd:main
-
     steps:
-
       - uses: actions/checkout@v2.3.2
-
       - run: ls
