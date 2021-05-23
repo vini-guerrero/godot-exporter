@@ -9,7 +9,7 @@ jobs:
     steps:
         uses: viiniiguerrero/godot_ci:latest 
         with:
-           args: /bin/sh -c "pwd"
+          args: /bin/sh -c "cat /etc/hosts" 
       - uses: actions/checkout@v2.3.2
       - name: Setup
         run: |
