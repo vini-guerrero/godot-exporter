@@ -20,3 +20,4 @@ jobs:
       - name: Android Debug Build
         run: |
           mkdir -v -p build/android
+          echo ${{ env.GODOT_HEADLESS_BUILD }} 
