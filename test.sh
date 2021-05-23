@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-echo "FOO_STEP: $FOO_STEP"
+echo "Godot Version: $GODOT_VERSION"
+echo "Godot Subdir: $GODOT_DL_SUBDIR"
+echo "Godot Release: $GODOT_RELEASE"
 echo " "
 printenv
