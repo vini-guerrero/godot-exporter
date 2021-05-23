@@ -13,10 +13,6 @@ jobs:
         working-directory: .
         run: |
           chmod +x ./setup.sh && sudo ./setup.sh
-      - name: Run Export Script
-        working-directory: .
-        run: |
-          chmod +x ./export.sh && sudo ./export.sh
       - name: Android Debug Build
         run: |
           cd game
