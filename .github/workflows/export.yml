@@ -17,7 +17,7 @@ jobs:
       - name: Run Setup Script
         working-directory: .
         run: |
-          chmod +x ./test.sh && sudo ./test.sh --godot_version $GODOT_VERSION
+          chmod +x ./test.sh && sudo ./test.sh --godot_version $GODOT_VERSION --godot_subdir $GODOT_DL_SUBDIR --godot_release $GODOT_RELEASE
       # chmod +x ./test.sh && sudo ./test.sh $GODOT_VERSION $GODOT_DL_SUBDIR $GODOT_RELEASE
       # - name: Android Debug Build
       #   run: |
