@@ -3,9 +3,9 @@
 echo "✔ Setup script triggered successfully."
 
 # Defaults
-DEFAULT_VERSION = 3.3.1
-DEFAULT_DL_SUBDIR = 3.3.1
-DEFAULT_RELEASE = stable
+DEFAULT_VERSION = "3.3.1"
+DEFAULT_DL_SUBDIR = "3.3.1"
+DEFAULT_RELEASE = "stable"
 
 # Param Fetch
 GODOT_VERSION=${godot_version:-$DEFAULT_VERSION}
