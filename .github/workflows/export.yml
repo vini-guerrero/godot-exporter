@@ -9,4 +9,4 @@ jobs:
     container: vini-guerrero/ci_cd:main
     steps:
       - uses: actions/checkout@v2.3.2
-      - run: ls
+      - run: ls & & pwd
