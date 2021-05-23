@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container: viiniiguerrero/godot_ci:latest 
     with:
-        args: export GODOT_TEST_PATH="21212121212"
+          args: /bin/sh -c "printenv" 
     steps:
       - uses: actions/checkout@v2.3.2
       - name: Setup
