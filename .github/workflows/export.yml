@@ -12,7 +12,7 @@ jobs:
       - name: Run Setup Script
         working-directory: .
         run: chmod +x ./test.sh && sudo ./test.sh
-        env:
+        with:
           GODOT_VERSION: 3.3.1
           GODOT_DL_SUBDIR: 3.3.1
           GODOT_RELEASE: stable
