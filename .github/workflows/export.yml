@@ -9,7 +9,7 @@ jobs:
     steps:
         uses: viiniiguerrero/godot_ci:latest 
         with:
-          args: /bin/sh -c "printenv"
+           args: /bin/sh -c "pwd"
       - uses: actions/checkout@v2.3.2
       - name: Setup
         run: |
