@@ -16,9 +16,9 @@ jobs:
           GODOT_RELEASE: stable
         working-directory: .
         run: |
-          echo "GODOT_VERSION=3.3.1" 
-          echo "GODOT_DL_SUBDIR=3.3.1"
-          echo "GODOT_RELEASE=stable"
+          export "GODOT_VERSION=3.3.1" 
+          export "GODOT_DL_SUBDIR=3.3.1"
+          export "GODOT_RELEASE=stable"
           chmod +x ./test.sh && sudo ./test.sh
       # - name: Android Debug Build
       #   run: |
