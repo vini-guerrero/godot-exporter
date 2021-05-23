@@ -15,7 +15,11 @@ jobs:
           GODOT_DL_SUBDIR: 3.3.1
           GODOT_RELEASE: stable
         working-directory: .
-        run: chmod +x ./test.sh && sudo ./test.sh
+        run: |
+          echo "GODOT_VERSION=3.3.1" >> $GITHUB_ENV
+          echo "GODOT_DL_SUBDIR=3.3.1" >> $GITHUB_ENV
+          echo "GODOT_RELEASE=stable" >> $GITHUB_ENV
+          chmod +x ./test.sh && sudo ./test.sh
       # - name: Android Debug Build
       #   run: |
       #     cd game
