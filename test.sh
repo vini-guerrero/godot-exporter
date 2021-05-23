@@ -6,13 +6,17 @@ GODOT_VERSION = $1
 GODOT_DL_SUBDIR = $2
 GODOT_RELEASE = $3
 
-echo $GODOT_VERSION
-echo $GODOT_DL_SUBDIR
-echo $GODOT_RELEASE
+GODOT_VERSION=${godot_version:-3.3.1}
+while [ $# -gt 0 ]; do
+   if [[ $1 == *"--"* ]]; then
+        param="${1/--/}"
+        declare $param="$2"
+        # echo $1 $2 // Optional to see the parameter:value result
+   fi
+  shift
+done
 
-echo $1
-echo $2
-echo $3
+echo $GODOT_VERSION 
 
 # GODOT_HEADLESS_BUILD = "https://downloads.tuxfamily.org/godotengine/3.3.1/Godot_v3.3.1-stable_linux_headless.64.zip"
 # GODOT_EXPORT_TEMPLATE = "https://downloads.tuxfamily.org/godotengine/3.3.1/Godot_v3.3.1-stable_export_templates.tpz"
