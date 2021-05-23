@@ -16,7 +16,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    container: vini-guerrero/ci_cd
+    container: vini-guerrero/ci_cd:main
 
     steps:
 
