@@ -2,9 +2,9 @@
 
 echo "✔ Setup script triggered successfully."
 
-GODOT_VERSION = $1;
-GODOT_DL_SUBDIR = $2
-GODOT_RELEASE = $3
+$GODOT_VERSION = $1;
+$GODOT_DL_SUBDIR = $2
+$GODOT_RELEASE = $3
 
 echo $GODOT_VERSION
 echo $GODOT_DL_SUBDIR
