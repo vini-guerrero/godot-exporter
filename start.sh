@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "✔ Script triggered successfully."
+echo "✔ Setup script triggered successfully."
 
 
 # Install development and other tools
