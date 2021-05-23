@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+GODOT_VERSION = $GODOT_VERSION
+GODOT_DL_SUBDIR = $GODOT_DL_SUBDIR
+GODOT_RELEASE = $GODOT_RELEASE
+
 echo "Godot Version: $GODOT_VERSION"
 echo "Godot Subdir: $GODOT_DL_SUBDIR"
 echo "Godot Release: $GODOT_RELEASE"
