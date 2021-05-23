@@ -1,4 +1,4 @@
-FROM ubuntu:latest 
+FROM ubuntu:bionic
 LABEL author="Vinicius Guerrero" 
 
 ARG DEBIAN_FRONTEND=noninteractive
