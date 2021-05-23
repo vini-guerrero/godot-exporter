@@ -2,10 +2,15 @@
 
 echo "✔ Setup script triggered successfully."
 
-GODOT_VERSION=${godot_version:-3.3.1}
-GODOT_DL_SUBDIR=${godot_subdir:-3.3.1}
-GODOT_RELEASE=${godot_release:-stable}
+# Defaults
+DEFAULT_VERSION = 3.3.1
+DEFAULT_DL_SUBDIR = 3.3.1
+DEFAULT_RELEASE = stable
 
+# Param Fetch
+GODOT_VERSION=${godot_version:-$DEFAULT_VERSION}
+GODOT_DL_SUBDIR=${godot_subdir:-$DEFAULT_DL_SUBDIR}
+GODOT_RELEASE=${godot_release:-$DEFAULT_RELEASE}
 while [ $# -gt 0 ]; do
    if [[ $1 == *"--"* ]]; then
         param="${1/--/}"
@@ -14,6 +19,7 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+# Param Validation
 echo $GODOT_VERSION $GODOT_DL_SUBDIR $GODOT_RELEASE
 
 # GODOT_HEADLESS_BUILD = "https://downloads.tuxfamily.org/godotengine/3.3.1/Godot_v3.3.1-stable_linux_headless.64.zip"
