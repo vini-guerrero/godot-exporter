@@ -2,15 +2,10 @@
 
 echo "✔ Setup script triggered successfully."
 
-# Defaults
-DEFAULT_VERSION = "3.3.1"
-DEFAULT_DL_SUBDIR = "3.3.1"
-DEFAULT_RELEASE = "stable"
-
-# Param Fetch
-GODOT_VERSION=${godot_version:-$DEFAULT_VERSION}
-GODOT_DL_SUBDIR=${godot_subdir:-$DEFAULT_DL_SUBDIR}
-GODOT_RELEASE=${godot_release:-$DEFAULT_RELEASE}
+# Defaults & Param Fetch
+GODOT_VERSION=${godot_version:-3.3.1}
+GODOT_DL_SUBDIR=${godot_subdir:-3.3.1}
+GODOT_RELEASE=${godot_release:-stable}
 while [ $# -gt 0 ]; do
    if [[ $1 == *"--"* ]]; then
         param="${1/--/}"
