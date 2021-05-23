@@ -20,7 +20,7 @@ jobs:
           cd game
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
-      # - uses: actions/upload-artifact@v1
-      #   with:
-      #     name: Android
-      #     path: game/build/android
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Android
+          path: game/build/android
