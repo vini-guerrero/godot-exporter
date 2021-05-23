@@ -15,6 +15,6 @@ jobs:
           mkdir -v -p ~/.config/godot/
           cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
           chmod +x android/build/gradlew
+          ls
           # godot --verbose --debug --export-debug "Android" mpw-debug.apk
-	  ls
         name: Run in container 
