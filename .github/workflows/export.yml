@@ -9,11 +9,14 @@ jobs:
     # container: viiniiguerrero/godot_ci:latest 
     steps: 
       - uses: actions/checkout@v2.3.2
-      - name: Run Script
+      - name: Run Setup Script
         working-directory: . 
         run : |
-          chmod +x ./start.sh
-          sudo ./start.sh
+          chmod +x ./setup.sh && sudo ./setup.sh
+      - name: Run Export Script
+        working-directory: . 
+        run : |
+          chmod +x ./export.sh && sudo ./export.sh
       - name: Android Debug Build
         run: |
           mkdir -v -p build/android
