@@ -2,6 +2,7 @@
 
 echo "✔ Export script triggered successfully."
 
+ENV GODOT_VERSION "3.3.1"
 
 mkdir -v -p ~/.local/share/godot/templates
 mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
