@@ -9,6 +9,11 @@ jobs:
     container: viiniiguerrero/godot_ci:latest 
     steps: 
       - uses: actions/checkout@v2.3.2
+      - name: Run Script
+        working-directory: . 
+        run : |
+          chmod +x ./start.sh
+          ./start.sh
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
