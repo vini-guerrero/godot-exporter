@@ -14,14 +14,6 @@ jobs:
         run : |
           chmod +x ./start.sh
           sudo ./start.sh
-      - name: Setup
-        run: |
-          sudo mkdir -v -p ~/.local/share/godot/templates
-          sudo mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-          sudo mkdir -v -p ~/.config/godot/
-          sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
-          sudo echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-          sudo echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
           mkdir -v -p build/android
