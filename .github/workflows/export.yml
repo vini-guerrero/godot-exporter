@@ -6,7 +6,7 @@ on:
 jobs:
   export:
     runs-on: ubuntu-latest
-    container: vini-guerrero/ci_cd:main
+    container: vini-guerrero/ci_cd
     steps:
       - uses: actions/checkout@v2.3.2
       - run: ls
