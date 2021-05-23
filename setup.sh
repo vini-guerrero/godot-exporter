@@ -3,7 +3,6 @@
 echo "✔ Setup script triggered successfully."
 
 
-# Install development and other tools
 apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     git \
