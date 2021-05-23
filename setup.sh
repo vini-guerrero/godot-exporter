@@ -59,6 +59,3 @@ echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
-
-
-printenv
