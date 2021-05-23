@@ -9,4 +9,12 @@ jobs:
     container: viiniiguerrero/godot_ci:latest 
     steps:
       - uses: actions/checkout@v2.3.2
-      - run: ls && pwd
+      - run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mkdir -v -p ~/.config/godot/
+          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
+          chmod +x android/build/gradlew
+          # godot --verbose --debug --export-debug "Android" mpw-debug.apk
+	  ls
+        name: Run in container 
