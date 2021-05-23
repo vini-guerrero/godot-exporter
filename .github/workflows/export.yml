@@ -6,7 +6,7 @@ on:
 jobs:
   export:
     runs-on: ubuntu-latest
-    container: viiniiguerrero/godot_ci
+    container: viiniiguerrero/godot_ci:latest 
     steps:
       - uses: actions/checkout@v2.3.2
       - run: ls & & pwd
