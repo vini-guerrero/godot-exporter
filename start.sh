@@ -4,7 +4,7 @@ echo "✔ Script triggered successfully."
 
 
 # Install development and other tools
-RUN apt-get update && apt-get install -y --no-install-recommends \
+apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     git \
     python \
@@ -24,7 +24,7 @@ ENV GODOT_HEADLESS_BUILD = "https://downloads.tuxfamily.org/godotengine/3.3.1/Go
 ENV GODOT_EXPORT_TEMPLATE = "https://downloads.tuxfamily.org/godotengine/3.3.1/Godot_v3.3.1-stable_export_templates.tpz" 
 
 # Download and install Godot Engine (headless) and export templates
-RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
+wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
     && mkdir -v ~/.cache \
     && mkdir -p -v ~/.config/godot \
@@ -36,7 +36,7 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v$
     && rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
     
 # Download and install Android SDK
-RUN mkdir -p -v /root/android-sdk-installer/cmdline-tools \
+mkdir -p -v /root/android-sdk-installer/cmdline-tools \
     && cd /root/android-sdk-installer/cmdline-tools \
     && curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip" \
     && unzip -q commandlinetools-linux-*.zip \
@@ -46,20 +46,20 @@ RUN mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 ENV ANDROID_HOME /root/android-sdk
 
 # Download and install SDK tools, accept licences, and create debug.keystore
-RUN mkdir -p -v /root/.android
-RUN echo "count=0" > /root/.android/repositories.cfg
-RUN yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
-RUN yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
-RUN keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
+mkdir -p -v /root/.android
+echo "count=0" > /root/.android/repositories.cfg
+yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
+yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
+keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
     && mv debug.keystore /root/android-sdk/debug.keystore
    
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
-RUN godot -e -q
-RUN echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-RUN echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
-RUN echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
-RUN echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+godot -e -q
+echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
 
-RUN printenv
+printenv
 
