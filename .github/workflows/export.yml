@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.2
       - name: Run Setup Script
-        working-directory: .
       - name: Android Debug Build
+        working-directory: .
         run: |
           cd game
           mkdir -v -p build/android
