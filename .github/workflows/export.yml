@@ -20,6 +20,8 @@ jobs:
         run: |
           chmod +x ./setup.sh && sudo ./setup.sh
       - name: Prepare Export
+        env:
+          ANDROID_HOME: /root/android-sdk
         run: |
           wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
           && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
@@ -31,6 +33,21 @@ jobs:
           && unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
           && sudo mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
           && sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
+
+          mkdir -p -v /root/android-sdk-installer/cmdline-tools \
+          && cd /root/android-sdk-installer/cmdline-tools \
+          && curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip" \
+          && unzip -q commandlinetools-linux-*.zip \
+          && sudo rm commandlinetools-linux-*.zip \
+          && sudo mv cmdline-tools latest \
+          && mkdir -p -v /root/.android \
+          && echo "count=0" > /root/.android/repositories.cfg \
+          && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses \
+          && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
+          && sudo rm -rf /root/android-sdk-installer
+
+          keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
+          && sudo mv debug.keystore /root/android-sdk/debug.keystore
     # container:
     #   image: viiniiguerrero/godot_ci:latest
     # steps:
