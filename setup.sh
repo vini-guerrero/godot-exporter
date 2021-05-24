@@ -63,9 +63,6 @@ chmod +x /usr/local/bin/godot \
 && sudo apt install $(check-language-support) \
 && sudo dpkg-reconfigure locales
 
-#!/usr/bin/godot
-godot -e -q
-
 # echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 # echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 # echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
@@ -90,6 +87,8 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
+#!/usr/bin/godot
+godot -e -q
 cd $REPO_ROOT/game
 mkdir -v -p $REPO_ROOT/build/android
 godot --verbose --export-debug "Android" $REPO_ROOT/build/android/$EXPORT_NAME.debug.apk
