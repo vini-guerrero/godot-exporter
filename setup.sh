@@ -78,7 +78,9 @@ echo 'android/force_system_user = false' >> ~/.config/godot/editor_settings-3.tr
 echo 'android/timestamping_authority_url = ""' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-3.tres
 
+echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
+printenv
 
 #!/usr/bin/godot
 godot -e -q
@@ -93,4 +95,4 @@ echo -e Godot Engine Export Settings - Godot Version_${GODOT_VERSION} Subversion
 echo -e https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 echo -e https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
 
-printenv
+
