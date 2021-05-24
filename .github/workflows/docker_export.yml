@@ -1,4 +1,4 @@
-name: Export
+name: Docker Export
 on:
   push:
     branches: [main]

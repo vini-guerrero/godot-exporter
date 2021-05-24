@@ -1,4 +1,4 @@
-name: Export
+name: Bash Export
 on:
   push:
     branches: [main]
