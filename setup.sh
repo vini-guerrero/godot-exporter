@@ -63,10 +63,11 @@ chmod +x /usr/local/bin/godot \
 && sudo apt install $(check-language-support) \
 && sudo dpkg-reconfigure locales
 
-# echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-# echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
-# echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
-# echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+sudo mkdir -v -p ~/.local/share/godot/templates \
+&& sudo mv -p /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable \
+&& sudo mkdir -v -p ~/.config/godot/ \
+&& sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres \
+
 
 echo 'export/android/adb = "/usr/bin/adb"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/jarsigner = "/usr/bin/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
@@ -77,15 +78,7 @@ echo 'export/android/force_system_user = false' >> ~/.config/godot/editor_settin
 echo 'export/android/timestamping_authority_url = ""' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-3.tres
 
-
-
-sudo mkdir -v -p ~/.local/share/godot/templates \
-&& sudo mv -p /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable \
-&& sudo mkdir -v -p ~/.config/godot/ \
-&& sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres \
-
-echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+cat ~/.config/godot/editor_settings-3.tres
 
 #!/usr/bin/godot
 godot -e -q
