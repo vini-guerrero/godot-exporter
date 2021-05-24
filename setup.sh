@@ -82,8 +82,8 @@ echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/
 
 cd $REPO_ROOT/game
 mkdir -v -p $REPO_ROOT/build/android
-godot -s --verbose --export-debug "Android" $REPO_ROOT/build/android/$EXPORT_NAME.debug.apk
-godot -s --verbose --export-debug "Android" $REPO_ROOT/build/android/test.debug.apk
+godot --verbose --export-debug "Android" $REPO_ROOT/build/android/$EXPORT_NAME.debug.apk
+godot --verbose --export-debug "Android" $REPO_ROOT/build/android/test.debug.apk
 cd $REPO_ROOT/build/android
 ls
 pwd
