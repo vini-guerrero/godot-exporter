@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Build Export Docker
         working-directory: .
-        run: docker build -t local < Dockerfile
+        run: docker-compose build --pull
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
