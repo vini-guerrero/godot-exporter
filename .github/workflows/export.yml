@@ -21,7 +21,7 @@ jobs:
           chmod +x ./setup.sh && sudo ./setup.sh
       - name: Prepare Export
         run: |
-          wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
+          sudo wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
           && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
           && mkdir -v ~/.cache \
           && mkdir -p -v ~/.config/godot \
