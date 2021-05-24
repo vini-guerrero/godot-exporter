@@ -23,6 +23,11 @@ GODOT_RELEASE="stable"
 EXPORT_NAME="test"
 REPO_ROOT=$PWD
 
+ANDROID_COMPILE_SDK = "29"
+ANDROID_BUILD_TOOLS = "29.0.3"
+ANDROID_SDK_TOOLS = "6200805"
+ANDROID_HOME=${PWD}android-home
+
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
@@ -51,12 +56,8 @@ wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GOD
 # && cd /root/ \
 # && rm -rf /root/android-sdk-installer \
 
-ANDROID_COMPILE_SDK = "29"
-ANDROID_BUILD_TOOLS = "29.0.3"
-ANDROID_SDK_TOOLS = "6200805"
 
-ANDROID_HOME=${PWD}android-home \
-&& install -d $ANDROID_HOME \
+install -d $ANDROID_HOME \
 && wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip \
 && pushd $ANDROID_HOME \
 && unzip -d cmdline-tools cmdline-tools.zip \
