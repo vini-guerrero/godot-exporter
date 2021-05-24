@@ -80,6 +80,8 @@ echo 'android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-3.
 
 echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
+locate adb | grep bin
+locate jarsigner | grep bin
 printenv
 
 #!/usr/bin/godot
