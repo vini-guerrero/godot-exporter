@@ -22,7 +22,7 @@ GODOT_DL_SUBDIR="3.3.1"
 GODOT_RELEASE="stable"
 ANDROID_HOME="/root/android-sdk"
 EXPORT_NAME="test"
-GAME_PATH=$PWD
+REPO_ROOT=$PWD
 
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
@@ -80,11 +80,11 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
-
-mkdir -v -p $GAME_PATH/build/android
-godot -s --verbose --export-debug "Android" $GAME_PATH/build/android/$EXPORT_NAME.debug.apk
-godot -s --verbose --export-debug "Android" $GAME_PATH/build/android/test.debug.apk
-cd $GAME_PATH/build/android
+cd $REPO_ROOT/game
+mkdir -v -p $REPO_ROOT/build/android
+godot -s --verbose --export-debug "Android" $REPO_ROOT/build/android/$EXPORT_NAME.debug.apk
+godot -s --verbose --export-debug "Android" $REPO_ROOT/build/android/test.debug.apk
+cd $REPO_ROOT/build/android
 ls
 pwd
 
