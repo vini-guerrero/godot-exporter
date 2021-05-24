@@ -46,10 +46,10 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && echo "count=0" > /root/.android/repositories.cfg \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
+&& cd /root/ #exit from the directory
 && rm -rf /root/android-sdk-installer \
 && ls \
 && pwd \
-&& cd bin \
 && ls \
 && pwd 
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
