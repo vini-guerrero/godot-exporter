@@ -34,8 +34,6 @@ wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GOD
 && sudo mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
 && sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip 
 
-echo -e GODOT DOWNLOADED AND INSTALLED
-
 # Download and install Android SDK, tools, accept licenses
 mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && cd /root/android-sdk-installer/cmdline-tools \
@@ -58,15 +56,15 @@ keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystor
 ls /root/android-sdk/debug.keystore
 
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
-cd /usr/local/bin/ \
-&& ls \
-&& pwd
-# chmod +x butler
-# godot -e -q
-# echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-# echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
-# echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
-# echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+# cd /usr/local/bin/ \
+# && ls \
+# && pwd
+# chmod +x /usr/local/bin/godot
+./usr/local/bin/godot -e -q
+echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
 echo -e Godot Engine Export Settings - Godot Version_${GODOT_VERSION} Subversion_${GODOT_DL_SUBDIR} Release_${GODOT_RELEASE}
 echo -e https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
