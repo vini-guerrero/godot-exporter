@@ -71,8 +71,8 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 && sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres \
 
 
-echo 'export/android/adb = "/usr/local/lib/android/sdk/platform-tools/adb"' >> ~/.config/godot/editor_settings-3.tres
-echo 'export/android/jarsigner = "/usr/local/lib/android/sdkbuild-tools/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/adb = "/usr/local/lib/android/sdk/platform-tools/adb/"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/jarsigner = "/usr/local/lib/android/sdkbuild-tools/jarsigner/"' >> ~/.config/godot/editor_settings-3.tres
 # echo 'android/apksigner = "/root/android-sdk/build-tools/apksigner"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
@@ -83,14 +83,14 @@ echo 'export/android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_sett
 
 echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
-cd $ANDROID_SDK_ROOT
+cd /usr/local/lib/android/sdk/platform-tools/
 pwd
 ls
 
 printenv
 
 #!/usr/bin/godot
-godot -e -q
+# godot -e -q
 cd $REPO_ROOT/game
 mkdir -v -p $REPO_ROOT/build/android
 godot --verbose --export-debug "Android" $REPO_ROOT/build/android/$EXPORT_NAME.debug.apk
