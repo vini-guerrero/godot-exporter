@@ -22,7 +22,6 @@ GODOT_DL_SUBDIR="3.3.1"
 GODOT_RELEASE="stable"
 ANDROID_HOME="/root/android-sdk"
 
-
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
@@ -47,7 +46,12 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && echo "count=0" > /root/.android/repositories.cfg \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
-&& rm -rf /root/android-sdk-installer
+&& rm -rf /root/android-sdk-installer \
+
+&& echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
+&& find / -name jre \
+&& ls \
+&& pwd
 
 
 # Create debug keystore
