@@ -20,6 +20,7 @@ apt-get update && apt-get install -y --no-install-recommends \
 GODOT_VERSION="3.3.1"
 GODOT_DL_SUBDIR="3.3.1"
 GODOT_RELEASE="stable"
+ANDROID_HOME="/root/android-sdk"
 
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
@@ -31,9 +32,6 @@ wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GOD
 && unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
 && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
 && rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
-
-ANDROID_HOME="/root/android-sdk"
-export ANDROID_HOME="/root/android-sdk"
     
 # Download and install Android SDK, tools, accept licenses
 mkdir -p -v /root/android-sdk-installer/cmdline-tools \
@@ -51,6 +49,8 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 # Create debug keystore
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
 && mv debug.keystore /root/android-sdk/debug.keystore
+
+ls && pwd
 
 godot -e -q
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
