@@ -81,6 +81,7 @@ echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/
 cd $GAME_PATH
 mkdir -v -p build/android
 #!/usr/bin/godot -s --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+ls
 
 echo -e Godot Engine Export Settings - Godot Version_${GODOT_VERSION} Subversion_${GODOT_DL_SUBDIR} Release_${GODOT_RELEASE}
 echo -e https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
