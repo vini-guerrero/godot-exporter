@@ -21,6 +21,13 @@ GODOT_VERSION="3.3.1"
 GODOT_DL_SUBDIR="3.3.1"
 GODOT_RELEASE="stable"
 
+echo '\n'
+echo 'Godot Engine Export Settings'
+echo ${GODOT_VERSION} ${GODOT_DL_SUBDIR} ${GODOT_RELEASE}
+echo '\n'
+echo https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
+echo '\n'
+
 # wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 # && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
 # && mkdir -v ~/.cache \
@@ -32,9 +39,5 @@ GODOT_RELEASE="stable"
 # && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
 # && rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 
-
-echo https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
-
-echo ${GODOT_VERSION} ${GODOT_DL_SUBDIR} ${GODOT_RELEASE}
 
 printenv
