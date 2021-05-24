@@ -17,17 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Export Docker
+      - name: Set Up Export Docker
         uses: docker/build-push-action@v2
         with:
           context: ./
           file: ./Dockerfile
-      - name: Setup
+      - name: Setup Godot Export Templates
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          sudo mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           mkdir -v -p ~/.config/godot/
-          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
+          sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build

@@ -1,9 +1,0 @@
-version: "3.9"
-volumes:
-  data:
-services:
-  export_docker:
-    container_name: export_docker
-    build:
-      context: .
-      dockerfile: Dockerfile
