@@ -23,7 +23,7 @@ GODOT_RELEASE="stable"
 EXPORT_NAME="test"
 REPO_ROOT=$PWD
 ANDROID_HOME="/root/android-sdk"
-PLATFORM_TOOLS = $ANDROID_HOME/platform-tools/
+# PLATFORM_TOOLS = $ANDROID_HOME/platform-tools/
 PATH=$PATH:$ANDROID_HOME/tools
 PATH=$PATH:$ANDROID_HOME/platform-tools
 
