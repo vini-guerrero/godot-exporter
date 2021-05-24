@@ -17,8 +17,8 @@ apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 
-GODOT_VERSION="3.3.2"
-GODOT_DL_SUBDIR="3.3.2"
+GODOT_VERSION="3.3"
+GODOT_DL_SUBDIR="3.3"
 GODOT_RELEASE="stable"
 EXPORT_NAME="test"
 REPO_ROOT=$PWD
@@ -69,7 +69,8 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 
 
 echo 'android/adb = "/root/android-sdk/platform-tools/adb"' >> ~/.config/godot/editor_settings-3.tres
-echo 'android/apksigner = "/root/android-sdk/build-tools/apksigner"' >> ~/.config/godot/editor_settings-3.tres
+echo 'android/jarsigner = "/root/android-sdk/build-tools/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
+# echo 'android/apksigner = "/root/android-sdk/build-tools/apksigner"' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
@@ -80,10 +81,9 @@ echo 'android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-3.
 echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
 
-cd $ANDROID_HOME/platform-tools/
-ls
+PLATFORM_TOOLS = $ANDROID_HOME/platform-tools/
+cd $PLATFORM_TOOLS
 pwd
-cd $ANDROID_HOME/build-tools/
 ls
 
 printenv
