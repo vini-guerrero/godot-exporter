@@ -12,10 +12,11 @@ env:
 jobs:
   export:
     runs-on: ubuntu-latest
-    container:
-      # image: viiniiguerrero/godot_ci:latest
-      image: ../Dockerfile
+    # container:
+    #   image: viiniiguerrero/godot_ci:latest
     steps:
+      - name: Build Export Docker
+        run: docker build -t local < ../Dockerfile
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
