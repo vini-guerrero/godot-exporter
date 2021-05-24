@@ -26,6 +26,7 @@ ANDROID_HOME="/root/android-sdk"
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
 && pwd \
+&& ls \
 && sudo mkdir -p -v ~/.cache \
 && sudo mkdir -p -v ~/.config/godot \
 && sudo mkdir -p -v ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
@@ -76,7 +77,7 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
-cd game
+cd /home/runner/work/ci_cd/ci_cd/game
 mkdir -v -p build/android
 ./usr/local/bin/godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
 
