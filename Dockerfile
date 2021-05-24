@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
 
-# Use Godot 3.3-rc8
+
 ENV GODOT_VERSION "3.3"
 ENV GODOT_DL_SUBDIR "3.3"
 ENV GODOT_RELEASE "stable"
@@ -26,8 +26,8 @@ ENV GODOT_TEMPLATE_URL = "https://downloads.tuxfamily.org/godotengine/${GODOT_DL
 RUN echo $GODOT_DOWNLOAD_PATH $GODOT_TEMPLATE_URL
 
 # Download and install Godot Engine (headless) and export templates
-RUN wget $GODOT_ENGINE_URL \
-    && wget $GODOT_TEMPLATE_URL \
+RUN wget ${GODOT_ENGINE_URL} \
+    && wget ${GODOT_TEMPLATE_URL} \
     && mkdir -v ~/.cache \
     && mkdir -p -v ~/.config/godot \
     && mkdir -p -v ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
