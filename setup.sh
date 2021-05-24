@@ -56,11 +56,12 @@ keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystor
 ls /root/android-sdk/debug.keystore
 
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
-# cd /usr/local/bin/ \
-# && ls \
-# && pwd
-# chmod +x /usr/local/bin/godot
-./usr/local/bin/godot -e -q
+cd /usr/local/bin/ \
+&& ls \
+&& pwd \
+&& chmod +x /usr/local/bin/godot \
+&& godot -e -q
+
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
