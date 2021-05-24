@@ -20,8 +20,9 @@ ENV GODOT_VERSION "3.3"
 ENV GODOT_DL_SUBDIR "3.3"
 ENV GODOT_RELEASE "stable"
 
-ENV GODOT_DOWNLOAD_PATH = "https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
-RUN echo $GODOT_DOWNLOAD_PATH
+ENV GODOT_ENGINE_URL = "https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
+ENV GODOT_TEMPLATE_URL = "https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
+RUN echo $GODOT_DOWNLOAD_PATH $GODOT_TEMPLATE_URL
 
 # Download and install Godot Engine (headless) and export templates
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
