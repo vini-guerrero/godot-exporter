@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     # Docker Hub Hosted Method
     container:
-      image: viiniiguerrero/godot_ci:latest
+      image: viiniiguerrero/godot_ci
     # Docker Hub Hosted Method
     steps:
       - name: Checkout
