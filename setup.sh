@@ -48,11 +48,14 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
 && rm -rf /root/android-sdk-installer \
 && ls \
+&& pwd \
+&& cd bin \
+&& ls \
 && pwd 
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
 # Create debug keystore
-./root/android-sdk/keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
+keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
 && mv debug.keystore /root/android-sdk/debug.keystore
 
 
