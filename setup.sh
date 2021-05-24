@@ -57,7 +57,7 @@ ls /root/android-sdk/debug.keystore
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
 cd /usr/local/bin/ \
 && chmod +x /usr/local/bin/godot \
-&& sudo locale-gen "en_US.UTF-8" \
+&& sudo apt install $(check-language-support) \
 && sudo dpkg-reconfigure locales \
 && godot -e -q
 
