@@ -82,6 +82,9 @@ echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
 
 PLATFORM_TOOLS = $ANDROID_HOME/platform-tools/
+PATH=$PATH:$ANDROID_HOME/tools
+PATH=$PATH:$ANDROID_HOME/platform-tools
+
 cd $PLATFORM_TOOLS
 pwd
 ls
