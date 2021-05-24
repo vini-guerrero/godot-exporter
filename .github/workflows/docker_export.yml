@@ -16,7 +16,8 @@ jobs:
     #   image: viiniiguerrero/godot_ci:latest
     steps:
       - name: Build Export Docker
-        run: docker build -t local < ../Dockerfile
+        working-directory: .
+        run: docker build -t local < Dockerfile
       - name: Checkout
         uses: actions/checkout@v1
       - name: Setup
