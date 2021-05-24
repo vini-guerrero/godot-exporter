@@ -80,7 +80,7 @@ echo 'android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-3.
 echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
 
-cd $ANDROID_HOME/platform-tools/adb
+cd $ANDROID_HOME/platform-tools/
 ls
 pwd
 cd $ANDROID_HOME/build-tools/
