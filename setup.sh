@@ -48,7 +48,7 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
 && rm -rf /root/android-sdk-installer \
 
-echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
+# echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 && find / -name jre \
 && ls \
 && pwd
