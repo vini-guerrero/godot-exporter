@@ -49,10 +49,6 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && cd /root/ \
 && rm -rf /root/android-sdk-installer \
 && ls \
-&& pwd \
-&& ls \
-&& which godot \
-&& cd /usr/local/bin/ \
 && pwd 
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
@@ -61,7 +57,9 @@ keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystor
 ls /root/android-sdk/debug.keystore
 
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
-./godot -e -q
+# cd /usr/local/bin/ 
+which godot
+godot -e -q
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
