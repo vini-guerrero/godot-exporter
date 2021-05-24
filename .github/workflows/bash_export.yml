@@ -1,7 +1,7 @@
 name: Bash Export
 on:
   push:
-    branches: [main]
+    branches: [dev]
 
 env:
   EXPORT_NAME: game
