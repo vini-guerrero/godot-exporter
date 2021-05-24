@@ -34,7 +34,7 @@ wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GOD
 && rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 
 ls
-&& cd /usr/local/bin/godot
+&& cd /usr/local/bin/
 && ls
 
 # # Download and install Android SDK, tools, accept licenses
