@@ -47,8 +47,7 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
 && cd /root/ \
 && rm -rf /root/android-sdk-installer \
-&& ls \
-&& pwd 
+
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
 # Create debug keystore
@@ -57,9 +56,9 @@ ls /root/android-sdk/debug.keystore
 
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
 cd /usr/local/bin/ \
-&& ls \
-&& pwd \
 && chmod +x /usr/local/bin/godot \
+&& sudo locale-gen "en_US.UTF-8" \
+&& sudo dpkg-reconfigure locales \
 && godot -e -q
 
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
