@@ -71,7 +71,9 @@ echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot
 echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
-
+cd ~/.config/godot/
+ls
+pwd
 sudo mkdir -v -p ~/.local/share/godot/templates \
 && sudo mv -p /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable \
 && sudo mkdir -v -p ~/.config/godot/ \
@@ -83,7 +85,6 @@ echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/
 cd $REPO_ROOT/game
 mkdir -v -p $REPO_ROOT/build/android
 godot --verbose --export-debug "Android" $REPO_ROOT/build/android/$EXPORT_NAME.debug.apk
-godot --verbose --export-debug "Android" $REPO_ROOT/build/android/test.debug.apk
 cd $REPO_ROOT/build/android
 ls
 pwd
