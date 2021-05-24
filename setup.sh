@@ -22,11 +22,7 @@ GODOT_DL_SUBDIR="3.3.2"
 GODOT_RELEASE="stable"
 EXPORT_NAME="test"
 REPO_ROOT=$PWD
-
-ANDROID_COMPILE_SDK = "29"
-ANDROID_BUILD_TOOLS = "29.0.3"
-ANDROID_SDK_TOOLS = "6200805"
-ANDROID_HOME=${PWD}android-home
+$ANDROID_HOME=$PWD
 
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
@@ -43,35 +39,18 @@ wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GOD
 && sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip 
 
 # Download and install Android SDK, tools, accept licenses
-# mkdir -p -v /root/android-sdk-installer/cmdline-tools \
-# && cd /root/android-sdk-installer/cmdline-tools \
-# && curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip" \
-# && unzip -q commandlinetools-linux-*.zip \
-# && rm commandlinetools-linux-*.zip \
-# && mv cmdline-tools latest \
-# && mkdir -p -v /root/.android \
-# && echo "count=0" > /root/.android/repositories.cfg \
-# && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses \
-# && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
-# && cd /root/ \
-# && rm -rf /root/android-sdk-installer \
-
-
-install -d $ANDROID_HOME \
-&& wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip \
-&& pushd $ANDROID_HOME \
-&& unzip -d cmdline-tools cmdline-tools.zip \
-&& popd \
-&& PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/ \
-&& sdkmanager --version \
-&& set +o pipefail \ 
-&& yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses \
-&& set -o pipefail \ 
-&& sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}" \ 
-&& sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools" \ 
-&& sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}" \ 
-&& PATH=$PATH:${ANDROID_HOME}/platform-tools/ \
-
+mkdir -p -v /root/android-sdk-installer/cmdline-tools \
+&& cd /root/android-sdk-installer/cmdline-tools \
+&& curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip" \
+&& unzip -q commandlinetools-linux-*.zip \
+&& rm commandlinetools-linux-*.zip \
+&& mv cmdline-tools latest \
+&& mkdir -p -v /root/.android \
+&& echo "count=0" > /root/.android/repositories.cfg \
+&& yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses \
+&& yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
+&& cd /root/ \
+&& rm -rf /root/android-sdk-installer \
 
 
 # Create debug keystore
@@ -100,8 +79,11 @@ echo 'android/shutdown_adb_on_exit = true' >> ~/.config/godot/editor_settings-3.
 
 echo -e Godot Editor .tres File Settings
 cat ~/.config/godot/editor_settings-3.tres
-locate adb | grep bin
-locate jarsigner | grep bin
+
+echo $ANDROID_HOME/platform-tools
+cd $ANDROID_HOME/platform-tools
+ls
+
 printenv
 
 #!/usr/bin/godot
