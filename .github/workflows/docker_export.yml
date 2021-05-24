@@ -12,22 +12,26 @@ env:
 jobs:
   export:
     runs-on: ubuntu-latest
-    # container:
-    #   image: viiniiguerrero/godot_ci:latest
+    # Docker Hub Hosted Method
+    container:
+      image: viiniiguerrero/godot_ci:latest
+    # Docker Hub Hosted Method
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Set Up Export Docker
-        uses: docker/build-push-action@v2
-        with:
-          context: ./
-          file: ./Dockerfile
+      # Github Hosted Method
+      # - name: Set Up Export Docker
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: ./
+      #     file: ./Dockerfile
+      # Github Hosted Method
       - name: Setup Godot Export Templates
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          sudo mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           mkdir -v -p ~/.config/godot/
-          sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
+          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
           echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
