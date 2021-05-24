@@ -16,9 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Environment Variables
-ENV GODOT_VERSION "3.3.1"
-ENV GODOT_DL_SUBDIR "3.3.1"
-ENV GODOT_RELEASE "stable"
+# ENV GODOT_VERSION "3.3.1"
+# ENV GODOT_DL_SUBDIR "3.3.1"
+# ENV GODOT_RELEASE "stable"
 ENV ANDROID_HOME /root/android-sdk
 
 # Download and install Godot Engine (headless) and export templates
