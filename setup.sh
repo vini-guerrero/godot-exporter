@@ -50,9 +50,7 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
 && mv debug.keystore /root/android-sdk/debug.keystore
 
-ls && pwd
-
-godot -e -q
+./usr/local/bin/godot -e -q
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
