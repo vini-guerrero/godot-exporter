@@ -16,9 +16,9 @@ echo "✔ Setup script triggered successfully."
 #     && rm -rf /var/lib/apt/lists/*
 
 
-export GODOT_VERSION = 3.3
-export GODOT_DL_SUBDIR = 3.3
-export GODOT_RELEASE = stable
+export GODOT_VERSION = "3.3"
+export GODOT_DL_SUBDIR = "3.3"
+export GODOT_RELEASE = "stable"
 
 # wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 # && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
