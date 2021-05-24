@@ -25,15 +25,16 @@ ANDROID_HOME="/root/android-sdk"
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
-&& mkdir -v ~/.cache \
-&& mkdir -p -v ~/.config/godot \
-&& mkdir -p -v ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
+&& sudo mkdir -v ~/.cache \
+&& sudo mkdir -p -v ~/.config/godot \
+&& sudo mkdir -p -v ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
 && unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
-&& mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot \
+&& sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot \
 && unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
-&& mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
-&& rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip 
+&& sudo mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
+&& sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip 
 
+echo -e GODOT DOWNLOADED AND INSTALLED
 
 # Download and install Android SDK, tools, accept licenses
 mkdir -p -v /root/android-sdk-installer/cmdline-tools \
@@ -57,9 +58,6 @@ keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystor
 ls /root/android-sdk/debug.keystore
 
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
-cd /usr/local/bin/ \
-&& ls \
-&& pwd
 # chmod +x butler
 # which godot
 # godot -e -q
