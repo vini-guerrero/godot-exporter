@@ -51,8 +51,8 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && ls \
 && pwd \
 && ls \
-&& which godot
-&& cd /usr/local/bin/
+&& which godot \
+&& cd /usr/local/bin/ \
 && pwd 
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
@@ -65,7 +65,7 @@ ls /root/android-sdk/debug.keystore
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
-echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres 
+echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
 echo -e Godot Engine Export Settings - Godot Version_${GODOT_VERSION} Subversion_${GODOT_DL_SUBDIR} Release_${GODOT_RELEASE}
 echo -e https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
