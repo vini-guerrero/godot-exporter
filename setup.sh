@@ -31,6 +31,9 @@ export GODOT_RELEASE = stable
 # && mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
 # && rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 
+
+echo https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
+
 echo ${GODOT_VERSION} ${GODOT_DL_SUBDIR} ${GODOT_RELEASE}
 
 printenv
