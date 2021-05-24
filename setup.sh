@@ -22,7 +22,7 @@ GODOT_DL_SUBDIR="3.3.2"
 GODOT_RELEASE="stable"
 EXPORT_NAME="test"
 REPO_ROOT=$PWD
-ANDROID_HOME=$PWD
+ANDROID_HOME="/root/android-sdk"
 
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
