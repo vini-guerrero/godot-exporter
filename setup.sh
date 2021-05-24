@@ -20,7 +20,6 @@ apt-get update && apt-get install -y --no-install-recommends \
 GODOT_VERSION="3.3.2"
 GODOT_DL_SUBDIR="3.3.2"
 GODOT_RELEASE="stable"
-ANDROID_HOME="/root/android-sdk"
 EXPORT_NAME="test"
 REPO_ROOT=$PWD
 
@@ -48,11 +47,15 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && mkdir -p -v /root/.android \
 && echo "count=0" > /root/.android/repositories.cfg \
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses \
+
+&& export ANDROID_HOME=$HOME/android \ 
+&& export PATH=$ANDROID_HOME/cmdline-tools/tools/bin/:$PATH \
+&& export PATH=$ANDROID_HOME/emulator/:$PATH \
+&& export PATH=$ANDROID_HOME/platform-tools/:$PATH \
+
 && yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529" \
 && cd /root/ \
 && rm -rf /root/android-sdk-installer \
-
-# echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
 # Create debug keystore
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
@@ -69,8 +72,8 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 && sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres \
 
 
-echo 'android/adb = "/opt/sdk/platform-tools/adb"' >> ~/.config/godot/editor_settings-3.tres
-echo 'android/jarsigner = "/opt/java/openjdk/bin/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
+echo 'android/adb = "/usr/lib/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+echo 'android/jarsigner = "/usr/lib/android-sdk/bin/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
 echo 'android/debug_keystore_pass = "android"' >> ~/.config/godot/editor_settings-3.tres
