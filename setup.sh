@@ -71,8 +71,8 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 && sudo cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres \
 
 
-echo 'export/android/adb = "/root/android/sdk/platform-tools/adb"' >> ~/.config/godot/editor_settings-3.tres
-echo 'export/android/jarsigner = "/root/android/sdk/build-tools/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/adb = "/usr/local/lib/android/sdk"' >> ~/.config/godot/editor_settings-3.tres
+echo 'export/android/jarsigner = "/usr/local/lib/android/sdkbuild-tools/jarsigner"' >> ~/.config/godot/editor_settings-3.tres
 # echo 'android/apksigner = "/root/android-sdk/build-tools/apksigner"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
