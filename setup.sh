@@ -49,13 +49,13 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 && rm -rf /root/android-sdk-installer \
 && ls \
 && pwd \
-&& cd bin \
+&& cd usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin \
 && ls \
 && pwd 
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
 # Create debug keystore
-keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
+./usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/bin/keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
 && mv debug.keystore /root/android-sdk/debug.keystore
 
 
