@@ -35,6 +35,7 @@ jobs:
           && sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 
           sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools \
+          && sudo chmod -R 777 /root
           && cd /root/android-sdk-installer/cmdline-tools \
           && curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip" \
           && unzip -q commandlinetools-linux-*.zip \
