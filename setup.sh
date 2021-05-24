@@ -78,10 +78,9 @@ sudo mkdir -v -p ~/.local/share/godot/templates \
 echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
 
-cd $GAME_PATH
-mkdir -v -p build/android
-#!/usr/bin/godot -s --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
-cd game/build/android
+mkdir -v -p $GAME_PATH/build/android
+#!/usr/bin/godot -s --verbose --export-debug "Android" $GAME_PATH/build/android/$EXPORT_NAME.debug.apk
+cd $GAME_PATH/build/android
 ls
 
 echo -e Godot Engine Export Settings - Godot Version_${GODOT_VERSION} Subversion_${GODOT_DL_SUBDIR} Release_${GODOT_RELEASE}
