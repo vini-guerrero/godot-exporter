@@ -25,7 +25,7 @@ ANDROID_HOME="/root/android-sdk"
 # Download and install Godot Engine (headless) and export templates
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
 && wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz \
-&& sudo mkdir -v ~/.cache \
+&& sudo mkdir -p -v ~/.cache \
 && sudo mkdir -p -v ~/.config/godot \
 && sudo mkdir -p -v ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE} \
 && unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip \
@@ -58,8 +58,10 @@ keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystor
 ls /root/android-sdk/debug.keystore
 
 # Initialize Godot so it creates editor_settings-3.tres file, then add android export section, since it is missing at first
+cd /usr/local/bin/ \
+&& ls \
+&& pwd
 # chmod +x butler
-# which godot
 # godot -e -q
 # echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
 # echo 'export/android/debug_keystore_user = "androiddebugkey"' >> ~/.config/godot/editor_settings-3.tres
