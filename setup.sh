@@ -55,13 +55,13 @@ ANDROID_COMPILE_SDK = "29"
 ANDROID_BUILD_TOOLS = "29.0.3"
 ANDROID_SDK_TOOLS = "6200805"
 
-export ANDROID_HOME=${PWD}android-home \
+ANDROID_HOME=${PWD}android-home \
 && install -d $ANDROID_HOME \
 && wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip \
 && pushd $ANDROID_HOME \
 && unzip -d cmdline-tools cmdline-tools.zip \
 && popd \
-&& export PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/ \
+&& PATH=$PATH:${ANDROID_HOME}/cmdline-tools/tools/bin/ \
 && sdkmanager --version \
 && set +o pipefail \ 
 && yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses \
@@ -69,7 +69,7 @@ export ANDROID_HOME=${PWD}android-home \
 && sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}" \ 
 && sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools" \ 
 && sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}" \ 
-&& export PATH=$PATH:${ANDROID_HOME}/platform-tools/ \
+&& PATH=$PATH:${ANDROID_HOME}/platform-tools/ \
 
 
 
