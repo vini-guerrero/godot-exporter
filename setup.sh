@@ -55,9 +55,8 @@ mkdir -p -v /root/android-sdk-installer/cmdline-tools \
 # echo 'export ANDROID_HOME=/root/android-sdk' >> ~/.bashrc \
 
 # Create debug keystore
-keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 \
-&& mv debug.keystore /root/android-sdk/debug.keystore
-
+keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
+ls /root/android-sdk/debug.keystore
 
 echo -e Godot Engine Export Settings - Godot Version_${GODOT_VERSION} Subversion_${GODOT_DL_SUBDIR} Release_${GODOT_RELEASE}
 echo -e https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
