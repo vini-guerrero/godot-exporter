@@ -27,9 +27,10 @@ jobs:
           echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
       - name: Android Debug Build
         run: |
+          cd game
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       - uses: actions/upload-artifact@v1
         with:
           name: android
-          path: build/android
+          path: game/build/android
