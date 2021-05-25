@@ -11,10 +11,13 @@ apt-get update && apt-get install -y --no-install-recommends sudo ca-certificate
 rm -rf /var/lib/apt/lists/*
 
 # Environment Variables
+if [-z "$ROOT_PATH" ]:
+then
+    ROOT_PATH="/root"
+fi
 GODOT_VERSION="3.3.2"
 GODOT_DL_SUBDIR="3.3.2"
 GODOT_RELEASE="stable"
-ROOT_PATH="/github/home"
 ANDROID_HOME=${ROOT_PATH}/android-sdk
 ADB_PATH=${ROOT_PATH}/android-sdk/platform-tools/adb
 DEBUG_KEYSTORE=${ANDROID_HOME}/debug.keystore
@@ -93,3 +96,4 @@ cd /game && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
 echo "\n\n ✔ Android Project Exported At /game/build/android \n\n"
+
