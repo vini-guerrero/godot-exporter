@@ -14,7 +14,7 @@ rm -rf /var/lib/apt/lists/*
 GODOT_VERSION="3.3.2"
 GODOT_DL_SUBDIR="3.3.2"
 GODOT_RELEASE="stable"
-ROOT_PATH="/root"
+ROOT_PATH="/github/home/"
 ANDROID_HOME=${ROOT_PATH}/android-sdk
 ADB_PATH=${ROOT_PATH}/android-sdk/platform-tools/adb
 DEBUG_KEYSTORE=${ANDROID_HOME}/debug.keystore
