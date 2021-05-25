@@ -36,7 +36,7 @@ jobs:
       # Github Hosted Method
       - name: Setup Godot Export Templates
         run: |
-          chmod +x setup.sh && sudo setup.sh
+          chmod +x setup.sh && setup.sh
       - name: Android Debug Build
         run: |
           cd game
