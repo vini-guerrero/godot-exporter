@@ -6,6 +6,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 COPY . .
 
-ENTRYPOINT ["sh", "./docker.sh"]
+ENTRYPOINT ["sh", "./setup.sh"]
+
+# Debug
+
+# ENTRYPOINT ["sh", "./docker.sh"]
 
 # RUN printenv

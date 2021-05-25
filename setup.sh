@@ -79,4 +79,4 @@ cat /root/.config/godot/editor_settings-3.tres
 cd /game && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
-echo "✔ Android Project Exported At"
+echo "✔ Android Project Exported At /game/build/android"
