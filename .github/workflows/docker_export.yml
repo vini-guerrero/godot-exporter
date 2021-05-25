@@ -36,12 +36,7 @@ jobs:
       # Github Hosted Method
       - name: Setup Godot Export Templates
         run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          cp /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-          mkdir -v -p ~/.config/godot/
-          cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
-          echo 'export/android/android_sdk_path = "/root/android-sdk"' >> ~/.config/godot/editor_settings-3.tres
+          chmod +x setup.sh && sudo setup.sh
       - name: Android Debug Build
         run: |
           cd game
