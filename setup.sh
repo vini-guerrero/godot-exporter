@@ -18,25 +18,26 @@ ROOT_PATH="/github/home"
 ANDROID_HOME=${ROOT_PATH}/android-sdk
 ADB_PATH=${ROOT_PATH}/android-sdk/platform-tools/adb
 DEBUG_KEYSTORE=${ANDROID_HOME}/debug.keystore
+TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
 EXPORT_NAME="game"
 
 echo "\n\n ✔ Environment Variables Set. \n\n"
 echo ${GODOT_VERSION} ${GODOT_DL_SUBDIR} ${GODOT_RELEASE}
 echo ${ROOT_PATH} ${ANDROID_HOME} ${ADB_PATH} 
-echo ${DEBUG_KEYSTORE} ${EXPORT_NAME}
+echo ${DEBUG_KEYSTORE} ${EXPORT_NAME} ${TRES_PATH}
 echo "\n\n"
 
 
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
 
-sudo mkdir -p -v ~/.cache && sudo mkdir -p -v ~/.config/godot
-sudo mkdir -p -v ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+sudo mkdir -p -v ${ROOT_PATH}/.cache && sudo mkdir -p -v ~/.config/godot
+sudo mkdir -p -v ${ROOT_PATH}/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 # Engine
 unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot
 # Templates
-unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* ~/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* ${ROOT_PATH}/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 # Clean
 sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 
@@ -68,26 +69,26 @@ chmod +x /usr/local/bin/godot && godot -q
 echo "\n\n ✔ Godot Editor First Launch. \n\n"
 
 # Delete Default Editor Settings 
-sed -i '/export\/android\/adb/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/export\/android\/android_sdk_path/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/export\/android\/jarsigner/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/export\/android\/apksigner/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/export\/android\/debug_keystore/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/export\/android\/debug_keystore_user/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/export\/android\/debug_keystore_pass/d' ${ROOT_PATH}/.config/godot/editor_settings-3.tres
+sed -i '/export\/android\/adb/d' ${TRES_PATH} \
+&& sed -i '/export\/android\/android_sdk_path/d' ${TRES_PATH} \
+&& sed -i '/export\/android\/jarsigner/d' ${TRES_PATH} \
+&& sed -i '/export\/android\/apksigner/d' ${TRES_PATH} \
+&& sed -i '/export\/android\/debug_keystore/d' ${TRES_PATH} \
+&& sed -i '/export\/android\/debug_keystore_user/d' ${TRES_PATH} \
+&& sed -i '/export\/android\/debug_keystore_pass/d' ${TRES_PATH}
 
 # Set New Editor Settings
-sed -i '/\[resource\]/a export\/android\/adb = '"${ADB_PATH}" ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/android_sdk_path = '"${ANDROID_HOME}" ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_keystore = '"${DEBUG_KEYSTORE}" ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${ROOT_PATH}/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${ROOT_PATH}/.config/godot/editor_settings-3.tres
+sed -i '/\[resource\]/a export\/android\/adb = '"${ADB_PATH}" ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/android_sdk_path = '"${ANDROID_HOME}" ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/debug_keystore = '"${DEBUG_KEYSTORE}" ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
 echo "\n\n ✔ Exporting Android Project \n\n"
 
-cat ${ROOT_PATH}/.config/godot/editor_settings-3.tres
+cat ${TRES_PATH}
 cd /game && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
