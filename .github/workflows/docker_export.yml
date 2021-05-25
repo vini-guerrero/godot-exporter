@@ -11,11 +11,6 @@ on:
         required: true
         default: "stable"
 
-env:
-  EXPORT_NAME: game
-  GODOT_VERSION: ${{ github.event.inputs.godot_version }}
-  GODOT_DL_SUBDIR: ${{ github.event.inputs.godot_version }}
-  GODOT_RELEASE: ${{ github.event.inputs.godot_release }} 
 
 jobs:
   export:
@@ -23,6 +18,11 @@ jobs:
     # Docker Hub Hosted Method
     container:
       image: viiniiguerrero/godot_ci
+    env:
+      EXPORT_NAME: game
+      GODOT_VERSION: ${{ github.event.inputs.godot_version }}
+      GODOT_DL_SUBDIR: ${{ github.event.inputs.godot_version }}
+      GODOT_RELEASE: ${{ github.event.inputs.godot_release }} 
     # Docker Hub Hosted Method
     steps:
       - name: Checkout
@@ -37,7 +37,7 @@ jobs:
       - name: Setup Godot Export Templates
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          cp /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
           mkdir -v -p ~/.config/godot/
           cp /root/.config/godot/editor_settings-3.tres ~/.config/godot/editor_settings-3.tres
           echo 'export/android/debug_keystore = "/root/android-sdk/debug.keystore"' >> ~/.config/godot/editor_settings-3.tres
