@@ -61,7 +61,7 @@ cd /root && rm -rf ${ROOT_PATH}/android-sdk-installer
 echo "\n\n ✔ Android SDK Successfully Installed. \n\n"
 
 # Key Generation
-keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore ${ROOT_PATH}/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
+keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
 ls ${ROOT_PATH}/android-sdk/debug.keystore
 
 echo "\n\n ✔ Debug Key Generated. \n\n"
