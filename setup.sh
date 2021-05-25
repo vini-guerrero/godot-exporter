@@ -48,15 +48,15 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 echo "\n\n ✔ Engine & Export Templates Successfully Installed. \n\n"
 
 # Android SDK
-sudo mkdir -p -v ${ROOT_PATH}/android-sdk-installer/cmdline-tools && cd ${ROOT_PATH}/android-sdk-installer/cmdline-tools
+sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
 curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
 unzip -q commandlinetools-linux-*.zip
 rm commandlinetools-linux-*.zip
 mv cmdline-tools latest
-mkdir -p -v ${ROOT_PATH}/.android && echo "count=0" > ${ROOT_PATH}/.android/repositories.cfg
-yes | ${ROOT_PATH}/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
-yes | ${ROOT_PATH}/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
-cd /root && rm -rf ${ROOT_PATH}/android-sdk-installer
+mkdir -p -v /root/.android && echo "count=0" > /root/.android/repositories.cfg
+yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
+yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
+cd /root && rm -rf /root/android-sdk-installer
 
 echo "\n\n ✔ Android SDK Successfully Installed. \n\n"
 
