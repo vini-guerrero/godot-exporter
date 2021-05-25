@@ -23,6 +23,7 @@ ADB_PATH=${ROOT_PATH}/android-sdk/platform-tools/adb
 DEBUG_KEYSTORE=${ANDROID_HOME}/debug.keystore
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
 EXPORT_NAME="game"
+PROJECT_PATH="/game"
 
 echo "\n\n ✔ Environment Variables Set. \n\n"
 echo ${GODOT_VERSION} ${GODOT_DL_SUBDIR} ${GODOT_RELEASE}
@@ -92,7 +93,7 @@ sed -i '/\[resource\]/a export\/android\/adb = '"${ADB_PATH}" ${TRES_PATH} \
 echo "\n\n ✔ Exporting Android Project \n\n"
 
 cat ${TRES_PATH}
-cd /game && mkdir -v -p build/android
+cd ${PROJECT_PATH} && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
 echo "\n\n ✔ Android Project Exported At /game/build/android \n\n"
