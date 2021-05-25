@@ -1,0 +1,13 @@
+# docker-compose up -d
+
+version: "3.9"
+volumes:
+  data:
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/home
