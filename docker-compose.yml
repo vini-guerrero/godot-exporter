@@ -10,4 +10,4 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/home
+      - ./build:/game/build/android
