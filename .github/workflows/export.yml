@@ -9,7 +9,7 @@ on:
       export_name:
         description: Final Export Release Name
         required: true
-        default: "game"
+        default: "export"
       export_path:
         description: Relative Project Path
         required: true
