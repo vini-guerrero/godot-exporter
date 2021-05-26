@@ -11,12 +11,12 @@ apt-get update && apt-get install -y --no-install-recommends sudo ca-certificate
 rm -rf /var/lib/apt/lists/*
 
 # Environment Variables
-${ROOT_PATH:=/root}
-${GODOT_VERSION:="3.3.2"}
-${GODOT_DL_SUBDIR:="3.3.2"}
-${GODOT_RELEASE:="stable"}
-${EXPORT_NAME:="game"}
-${PROJECT_PATH:=/game}
+${ROOT_PATH:-/root}
+${GODOT_VERSION:-"3.3.2"}
+${GODOT_DL_SUBDIR:-"3.3.2"}
+${GODOT_RELEASE:-"stable"}
+${EXPORT_NAME:-"game"}
+${PROJECT_PATH:-/game}
 
 ANDROID_HOME="/root/android-sdk"
 
@@ -61,6 +61,7 @@ chmod +x /usr/local/bin/godot && godot -q
 echo "✔ Godot Editor First Launch."
 # Set New Editor Settings
 sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
+&& sed -i '/\[resource\]/a export\/android\/adb = "/root/android-sdk/platform-tools/adb"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
 && sed -i '/\[resource\]/a export\/android\/debug_keystore = "/root/android-sdk/debug.keystore"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
 && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
 && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' $ROOT_PATH/.config/godot/editor_settings-3.tres
