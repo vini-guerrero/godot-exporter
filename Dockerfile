@@ -4,12 +4,8 @@ LABEL author="Vinicius Guerrero"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY . .
+COPY setup.sh /setup.sh
+
+RUN chmod +x entrypoint.sh
 
 ENTRYPOINT ["sh", "./setup.sh"]
-
-# Debug
-
-# ENTRYPOINT ["sh", "./debug.sh"]
-
-# RUN printenv
