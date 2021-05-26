@@ -6,6 +6,8 @@ on:
 jobs:
   export:
     runs-on: ubuntu-latest
+    container:
+      image: viiniiguerrero/godot_ci
     env:
       EXPORT_NAME: game
       GODOT_VERSION: 3.2.2

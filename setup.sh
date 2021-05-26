@@ -8,7 +8,6 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
-DEBIAN_FRONTEND=noninteractive
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # env:
     # GODOT_VERSION: 3.2.2
@@ -18,7 +17,7 @@ TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
     # PROJECT_PATH: /game
 
 # Godot Sub Directory
-GODOT_DL_SUBDIR=${GODOT_VERSION}
+GODOT_DL_SUBDIR=$GODOT_VERSION
 
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
