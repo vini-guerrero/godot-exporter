@@ -12,8 +12,8 @@ services:
     volumes:
       - ./build:/game/build/android
     env:
-      EXPORT_NAME: game
       GODOT_VERSION: 3.2.2
-      GODOT_DL_SUBDIR: 3.2.2
       GODOT_RELEASE: stable
+      EXPORT_NAME: game
       ROOT_PATH: /root
+      PROJECT_PATH: /game

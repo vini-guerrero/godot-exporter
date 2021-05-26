@@ -6,20 +6,24 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
 
+# Environment Variables
+ANDROID_HOME="/root/android-sdk"
+DEBIAN_FRONTEND=noninteractive
+TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
+# env:
+    # GODOT_VERSION: 3.2.2
+    # GODOT_RELEASE: stable
+    # EXPORT_NAME: game
+    # ROOT_PATH: /root
+    # PROJECT_PATH: /game
+
+# Godot Sub Directory
+$GODOT_DL_SUBDIR = ${GODOT_VERSION}
+
+# Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
 # locales-all
 rm -rf /var/lib/apt/lists/*
-
-# Environment Variables
-ANDROID_HOME="/root/android-sdk"
-TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
-# env:
-#     EXPORT_NAME: game
-#     GODOT_VERSION: 3.2.2
-#     GODOT_DL_SUBDIR: 3.2.2
-#     GODOT_RELEASE: stable
-#     ROOT_PATH: /root
-
 
 # Download & Setup
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
@@ -69,10 +73,8 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"'
 && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
 && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
-echo "✔ Exporting Android Project"
-
 cat ${TRES_PATH}
 cd ${PROJECT_PATH} && mkdir -v -p build/android
-godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
+# godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
-echo "✔ Android Project Exported At /game/build/android"
+echo "✔ Android Project Export Setup Ready"

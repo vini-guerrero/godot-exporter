@@ -6,13 +6,9 @@ on:
 jobs:
   export:
     runs-on: ubuntu-latest
-    # Docker Hub Hosted Method
-    container:
-      image: viiniiguerrero/godot_ci
     env:
       EXPORT_NAME: game
       GODOT_VERSION: 3.2.2
-      GODOT_DL_SUBDIR: 3.2.2
       GODOT_RELEASE: stable
       ROOT_PATH: /github/home
       PROJECT_PATH: /game
@@ -20,20 +16,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      # Github Hosted Method
-      # - name: Set Up Export Docker
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: ./
-      #     file: ./Dockerfile
-      # Github Hosted Method
       - name: Setup Godot Export Templates
         run: |
           bash setup.sh
       - name: Android Debug Build
         run: |
           cd game
-          mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
         env:
