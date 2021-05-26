@@ -11,11 +11,12 @@ ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # env:
     # GODOT_VERSION: 3.2.2
-    # GODOT_DL_SUBDIR: 3.2.2
     # GODOT_RELEASE: stable
     # EXPORT_NAME: game
     # ROOT_PATH: /root
 
+# Godot Sub Directory
+# GODOT_DL_SUBDIR=$GODOT_VERSION
 
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
