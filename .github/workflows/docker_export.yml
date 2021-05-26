@@ -14,6 +14,11 @@ jobs:
       GODOT_VERSION: 3.2.2
       EXPORT_NAME: game
       EXPORT_PATH: game
+      EXPORT_ANDROID: true
+      EXPORT_LINUX: false
+      EXPORT_MACOS: false
+      EXPORT_WINDOS: false
+      EXPORT_WEB: false
       ROOT_PATH: /github/home
     steps:
       - name: Checkout
@@ -22,11 +27,13 @@ jobs:
         run: |
           bash setup.sh
       - name: Android Debug Build
+        if: ${{ env.EXPORT_ANDROID }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
+        if: ${{ env.EXPORT_ANDROID }}
         env:
           K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
           K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
@@ -41,4 +48,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: android
-          path: $EXPORT_FOLDER/build/android
+          path: $EXPORT_PATH/build/android
