@@ -22,16 +22,17 @@ jobs:
       ROOT_PATH: /github/home
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Setup Godot Export Templates
-        run: |
-          bash setup.sh
+        run: bash setup.sh
+      # Android Debug Build
       - name: Android Debug Build
         if: ${{ env.EXPORT_ANDROID }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+      # Android Release Build
       - name: Android Release Build
         if: ${{ env.EXPORT_ANDROID }}
         env:
@@ -45,7 +46,7 @@ jobs:
           sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'$K8S_SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
           sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'$K8S_SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
           godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: android
           path: $EXPORT_PATH/build/android
