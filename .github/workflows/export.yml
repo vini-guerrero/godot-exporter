@@ -12,32 +12,32 @@ on:
         default: "game"
       export_path:
         description: "Repository Relative Project Path"
-          required: true
-          default: "game"
+        required: true
+        default: "game"
       export_retention_days:
         description: "Artifact Retention In Days - Max 90 Days"
-          required: true
-          default: 15
+        required: true
+        default: 15
       export_android:
         description: "Export to Android"
-          required: true
-          default: true
+        required: true
+        default: true
       export_linux:
         description: "Export to Linux"
-          required: true
-          default: true
+        required: true
+        default: true
       export_macos:
         description: "Export to MacOS"
-          required: true
-          default: true
+        required: true
+        default: true
       export_windows:
         description: "Export to Windows"
-          required: true
-          default: true
+        required: true
+        default: true
       export_web:
         description: "Export to Web/HTML5"
-          required: true
-          default: true
+        required: true
+        default: true
 
 jobs:
   export:
