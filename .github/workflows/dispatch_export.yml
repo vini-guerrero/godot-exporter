@@ -1,5 +1,7 @@
 name: "Export Project"
 on:
+  push:
+    branches: [dev] 
   workflow_dispatch:
     inputs:
       godot_version:
@@ -14,7 +16,7 @@ on:
         description: Relative Project Path
         required: true
         default: "game"
-      export_retention_days:
+      retention_days:
         description: Artifact Retention In Days - Max 90 Days
         required: true
         default: "15"
@@ -40,16 +42,15 @@ on:
         default: "true"
 
 env:
-  GODOT_VERSION: ${{ github.event.inputs.godot_version }} 
-  EXPORT_NAME: ${{ github.event.inputs.export_name }} 
-  EXPORT_PATH: ${{ github.event.inputs.export_path }} 
-  EXPORT_RETENTION_DAYS: ${{ github.event.inputs.export_retention_days }} 
-  EXPORT_ANDROID: ${{ github.event.inputs.export_android }} 
-  EXPORT_LINUX: ${{ github.event.inputs.export_linux }}
-  EXPORT_MACOS: ${{ github.event.inputs.export_macos }}
-  EXPORT_WINDOWS: ${{ github.event.inputs.export_windows }}
-  EXPORT_WEB: ${{ github.event.inputs.export_web }}
-
+  GODOT_VERSION: ${{ github.event.inputs.godot_version }} || "3.2.2" 
+  EXPORT_NAME: ${{ github.event.inputs.export_name }} || "export" 
+  EXPORT_PATH: ${{ github.event.inputs.export_path }} || "game" 
+  EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }} || "15"
+  EXPORT_ANDROID: ${{ github.event.inputs.export_android }} || "true"
+  EXPORT_LINUX: ${{ github.event.inputs.export_linux }} || "false" 
+  EXPORT_MACOS: ${{ github.event.inputs.export_macos }} || "false" 
+  EXPORT_WINDOWS: ${{ github.event.inputs.export_windows }} || "false"  
+  EXPORT_WEB: ${{ github.event.inputs.export_web }} || "false" 
 jobs:
   export:
     name: "Export Project"
