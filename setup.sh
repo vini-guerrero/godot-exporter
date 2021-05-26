@@ -11,12 +11,12 @@ apt-get update && apt-get install -y --no-install-recommends sudo ca-certificate
 rm -rf /var/lib/apt/lists/*
 
 # Environment Variables
-"${ROOT_PATH:=/root}"
-"${GODOT_VERSION:=3.3.2}"
-"${GODOT_DL_SUBDIR:=3.3.2}"
-"${GODOT_RELEASE:=stable}"
-"${EXPORT_NAME:=game}"
-"${PROJECT_PATH:=/game}"
+"${ROOT_PATH:='/root'}"
+"${GODOT_VERSION:='3.3.2'}"
+"${GODOT_DL_SUBDIR:='3.3.2'}"
+"${GODOT_RELEASE:='stable'}"
+"${EXPORT_NAME:='game'}"
+"${PROJECT_PATH:='/game'}"
 
 ANDROID_HOME="/root/android-sdk"
 
