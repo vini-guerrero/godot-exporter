@@ -1,41 +1,41 @@
 name: Export Godot Project
-on:
+"on":
   workflow_dispatch:
     inputs:
       godot_version:
-        description: "Godot Version"
+        description: Godot Version
         required: true
-        default: "3.2.2"
+        default: 3.2.2
       export_name:
-        description: "Final Export Release Name"
+        description: Final Export Release Name
         required: true
-        default: "game"
+        default: game
       export_path:
-        description: "Repository Relative Project Path"
+        description: Repository Relative Project Path
         required: true
-        default: "game"
+        default: game
       export_retention_days:
-        description: "Artifact Retention In Days - Max 90 Days"
+        description: Artifact Retention In Days - Max 90 Days
         required: true
         default: 15
       export_android:
-        description: "Export to Android"
+        description: Export to Android
         required: true
         default: true
       export_linux:
-        description: "Export to Linux"
+        description: Export to Linux
         required: true
         default: true
       export_macos:
-        description: "Export to MacOS"
+        description: Export to MacOS
         required: true
         default: true
       export_windows:
-        description: "Export to Windows"
+        description: Export to Windows
         required: true
         default: true
       export_web:
-        description: "Export to Web/HTML5"
+        description: Export to Web/HTML5
         required: true
         default: true
 
