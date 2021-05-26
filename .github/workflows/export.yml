@@ -11,7 +11,7 @@ on:
         required: true
         default: "game"
       export_path:
-        description: Repository Relative Project Path
+        description: Relative Project Path
         required: true
         default: "game"
       export_retention_days:
