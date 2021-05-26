@@ -10,6 +10,6 @@ ENTRYPOINT ["sh", "./setup.sh"]
 
 # Debug
 
-# ENTRYPOINT ["sh", "./docker.sh"]
+# ENTRYPOINT ["sh", "./debug.sh"]
 
 # RUN printenv

@@ -12,6 +12,7 @@ rm -rf /var/lib/apt/lists/*
 
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
+TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # env:
 #     EXPORT_NAME: game
 #     GODOT_VERSION: 3.2.2
@@ -60,17 +61,17 @@ chmod +x /usr/local/bin/godot && godot -q
 
 echo "✔ Godot Editor First Launch."
 # Set New Editor Settings
-sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/adb = "/root/android-sdk/platform-tools/adb"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_keystore = "/root/android-sdk/debug.keystore"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' $ROOT_PATH/.config/godot/editor_settings-3.tres
+sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/adb = "/root/android-sdk/platform-tools/adb"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/jarsigner = "/usr/bin/jarsigner"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/apksigner = "/usr/bin/apksigner"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/debug_keystore = "/root/android-sdk/debug.keystore"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
+&& sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
 echo "✔ Exporting Android Project"
 
-cat $ROOT_PATH/.config/godot/editor_settings-3.tres
+cat ${TRES_PATH}
 cd /game && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
