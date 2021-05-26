@@ -7,12 +7,14 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 # /bin/bash
 
 # Environment Variables
+GODOT_RELEASE="stable" # Setup Only From Stable Release
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # env:
+    # DEBIAN_FRONTEND: noninteractive
     # GODOT_VERSION: 3.2.2
-    # GODOT_RELEASE: stable
     # EXPORT_NAME: game
+    # EXPORT_PATH: /game
     # ROOT_PATH: /root
 
 # Godot Sub Directory
