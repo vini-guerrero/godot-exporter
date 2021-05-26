@@ -125,6 +125,7 @@ jobs:
       ######################################################
       # Android Artifact
       - uses: actions/upload-artifact@v2
+        name: Android Artifact Upload
         if: ${{ env.EXPORT_ANDROID=='true' }}
         with:
           name: Android
@@ -132,6 +133,7 @@ jobs:
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # Linux Artifact
       - uses: actions/upload-artifact@v2
+        name: Linux Artifact Upload
         if: ${{ env.EXPORT_LINUX=='true' }}
         with:
           name: Linux
@@ -139,6 +141,7 @@ jobs:
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # MacOS Artifact
       - uses: actions/upload-artifact@v2
+        name: MacOS Artifact Upload
         if: ${{ env.EXPORT_MACOS=='true' }}
         with:
           name: MacOS
@@ -146,6 +149,7 @@ jobs:
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # Windows Artifact
       - uses: actions/upload-artifact@v2
+        name: Windows Artifact Upload      
         if: ${{ env.EXPORT_WINDOWS=='true' }}
         with:
           name: Windows
@@ -153,6 +157,7 @@ jobs:
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # Web Artifact
       - uses: actions/upload-artifact@v2
+        name: Web Artifact Upload      
         if: ${{ env.EXPORT_WEB=='true' }}
         with:
           name: Web
