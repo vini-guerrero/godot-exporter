@@ -31,6 +31,7 @@ then
 elif [ "${GODOT_RELEASE}" == "mono" ]
 then
     echo "::error::Mono version of Godot Engine is not supported yet"
+    exit 1
 else #using subdirectory
     LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_RELEASE}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
     LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_RELEASE}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
