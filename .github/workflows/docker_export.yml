@@ -14,7 +14,7 @@ jobs:
       GODOT_VERSION: 3.2.2
       GODOT_DL_SUBDIR: 3.2.2
       GODOT_RELEASE: stable
-      ROOT_PATH: "/github/home"
+      ROOT_PATH: /github/home
     # Docker Hub Hosted Method
     steps:
       - name: Checkout
@@ -34,6 +34,18 @@ jobs:
           cd game
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
+      - name: Android Release Build
+        env:
+          K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+          K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
+          K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD  }}
+        run: |
+          echo $K8S_SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore
+          cd game
+          sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg
+          sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'$K8S_SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
+          sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'$K8S_SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
+          godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk
       - uses: actions/upload-artifact@v1
         with:
           name: android
