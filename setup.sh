@@ -23,13 +23,13 @@ ANDROID_HOME="/root/android-sdk"
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
 
-sudo mkdir -p -v /github/home/.cache && sudo mkdir -p -v ~/.config/godot
-sudo mkdir -p -v /github/home/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v ~/.config/godot
+sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 # Engine
 unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot
 # Templates
-unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* /github/home/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 # Clean
 sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 
@@ -60,14 +60,14 @@ chmod +x /usr/local/bin/godot && godot -q
 
 echo "✔ Godot Editor First Launch."
 # Set New Editor Settings
-sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' /github/home/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_keystore = "/root/android-sdk/debug.keystore"' /github/home/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' /github/home/.config/godot/editor_settings-3.tres \
-&& sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' /github/home/.config/godot/editor_settings-3.tres
+sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
+&& sed -i '/\[resource\]/a export\/android\/debug_keystore = "/root/android-sdk/debug.keystore"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
+&& sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' $ROOT_PATH/.config/godot/editor_settings-3.tres \
+&& sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' $ROOT_PATH/.config/godot/editor_settings-3.tres
 
 echo "✔ Exporting Android Project"
 
-cat /github/home/.config/godot/editor_settings-3.tres
+cat $ROOT_PATH/.config/godot/editor_settings-3.tres
 cd /game && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
