@@ -12,7 +12,7 @@ jobs:
       DEBIAN_FRONTEND: noninteractive
       GODOT_VERSION: 3.2.2
       EXPORT_NAME: game
-      EXPORT_PATH: /game
+      EXPORT_PATH: game
       ROOT_PATH: /github/home
     steps:
       - name: Checkout
