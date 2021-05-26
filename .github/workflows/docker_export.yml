@@ -6,9 +6,9 @@ on:
 env:
   DEBIAN_FRONTEND: noninteractive
   GODOT_VERSION: 3.2.2
-  GODOT_RELEASE: stable
+  GODOT_RELEASE: debug
   EXPORT_NAME: game
-  EXPORT_PATH: game
+  EXPORT_PATH: /game
   ROOT_PATH: /github/home
 
 jobs:
