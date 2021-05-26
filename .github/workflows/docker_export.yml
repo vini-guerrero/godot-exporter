@@ -14,7 +14,7 @@ jobs:
       GODOT_VERSION: 3.2.2
       GODOT_DL_SUBDIR: 3.2.2
       GODOT_RELEASE: stable
-      ROOT_PATH: /github/home
+      ROOT_PATH: github/home
     # Docker Hub Hosted Method
     steps:
       - name: Checkout
