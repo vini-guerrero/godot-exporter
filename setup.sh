@@ -8,7 +8,6 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
-DEBIAN_FRONTEND=noninteractive
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # env:
     # GODOT_VERSION: 3.2.2
