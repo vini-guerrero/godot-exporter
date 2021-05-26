@@ -1,11 +1,11 @@
 name: Export Godot Project
-"on":
+on:
   workflow_dispatch:
     inputs:
       godot_version:
         description: Godot Version
         required: true
-        default: 3.2.2
+        default: "3.2.2"
       export_name:
         description: Final Export Release Name
         required: true
@@ -17,7 +17,7 @@ name: Export Godot Project
       export_retention_days:
         description: Artifact Retention In Days - Max 90 Days
         required: true
-        default: 15
+        default: "15"
       export_android:
         description: Export to Android
         required: true
