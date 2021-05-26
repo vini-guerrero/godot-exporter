@@ -11,17 +11,18 @@ apt-get update && apt-get install -y --no-install-recommends sudo ca-certificate
 rm -rf /var/lib/apt/lists/*
 
 # Environment Variables
-"${ROOT_PATH:='root'}"
-"${GODOT_VERSION:='3.3.2'}"
-"${GODOT_DL_SUBDIR:='3.3.2'}"
-"${GODOT_RELEASE:='stable'}"
-"${EXPORT_NAME:='game'}"
-"${PROJECT_PATH:='game'}"
 ANDROID_HOME="/root/android-sdk"
+# env:
+#     EXPORT_NAME: game
+#     GODOT_VERSION: 3.2.2
+#     GODOT_DL_SUBDIR: 3.2.2
+#     GODOT_RELEASE: stable
+#     ROOT_PATH: /root
 
+
+# Download & Setup
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
 wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
-
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v ~/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
