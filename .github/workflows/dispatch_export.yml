@@ -73,14 +73,14 @@ jobs:
       ######################################################
       # Android Debug Build
       - name: Android Debug Build
-        if: ${{ env.EXPORT_ANDROID=="true" }}
+        if: ${{ env.EXPORT_ANDROID=='true' }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       # Android Release Build
       - name: Android Release Build
-        if: ${{ env.EXPORT_ANDROID=="true" }}
+        if: ${{ env.EXPORT_ANDROID=='true' }}
         env:
           K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
           K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER  }}
@@ -94,28 +94,28 @@ jobs:
           godot --verbose --export "Android" ./build/android/$EXPORT_NAME.release.apk
       # Linux Build
       - name: Linux Build
-        if: ${{ env.EXPORT_LINUX=="true" }}
+        if: ${{ env.EXPORT_LINUX=='true' }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/linux
           godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
       # MacOS Build
       - name: MacOS Build
-        if: ${{ env.EXPORT_MACOS=="true" }}
+        if: ${{ env.EXPORT_MACOS=='true' }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/mac
           godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       # Windows Build
       - name: Windows Build
-        if: ${{ env.EXPORT_WINDOWS=="true" }}
+        if: ${{ env.EXPORT_WINDOWS=='true' }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/windows
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       # Web Build
       - name: Web Build
-        if: ${{ env.EXPORT_WEB=="true" }}
+        if: ${{ env.EXPORT_WEB=='true' }}
         run: |
           cd ${EXPORT_PATH}
           mkdir -v -p build/web
@@ -125,35 +125,35 @@ jobs:
       ######################################################
       # Android Artifact
       - uses: actions/upload-artifact@v2
-        if: ${{ env.EXPORT_ANDROID=="true" }}
+        if: ${{ env.EXPORT_ANDROID=='true' }}
         with:
           name: Android
           path: ${{ env.EXPORT_PATH }}/build/android
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # Linux Artifact
       - uses: actions/upload-artifact@v2
-        if: ${{ env.EXPORT_LINUX=="true" }}
+        if: ${{ env.EXPORT_LINUX=='true' }}
         with:
           name: Linux
           path: ${{ env.EXPORT_PATH }}/build/linux
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # MacOS Artifact
       - uses: actions/upload-artifact@v2
-        if: ${{ env.EXPORT_MACOS=="true" }}
+        if: ${{ env.EXPORT_MACOS=='true' }}
         with:
           name: MacOS
           path: ${{ env.EXPORT_PATH }}/build/mac
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # Windows Artifact
       - uses: actions/upload-artifact@v2
-        if: ${{ env.EXPORT_WINDOWS=="true" }}
+        if: ${{ env.EXPORT_WINDOWS=='true' }}
         with:
           name: Windows
           path: ${{ env.EXPORT_PATH }}/build/windows
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       # Web Artifact
       - uses: actions/upload-artifact@v2
-        if: ${{ env.EXPORT_WEB=="true" }}
+        if: ${{ env.EXPORT_WEB=='true' }}
         with:
           name: Web
           path: ${{ env.EXPORT_PATH }}/build/web
