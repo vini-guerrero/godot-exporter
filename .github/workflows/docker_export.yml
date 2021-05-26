@@ -7,8 +7,9 @@ jobs:
   export:
     runs-on: ubuntu-latest
     container:
-      image: viiniiguerrero/godot_ci
+      image: ubuntu:20.04
     env:
+      DEBIAN_FRONTEND: noninteractive
       GODOT_VERSION: 3.2.2
       GODOT_RELEASE: stable
       EXPORT_NAME: game
