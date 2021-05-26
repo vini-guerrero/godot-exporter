@@ -1,4 +1,4 @@
-name: Docker Export
+name: Export Godot Project
 on:
   push:
     branches: [docker]
@@ -49,4 +49,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: android
-          path: $EXPORT_PATH/build/android
+          path: ${{ env.EXPORT_PATH }}/build/android
