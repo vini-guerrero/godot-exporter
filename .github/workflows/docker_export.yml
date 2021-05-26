@@ -41,4 +41,4 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: android
-          path: ${{ env.EXPORT_FOLDER }}/build/android
+          path: $EXPORT_FOLDER/build/android
