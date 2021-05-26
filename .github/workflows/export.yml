@@ -1,7 +1,43 @@
 name: Export Godot Project
 on:
-  push:
-    branches: [docker]
+  workflow_dispatch:
+    inputs:
+      godot_version:
+        description: "Godot Version"
+        required: true
+        default: "3.2.2"
+      export_name:
+        description: "Final Export Release Name"
+        required: true
+        default: "game"
+      export_path:
+        description: "Repository Relative Project Path"
+          required: true
+          default: "game"
+      export_retention_days:
+        description: "Artifact Retention In Days - Max 90 Days"
+          required: true
+          default: 15
+      export_android:
+        description: "Export to Android"
+          required: true
+          default: true
+      export_linux:
+        description: "Export to Linux"
+          required: true
+          default: true
+      export_macos:
+        description: "Export to MacOS"
+          required: true
+          default: true
+      export_windows:
+        description: "Export to Windows"
+          required: true
+          default: true
+      export_web:
+        description: "Export to Web/HTML5"
+          required: true
+          default: true
 
 jobs:
   export:
@@ -11,15 +47,15 @@ jobs:
       image: ubuntu:20.04
     env:
       DEBIAN_FRONTEND: noninteractive
-      GODOT_VERSION: 3.2.2
-      EXPORT_NAME: game
-      EXPORT_PATH: game
-      EXPORT_RETENTION_DAYS: 15
-      EXPORT_ANDROID: true
-      EXPORT_LINUX: true
-      EXPORT_MACOS: false
-      EXPORT_WINDOWS: true
-      EXPORT_WEB: true
+      GODOT_VERSION: ${{ github.event.inputs.godot_version }}
+      EXPORT_NAME: ${{ github.event.inputs.export_name }}
+      EXPORT_PATH: ${{ github.event.inputs.export_path }}
+      EXPORT_RETENTION_DAYS: ${{ github.event.inputs.description }}
+      EXPORT_ANDROID: ${{ github.event.inputs.export_android }}
+      EXPORT_LINUX: ${{ github.event.inputs.export_linux }}
+      EXPORT_MACOS: ${{ github.event.inputs.export_macos }}
+      EXPORT_WINDOWS: ${{ github.event.inputs.export_windows }}
+      EXPORT_WEB: ${{ github.event.inputs.export_web }}
       ROOT_PATH: /github/home
     steps:
       - name: Checkout
