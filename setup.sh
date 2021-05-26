@@ -14,10 +14,9 @@ TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
     # GODOT_RELEASE: stable
     # EXPORT_NAME: game
     # ROOT_PATH: /root
-    # PROJECT_PATH: /game
 
 # Godot Sub Directory
-GODOT_DL_SUBDIR=$GODOT_VERSION
+# GODOT_DL_SUBDIR=$GODOT_VERSION
 
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
@@ -25,8 +24,8 @@ apt-get update && apt-get install -y --no-install-recommends sudo ca-certificate
 rm -rf /var/lib/apt/lists/*
 
 # Download & Setup
-wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
-wget https://downloads.tuxfamily.org/godotengine/${GODOT_DL_SUBDIR}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
+wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
+wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v ~/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
@@ -73,7 +72,7 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"'
 && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
 
 cat ${TRES_PATH}
-cd ${PROJECT_PATH} && mkdir -v -p build/android
+# cd /game && mkdir -v -p build/android
 # godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
 echo "✔ Android Project Export Setup Ready"

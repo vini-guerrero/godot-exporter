@@ -9,11 +9,10 @@ jobs:
     container:
       image: viiniiguerrero/godot_ci
     env:
-      EXPORT_NAME: game
       GODOT_VERSION: 3.2.2
       GODOT_RELEASE: stable
+      EXPORT_NAME: game
       ROOT_PATH: /github/home
-      PROJECT_PATH: /game
     # Docker Hub Hosted Method
     steps:
       - name: Checkout
@@ -24,6 +23,7 @@ jobs:
       - name: Android Debug Build
         run: |
           cd game
+          mkdir -v -p build/android
           godot --verbose --export-debug "Android" ./build/android/$EXPORT_NAME.debug.apk
       - name: Android Release Build
         env:

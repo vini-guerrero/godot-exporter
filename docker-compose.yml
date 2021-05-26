@@ -16,4 +16,3 @@ services:
       GODOT_RELEASE: stable
       EXPORT_NAME: game
       ROOT_PATH: /root
-      PROJECT_PATH: /game
