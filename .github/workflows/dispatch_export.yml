@@ -98,21 +98,21 @@ jobs:
       - name: MacOS Build
         if: ${{ env.EXPORT_MACOS }}
         run: |
-          cd ${EXPORT_FOLDER}
+          cd ${EXPORT_PATH}
           mkdir -v -p build/mac
           godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
       # Windows Build
       - name: Windows Build
         if: ${{ env.EXPORT_WINDOWS }}
         run: |
-          cd ${EXPORT_FOLDER}
+          cd ${EXPORT_PATH}
           mkdir -v -p build/windows
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       # Web Build
       - name: Web Build
         if: ${{ env.EXPORT_WEB }}
         run: |
-          cd ${EXPORT_FOLDER}
+          cd ${EXPORT_PATH}
           mkdir -v -p build/web
           godot -v --export "HTML5" ./build/web/index.html
       ######################################################
