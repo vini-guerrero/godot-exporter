@@ -6,6 +6,10 @@ on:
         description: Godot Version
         required: true
         default: "3.2.2"
+      godot_release:
+        description: Godot Release (Mono is not supported yet)
+        required: true
+        default: "stable"
       export_name:
         description: Final Export Release Name
         required: true
@@ -41,6 +45,7 @@ on:
 
 env:
   GODOT_VERSION: ${{ github.event.inputs.godot_version }} 
+  GODOT_RELEASE: ${{ github.event.inputs.godot_release }}
   EXPORT_NAME: ${{ github.event.inputs.export_name }} 
   EXPORT_PATH: ${{ github.event.inputs.export_path }} 
   EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }} 
