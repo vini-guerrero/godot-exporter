@@ -72,7 +72,7 @@ sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"'
 echo "✔ Exporting Android Project"
 
 cat ${TRES_PATH}
-cd /game && mkdir -v -p build/android
+cd ${PROJECT_PATH} && mkdir -v -p build/android
 godot --verbose --export-debug "Android" build/android/$EXPORT_NAME.debug.apk
 
 echo "✔ Android Project Exported At /game/build/android"
