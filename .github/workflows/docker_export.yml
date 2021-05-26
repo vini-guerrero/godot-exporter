@@ -3,18 +3,19 @@ on:
   push:
     branches: [docker]
 
+env:
+  DEBIAN_FRONTEND: noninteractive
+  GODOT_VERSION: 3.2.2
+  GODOT_RELEASE: stable
+  EXPORT_NAME: game
+  EXPORT_PATH: game
+  ROOT_PATH: /github/home
+
 jobs:
   export:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:20.04
-    env:
-      DEBIAN_FRONTEND: noninteractive
-      GODOT_VERSION: 3.2.2
-      GODOT_RELEASE: stable
-      EXPORT_NAME: game
-      EXPORT_PATH: game
-      ROOT_PATH: /github/home
     steps:
       - name: Checkout
         uses: actions/checkout@v1
