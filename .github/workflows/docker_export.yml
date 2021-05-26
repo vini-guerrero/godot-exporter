@@ -17,7 +17,7 @@ jobs:
       EXPORT_RETENTION_DAYS: 15
       EXPORT_ANDROID: true
       EXPORT_LINUX: true
-      EXPORT_MACOS: true
+      EXPORT_MACOS: false
       EXPORT_WINDOWS: true
       EXPORT_WEB: true
       ROOT_PATH: /github/home
