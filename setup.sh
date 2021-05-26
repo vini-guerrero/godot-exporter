@@ -23,8 +23,8 @@ apt-get update && apt-get install -y --no-install-recommends sudo ca-certificate
 rm -rf /var/lib/apt/lists/*
 
 # Download & Setup
-wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_DL_SUBDIR}-${GODOT_RELEASE}_linux_headless.64.zip
-wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_DL_SUBDIR}-${GODOT_RELEASE}_export_templates.tpz
+wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
+wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v ~/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
