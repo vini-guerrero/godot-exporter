@@ -14,17 +14,21 @@ jobs:
       GODOT_VERSION: 3.2.2
       EXPORT_NAME: game
       EXPORT_PATH: game
+      EXPORT_RETENTION_DAYS: 15
       EXPORT_ANDROID: true
       EXPORT_LINUX: true
-      EXPORT_MACOS: false
-      EXPORT_WINDOS: false
-      EXPORT_WEB: false
+      EXPORT_MACOS: true
+      EXPORT_WINDOWS: true
+      EXPORT_WEB: true
       ROOT_PATH: /github/home
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Godot Export Templates
         run: bash setup.sh
+      ######################################################
+      ### Export Builds
+      ######################################################
       # Android Debug Build
       - name: Android Debug Build
         if: ${{ env.EXPORT_ANDROID }}
@@ -53,18 +57,62 @@ jobs:
           cd ${EXPORT_PATH}
           mkdir -v -p build/linux
           godot -v --export "Linux/X11" ./build/linux/$EXPORT_NAME.x86_64
-
-      # Android Artifact Upload
+      # MacOS Build
+      - name: MacOS Build
+        if: ${{ env.EXPORT_MACOS }}
+        run: |
+          cd ${EXPORT_FOLDER}
+          mkdir -v -p build/mac
+          godot -v --export "Mac OSX" ./build/mac/$EXPORT_NAME.zip
+      # Windows Build
+      - name: Windows Build
+        if: ${{ env.EXPORT_WINDOWS }}
+        run: |
+          cd ${EXPORT_FOLDER}
+          mkdir -v -p build/windows
+          godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+      # Web Build
+      - name: Web Build
+        if: ${{ env.EXPORT_WEB }}
+        run: |
+          cd ${EXPORT_FOLDER}
+          mkdir -v -p build/web
+          godot -v --export "HTML5" ./build/web/index.html
+      ######################################################
+      ### Artifacts Upload
+      ######################################################
+      # Android Artifact
       - uses: actions/upload-artifact@v2
         if: ${{ env.EXPORT_ANDROID }}
         with:
           name: Android
           path: ${{ env.EXPORT_PATH }}/build/android
-          # retention-days: 5 # 90 days by default
-      # Linux Artifact Upload
+          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+      # Linux Artifact
       - uses: actions/upload-artifact@v2
         if: ${{ env.EXPORT_LINUX }}
         with:
           name: Linux
           path: ${{ env.EXPORT_PATH }}/build/linux
-          # retention-days: 5 # 90 days by default
+          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+      # MacOS Artifact
+      - uses: actions/upload-artifact@v2
+        if: ${{ env.EXPORT_MACOS }}
+        with:
+          name: MacOS
+          path: ${{ env.EXPORT_PATH }}/build/mac
+          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+      # Windows Artifact
+      - uses: actions/upload-artifact@v2
+        if: ${{ env.EXPORT_WINDOWS }}
+        with:
+          name: Windows
+          path: ${{ env.EXPORT_PATH }}/build/windows
+          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+      # Web Artifact
+      - uses: actions/upload-artifact@v2
+        if: ${{ env.EXPORT_WEB }}
+        with:
+          name: Web
+          path: ${{ env.EXPORT_PATH }}/build/web
+          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
