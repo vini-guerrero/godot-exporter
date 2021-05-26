@@ -1,4 +1,4 @@
-name: Export Godot Project
+name: "Export Godot Project"
 on:
   workflow_dispatch:
     inputs:
@@ -52,7 +52,7 @@ env:
 
 jobs:
   export:
-    name: Export Godot Project
+    name: "Export Godot Project"
     runs-on: ubuntu-latest
     container:
       image: ubuntu:20.04
