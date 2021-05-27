@@ -35,8 +35,8 @@ jobs:
           outputs: type=oci,dest=/game/artifact.zip        
       # Android Artifact
       - uses: actions/upload-artifact@v2
-      name: Android Artifact Upload
-      with:
-      name: Android
-      path: /game/artifact.zip        
-      # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+        name: Android Artifact Upload
+        with:
+        name: Android
+        path: /game/artifact.zip        
+        # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
