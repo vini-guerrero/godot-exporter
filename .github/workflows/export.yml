@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Export
-        uses: ./action.yml
+        uses: ./
         env:  
          GODOT_VERSION: 3.3.2
          GODOT_RELEASE: stable
