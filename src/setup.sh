@@ -97,6 +97,17 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"
-    godot --verbose --export-debug "${EXPORT_PLATFORM}" ./build/${EXPORT_PLATFORM}/$EXPORT_NAME.debug.apk
+    
+    # Android Exports
+    # Debug
+    godot --verbose --export-debug "${EXPORT_PLATFORM}" ./build/${EXPORT_PLATFORM}/{$EXPORT_NAME}.debug.apk
+
+    # Release
+    echo $K8S_SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore
+    sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg
+    sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
+    sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
+    godot --verbose --export "Android" ./build/${EXPORT_PLATFORM}/{$EXPORT_NAME}.release.apk
+    
     echo "✔ Android Project Exported"
 fi
