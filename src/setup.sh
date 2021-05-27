@@ -79,7 +79,7 @@ fi
 
 # Godot Executable From Path
 #!/usr/bin/godot
-chmod +x /usr/local/bin/godot && godot -q
+chmod +x /usr/local/bin/godot && godot -e -q
 
 echo "✔ Godot Editor First Launch."
 
