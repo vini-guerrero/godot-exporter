@@ -10,22 +10,8 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 # /bin/bash
 
 # Environment Variables
-# GODOT_RELEASE="stable" 
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
-# env:
-    # DEBIAN_FRONTEND: noninteractive
-    # GODOT_VERSION: 3.2.2
-    # EXPORT_NAME: game
-    # EXPORT_PATH: /game
-    # ROOT_PATH: /root
-
-# Godot Sub Directory
-# GODOT_DL_SUBDIR=$GODOT_VERSION
-
-echo "✔ Validating Environment Variables."
-echo ${GODOT_VERSION} ${GODOT_RELEASE} ${ROOT_PATH} ${EXPORT_PLATFORM}
-printenv
 
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
@@ -117,6 +103,7 @@ then
         sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.release.apk
     fi
-        
+    
+    pwd && ls
     echo "✔ Android Project Exported at ${FINAL_EXPORT_PATH}"
 fi
