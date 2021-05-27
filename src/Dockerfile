@@ -12,4 +12,4 @@ COPY setup.sh /src/setup.sh
 
 RUN chmod +x /src/setup.sh
 
-ENTRYPOINT ["sh", "./src/setup.sh"]
+ENTRYPOINT ["bash", "./src/setup.sh"]
