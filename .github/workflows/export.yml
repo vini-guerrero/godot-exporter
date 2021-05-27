@@ -35,5 +35,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Android
-          path: artifact.zip
+          path: /github/home/artifact.zip
           # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
