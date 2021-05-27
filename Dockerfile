@@ -4,8 +4,8 @@ LABEL author="Vinicius Guerrero"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY setup.sh /setup.sh
+COPY /src/setup.sh /src/setup.sh
 
 RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["sh", "./setup.sh"]
+ENTRYPOINT ["sh", "./src/setup.sh"]
