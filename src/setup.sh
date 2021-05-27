@@ -58,7 +58,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 echo "✔ Engine & Export Templates Successfully Installed."
 
 # Android Export
-if [ "${EXPORT_PLATFORM}" == "android" ]
+if [ "${EXPORT_PLATFORM}" == "Android" ]
 then 
     # Android SDK
     sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
@@ -83,7 +83,7 @@ chmod +x /usr/local/bin/godot && godot -q
 
 echo "✔ Godot Editor First Launch."
 
-if [ "${EXPORT_PLATFORM}" == "android" ]
+if [ "${EXPORT_PLATFORM}" == "Android" ]
 then 
     # Set New Editor Settings
     sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' ${TRES_PATH} \
