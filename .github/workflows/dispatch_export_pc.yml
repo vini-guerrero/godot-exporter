@@ -64,7 +64,7 @@ env:
   ITCH_IO_USER: ${{ github.event.inputs.itch_io_user }}
 jobs:
   export:
-    name: "Export Project"
+    name: "PC Project Export"
     runs-on: ubuntu-latest
     container:
       image: ubuntu:20.04
