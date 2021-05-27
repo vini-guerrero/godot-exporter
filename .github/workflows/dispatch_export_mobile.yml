@@ -34,10 +34,6 @@ on:
         description: Itch.io game
         required: false
         default: ""
-      itch_io_user:
-        description: Itch.io user
-        required: false
-        default: ""
 
 env:
   GODOT_VERSION: ${{ github.event.inputs.godot_version }}
@@ -47,7 +43,6 @@ env:
   # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
   EXPORT_ANDROID: ${{ github.event.inputs.export_android }}
   ITCH_IO_GAME: ${{ github.event.inputs.itch_io_game }}
-  ITCH_IO_USER: ${{ github.event.inputs.itch_io_user }}
 jobs:
   export:
     name: "Mobile Project Export"
@@ -106,5 +101,5 @@ jobs:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: android
           ITCH_GAME: ${{ env.ITCH_IO_GAME }}
-          ITCH_USER: ${{ env.ITCH_IO_USER }}
+          ITCH_USER: ${{ secrets.ITCH_IO_USER }}
           PACKAGE: ${{ env.EXPORT_PATH }}/build/android
