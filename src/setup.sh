@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
+echo -e "github home"
 ls /github/home
+echo -e "github workspace"
 ls /github/workspace
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
