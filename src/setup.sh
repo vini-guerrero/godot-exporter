@@ -91,7 +91,6 @@ cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
 FINAL_EXPORT_PATH=$(pwd)/build/${EXPORT_PLATFORM}
 
 # Android Export
-ANDROID_RELEASE="false"
 if [ "${EXPORT_PLATFORM}" == "Android" ]
 then 
     # Set Editor Settings For Android Export
@@ -105,7 +104,7 @@ then
     echo "✔ Android Project Export Setup Ready"    
 
     # Debug
-    if [ "${ANDROID_RELEASE}" == "true" ]
+    if [ "${ANDROID_RELEASE}" == "false" ]
     then        
         godot --verbose --export-debug "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.debug.apk
     

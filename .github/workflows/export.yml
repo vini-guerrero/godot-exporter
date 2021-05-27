@@ -23,16 +23,16 @@ jobs:
           # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
           EXPORT_ANDROID: true
           EXPORT_PLATFORM: Android
+          ANDROID_RELEASE: false
           ITCH_IO_GAME: false
           ROOT_PATH: /github/home
-          DEBIAN_FRONTEND: noninteractive
           K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
           K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
           K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
       # Android Artifact
       - uses: actions/upload-artifact@v2
-        name: Web Artifact Upload
+        name: Android Artifact Upload
         with:
-          name: Web
+          name: Android
           path: ${{ env.EXPORT_PATH }}/build/${{ env.EXPORT_PLATFORM }}
           # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
