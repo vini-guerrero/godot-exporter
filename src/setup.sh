@@ -127,5 +127,5 @@ fi
 
 # Prepare Artifact For Upload
 zip -r artifact.zip ${FINAL_EXPORT_PATH}
-pwd && ls
+echo "✔ Export Artifact Available at ${FINAL_EXPORT_PATH}/artifact.zip"
 echo "::set-output name=export::${FINAL_EXPORT_PATH}/artifact.zip"

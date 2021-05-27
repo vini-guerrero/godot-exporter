@@ -30,13 +30,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Export
         uses: ./
-        with:
-          file: ./artifact.zip
-          outputs: type=oci,dest=/game/artifact.zip
       # Android Artifact
-      - uses: actions/upload-artifact@v2
-        name: Android Artifact Upload
+      - name: Android Artifact Upload
+        uses: actions/upload-artifact@v2
         with:
           name: Android
-          path: /game/artifact.zip
+          path: artifact.zip
           # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
