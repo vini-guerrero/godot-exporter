@@ -12,7 +12,7 @@ env:
   EXPORT_PATH: game
   # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
   EXPORT_ANDROID: true
-  EXPORT_PLATFORM: android
+  EXPORT_PLATFORM: Android
   ITCH_IO_GAME: false
   ROOT_PATH: /github/home
   DEBIAN_FRONTEND: noninteractive
@@ -32,7 +32,7 @@ jobs:
           EXPORT_PATH: game
           # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
           EXPORT_ANDROID: true
-          EXPORT_PLATFORM: android
+          EXPORT_PLATFORM: Android
           ITCH_IO_GAME: false
           ROOT_PATH: /github/home
           DEBIAN_FRONTEND: noninteractive
