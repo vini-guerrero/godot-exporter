@@ -3,7 +3,7 @@ description: "Godot Engine Automation Pipeline Android – Linux – MacOS – W
 author: Vinicius Guerrero
 runs:
   using: docker
-  image: Dockerfile
+  image: src/Dockerfile
 branding:
   icon: upload
   color: white
