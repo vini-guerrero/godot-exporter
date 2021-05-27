@@ -122,9 +122,7 @@ fi
 
 
 # Prepare Artifact For Upload
-pwd && ls
 zip -r artifact.zip build
 mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
 echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
 cd ${GITHUB_WORKSPACE} && ls
-echo "::set-output name=export::${GITHUB_WORKSPACE}/artifact.zip"
