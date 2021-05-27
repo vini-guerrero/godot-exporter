@@ -85,12 +85,10 @@ fi
 chmod +x /usr/local/bin/godot && godot -e -q
 
 echo "✔ Godot Editor First Launch."
-cd .. # The file is located in src directory
-echo "✔ Current Path"
-# cd ${GITHUB_WORKSPACE}
-pwd && ls
+# The file is located in src directory
+cd .. && pwd && ls
 cat ${TRES_PATH}
-cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM} && cd build/${EXPORT_PLATFORM}
+cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
 FINAL_EXPORT_PATH=$(pwd)
 
 # Android Export
