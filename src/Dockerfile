@@ -8,8 +8,8 @@ LABEL author="Vinicius Guerrero"
 # ENV EXPORT_PATH=/game
 # ENV ROOT_PATH=/root
 
-COPY /src/setup.sh /src/setup.sh
+COPY setup.sh setup.sh
 
-RUN chmod +x /src/setup.sh
+RUN chmod +x setup.sh
 
-ENTRYPOINT ["sh", "/src/setup.sh"]
+ENTRYPOINT ["sh", "setup.sh"]
