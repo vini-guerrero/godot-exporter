@@ -1,1 +1,38 @@
-
+  
+name: "Push Export"
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev
+env:  
+  GODOT_VERSION: 3.3.2
+  GODOT_RELEASE: stable
+  EXPORT_NAME: export
+  EXPORT_PATH: game
+  # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
+  EXPORT_ANDROID: true
+  ITCH_IO_GAME: false
+  ROOT_PATH: /github/home
+  DEBIAN_FRONTEND: noninteractive
+jobs:
+  export:
+    name: "Test Export"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Export
+      - uses: ./action.yml
+      - env:  
+         GODOT_VERSION: 3.3.2
+         GODOT_RELEASE: stable
+         EXPORT_NAME: export
+         EXPORT_PATH: game
+         # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
+         EXPORT_ANDROID: true
+         ITCH_IO_GAME: false
+         ROOT_PATH: /github/home
+         DEBIAN_FRONTEND: noninteractive
+      
