@@ -89,7 +89,7 @@ echo "✔ Godot Editor First Launch."
 cd .. && pwd && ls
 cat ${TRES_PATH}
 cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
-FINAL_EXPORT_PATH=$(pwd)
+FINAL_EXPORT_PATH=$(pwd)/build/${EXPORT_PLATFORM}
 
 # Android Export
 if [ "${EXPORT_PLATFORM}" == "Android" ]
@@ -105,14 +105,14 @@ then
     echo "✔ Android Project Export Setup Ready"
     pwd
     # Debug
-    godot --verbose --export-debug "${EXPORT_PLATFORM}" ${EXPORT_PATH}/{$EXPORT_NAME}.debug.apk
+    godot --verbose --export-debug "${EXPORT_PLATFORM}" ${EXPORT_PATH}/build/${EXPORT_PLATFORM}/{$EXPORT_NAME}.debug.apk
 
     # Release
     echo $K8S_SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore 
     sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
     sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
     sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
-    godot --verbose --export "${EXPORT_PLATFORM}" ${EXPORT_PATH}/{$EXPORT_NAME}.release.apk
+    godot --verbose --export "${EXPORT_PLATFORM}" ${EXPORT_PATH}/build/${EXPORT_PLATFORM}/{$EXPORT_NAME}.release.apk
         
     echo "✔ Android Project Exported at ${FINAL_EXPORT_PATH}"
 fi
