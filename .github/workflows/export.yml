@@ -31,11 +31,13 @@ jobs:
       - name: Export
         uses: ./
       - name: Validate Export
-        run: pwd && ls game && ls game/build && ls game/build/Android
+        run: |
+          pwd && ls game && ls game/build && ls ${{ steps.export.outputs.export }}
       # Android Artifact
       - uses: actions/upload-artifact@v2
         name: Android Artifact Upload
         with:
           name: Android
-          path: /${{ env.EXPORT_PATH }}/build/${{ env.EXPORT_PLATFORM }}
+          # path: /${{ env.EXPORT_PATH }}/build/${{ env.EXPORT_PLATFORM }}
+          path: ${{ steps.export.outputs.export }}
           # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}

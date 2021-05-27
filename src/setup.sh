@@ -106,4 +106,18 @@ then
     
     pwd && ls
     echo "✔ Android Project Exported at ${FINAL_EXPORT_PATH}"
+
+else
+    # PC Platforms
+    if [ "${EXPORT_PLATFORM}" == "Linux" ]
+        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.x86_64
+    elif [ "${EXPORT_PLATFORM}" == "MacOS" ]
+        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.zip
+    elif [ "${EXPORT_PLATFORM}" == "Windows" ]
+        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.exe
+    elif [ "${EXPORT_PLATFORM}" == "Web" ]
+        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}/index.html
+    fi
 fi
+
+echo "::set-output name=export::${FINAL_EXPORT_PATH}"
