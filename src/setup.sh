@@ -83,6 +83,9 @@ chmod +x /usr/local/bin/godot && godot -e -q
 
 echo "✔ Godot Editor First Launch."
 
+cat ${TRES_PATH}
+cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
+
 if [ "${EXPORT_PLATFORM}" == "Android" ]
 then 
     # Set New Editor Settings
@@ -94,9 +97,6 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"
+    godot --verbose --export-debug "${EXPORT_PLATFORM}" ./build/${EXPORT_PLATFORM}/$EXPORT_NAME.debug.apk
+    echo "✔ Android Project Exported"
 fi
-
-cat ${TRES_PATH}
-
-cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
-godot --verbose --export-debug ${EXPORT_PLATFORM} ./build/${EXPORT_PLATFORM}/$EXPORT_NAME.debug.apk
