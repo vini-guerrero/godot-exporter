@@ -6,6 +6,21 @@ on:
       - master
       - dev
 
+env:
+  GODOT_VERSION: 3.3.2
+  GODOT_RELEASE: stable
+  EXPORT_NAME: export
+  EXPORT_PATH: game
+  # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
+  EXPORT_ANDROID: true
+  EXPORT_PLATFORM: Android
+  ANDROID_RELEASE: false
+  ITCH_IO_GAME: false
+  ROOT_PATH: /github/home
+  K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+  K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
+  K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
+
 jobs:
   export:
     name: "Test Export"
@@ -15,20 +30,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Export
         uses: ./
-        env:
-          GODOT_VERSION: 3.3.2
-          GODOT_RELEASE: stable
-          EXPORT_NAME: export
-          EXPORT_PATH: game
-          # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
-          EXPORT_ANDROID: true
-          EXPORT_PLATFORM: Android
-          ANDROID_RELEASE: false
-          ITCH_IO_GAME: false
-          ROOT_PATH: /github/home
-          K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
-          K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
-          K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
       # Android Artifact
       - uses: actions/upload-artifact@v2
         name: Android Artifact Upload
