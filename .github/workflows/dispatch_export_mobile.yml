@@ -98,6 +98,7 @@ jobs:
           path: ${{ env.EXPORT_PATH }}/build/android
           retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       - uses: josephbmanley/butler-publish-itchio-action@master
+        name: Publish Itch.io Android Build
         if: |
           ${{ env.EXPORT_ANDROID=='true' }} ||
           ${{ github.event.inputs.itch_io_export=='true' }}
