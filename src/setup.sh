@@ -7,7 +7,7 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 # /bin/bash
 
 # Environment Variables
-#GODOT_RELEASE="stable" 
+# GODOT_RELEASE="stable" 
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # env:
@@ -27,6 +27,7 @@ printenv
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
 # locales-all
+
 rm -rf /var/lib/apt/lists/*
 if [ "${GODOT_RELEASE}" == "stable" ]
 then
@@ -40,6 +41,7 @@ else #using subdirectory
     LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_RELEASE}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
     LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_RELEASE}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 fi
+
 # Download & Setup
 wget ${LINK_GODOT}
 wget ${LINK_TEMPLATES}
@@ -95,5 +97,6 @@ then
 fi
 
 cat ${TRES_PATH}
-# cd /game && mkdir -v -p build/android
-# godot --verbose --export-debug ${EXPORT_PLATFORM} build/android/$EXPORT_NAME.debug.apk
+
+cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
+godot --verbose --export-debug ${EXPORT_PLATFORM} ./build/${EXPORT_PLATFORM}/$EXPORT_NAME.debug.apk
