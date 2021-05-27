@@ -99,7 +99,7 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"
-    
+    pwd
     # Debug
     godot --verbose --export-debug "${EXPORT_PLATFORM}" ${EXPORT_PATH}/{$EXPORT_NAME}.debug.apk
 
