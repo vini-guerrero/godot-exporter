@@ -12,6 +12,6 @@ LABEL author="Vinicius Guerrero"
 
 COPY . .
 
-RUN chmod +x /src/setup.sh
+RUN chmod +x ./src/setup.sh
 
 ENTRYPOINT ["bash", "./src/setup.sh"]
