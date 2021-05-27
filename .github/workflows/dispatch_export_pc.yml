@@ -1,4 +1,4 @@
-name: "PC Project Export"
+name: "PC Project Export 🍎🐧🏁"
 on:
   workflow_dispatch:
     inputs:
@@ -116,7 +116,7 @@ jobs:
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Linux Build
         if: |
-          ${{ env.EXPORT_LINUX=='true' }} ||
+          ${{ env.EXPORT_LINUX=='true' }} &&
           ${{ github.event.inputs.itch_io_export=='true' }}
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -135,7 +135,7 @@ jobs:
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io MacOS Build
         if: |
-          ${{ env.EXPORT_MACOS=='true' }} ||
+          ${{ env.EXPORT_MACOS=='true' }} &&
           ${{ github.event.inputs.itch_io_export=='true' }}
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -154,7 +154,7 @@ jobs:
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Windows Build
         if: |
-          ${{ env.EXPORT_WINDOWS=='true' }} ||
+          ${{ env.EXPORT_WINDOWS=='true' }} &&
           ${{ github.event.inputs.itch_io_export=='true' }}
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
@@ -173,7 +173,7 @@ jobs:
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Web Build
         if: |
-          ${{ env.EXPORT_WEB=='true' }} ||
+          ${{ env.EXPORT_WEB=='true' }} &&
           ${{ github.event.inputs.itch_io_export=='true' }}
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
