@@ -124,4 +124,8 @@ else
     fi
 fi
 
-echo "::set-output name=export::${FINAL_EXPORT_PATH}"
+
+# Prepare Artifact For Upload
+zip -r artifact.zip ${FINAL_EXPORT_PATH}
+pwd && ls
+echo "::set-output name=export::${FINAL_EXPORT_PATH}/artifact.zip"
