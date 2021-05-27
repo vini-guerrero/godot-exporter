@@ -74,7 +74,6 @@ echo "✔ Godot Editor First Launch."
 cat ${TRES_PATH}
 # The file is located in src directory
 cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
-FINAL_EXPORT_PATH=$(pwd)/build/${EXPORT_PLATFORM}
 
 # Android Export
 if [ "${EXPORT_PLATFORM}" == "Android" ]
@@ -102,10 +101,7 @@ then
         sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
         sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.release.apk
-    fi
-    
-    pwd && ls
-    echo "✔ Android Project Exported at ${FINAL_EXPORT_PATH}"
+    fi        
 
 else
     # PC Platforms
@@ -127,6 +123,7 @@ fi
 
 # Prepare Artifact For Upload
 cd ${EXPORT_PATH}
+pwd && ls
 zip -r artifact.zip ${EXPORT_PATH}/build
 mv artifact.zip /github/home/artifact.zip
 echo "✔ Export Artifact Available at /github/home/artifact.zip"
