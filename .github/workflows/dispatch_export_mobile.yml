@@ -18,10 +18,10 @@ on:
         description: Relative Project Path
         required: true
         default: "game"
-      retention_days:
-        description: Artifact Retention In Days - Max 90 Days
-        required: true
-        default: "15"
+      # retention_days:
+      #   description: Artifact Retention In Days - Max 90 Days
+      #   required: true
+      #   default: "15"
       export_android:
         description: Export to Android
         required: true
@@ -44,7 +44,7 @@ env:
   GODOT_RELEASE: ${{ github.event.inputs.godot_release }}
   EXPORT_NAME: ${{ github.event.inputs.export_name }}
   EXPORT_PATH: ${{ github.event.inputs.export_path }}
-  EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
+  # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
   EXPORT_ANDROID: ${{ github.event.inputs.export_android }}
   ITCH_IO_GAME: ${{ github.event.inputs.itch_io_game }}
   ITCH_IO_USER: ${{ github.event.inputs.itch_io_user }}
@@ -96,7 +96,7 @@ jobs:
         with:
           name: Android
           path: ${{ env.EXPORT_PATH }}/build/android
-          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+          # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Android Build
         if: |

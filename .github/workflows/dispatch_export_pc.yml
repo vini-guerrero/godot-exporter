@@ -18,10 +18,10 @@ on:
         description: Relative Project Path
         required: true
         default: "game"
-      retention_days:
-        description: Artifact Retention In Days - Max 90 Days
-        required: true
-        default: "15"
+      # retention_days:
+      #   description: Artifact Retention In Days - Max 90 Days
+      #   required: true
+      #   default: "15"
       export_linux:
         description: Export to Linux
         required: true
@@ -43,11 +43,11 @@ on:
         required: true
         default: "false"
       itch_io_game:
-        description: Itch.io game
+        description: Itch.io Game
         required: false
         default: ""
       itch_io_user:
-        description: Itch.io user
+        description: Itch.io User
         required: false
         default: ""
 env:
@@ -55,7 +55,7 @@ env:
   GODOT_RELEASE: ${{ github.event.inputs.godot_release }}
   EXPORT_NAME: ${{ github.event.inputs.export_name }}
   EXPORT_PATH: ${{ github.event.inputs.export_path }}
-  EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
+  # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
   EXPORT_LINUX: ${{ github.event.inputs.export_linux }}
   EXPORT_MACOS: ${{ github.event.inputs.export_macos }}
   EXPORT_WINDOWS: ${{ github.event.inputs.export_windows }}
@@ -117,7 +117,7 @@ jobs:
         with:
           name: Linux
           path: ${{ env.EXPORT_PATH }}/build/linux
-          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+          # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Linux Build
         if: |
@@ -136,7 +136,7 @@ jobs:
         with:
           name: MacOS
           path: ${{ env.EXPORT_PATH }}/build/mac
-          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+          # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io MacOS Build
         if: |
@@ -155,7 +155,7 @@ jobs:
         with:
           name: Windows
           path: ${{ env.EXPORT_PATH }}/build/windows
-          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+          # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Windows Build
         if: |
@@ -174,7 +174,7 @@ jobs:
         with:
           name: Web
           path: ${{ env.EXPORT_PATH }}/build/web
-          retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+          # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
       - uses: josephbmanley/butler-publish-itchio-action@master
         name: Publish Itch.io Web Build
         if: |
