@@ -126,8 +126,9 @@ fi
 
 
 # Prepare Artifact For Upload
-zip -r artifact.zip ${FINAL_EXPORT_PATH}
-mv ${FINAL_EXPORT_PATH}/artifact.zip /github/home/artifact.zip
+cd ${EXPORT_PATH}
+zip -r artifact.zip ${EXPORT_PATH}/build
+mv artifact.zip /github/home/artifact.zip
 echo "✔ Export Artifact Available at /github/home/artifact.zip"
-cd /github/home/${FINAL_EXPORT_PATH}/artifact.zip && && ls
+cd ${EXPORT_PATH} && ls
 echo "::set-output name=export::/github/home/artifact.zip"
