@@ -87,11 +87,11 @@ chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor First Launch."
 cd .. # The file is located in src directory
 echo "✔ Current Path"
-cd ${GITHUB_WORKSPACE}
+# cd ${GITHUB_WORKSPACE}
 pwd && ls
 cat ${TRES_PATH}
 cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM} && cd build/${EXPORT_PLATFORM}
-EXPORT_PATH=$(pwd)
+FINAL_EXPORT_PATH=$(pwd)
 
 # Android Export
 if [ "${EXPORT_PLATFORM}" == "Android" ]
@@ -116,5 +116,5 @@ then
     sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
     godot --verbose --export "${EXPORT_PLATFORM}" ${EXPORT_PATH}/{$EXPORT_NAME}.release.apk
         
-    echo "✔ Android Project Exported at ${EXPORT_PATH}"
+    echo "✔ Android Project Exported at ${FINAL_EXPORT_PATH}"
 fi
