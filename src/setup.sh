@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+ls /github/home
+ls /github/workspace
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
@@ -84,9 +85,9 @@ chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor First Launch."
 cd .. # The file is located in src directory
 echo "✔ Current Path"
+cd ${GITHUB_WORKSPACE}
 pwd && ls
 cat ${TRES_PATH}
-cd ${GITHUB_WORKSPACE}
 cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM} && cd build/${EXPORT_PLATFORM}
 EXPORT_PATH=$(pwd)
 
