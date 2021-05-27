@@ -110,12 +110,16 @@ then
 else
     # PC Platforms
     if [ "${EXPORT_PLATFORM}" == "Linux" ]
+    then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.x86_64
     elif [ "${EXPORT_PLATFORM}" == "MacOS" ]
+    then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.zip
     elif [ "${EXPORT_PLATFORM}" == "Windows" ]
+    then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.exe
     elif [ "${EXPORT_PLATFORM}" == "Web" ]
+    then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}/index.html
     fi
 fi
