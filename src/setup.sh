@@ -84,7 +84,7 @@ chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor First Launch."
 cd .. # The file is located in src directory
 echo "✔ Current Path"
-pwd
+pwd && ls
 cat ${TRES_PATH}
 cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM} && cd build/${EXPORT_PLATFORM}
 EXPORT_PATH=$(pwd)
@@ -101,7 +101,7 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"
-    
+    pwd
     # Debug
     godot --verbose --export-debug "${EXPORT_PLATFORM}" ${EXPORT_PATH}/{$EXPORT_NAME}.debug.apk
 
