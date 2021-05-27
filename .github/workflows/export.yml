@@ -35,5 +35,5 @@ jobs:
         name: Android Artifact Upload
         with:
           name: Android
-          path: ${{ env.EXPORT_PATH }}/build/${{ env.EXPORT_PLATFORM }}
+          path: /${{ env.EXPORT_PATH }}/build/${{ env.EXPORT_PLATFORM }}
           # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
