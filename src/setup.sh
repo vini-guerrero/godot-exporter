@@ -124,7 +124,7 @@ fi
 # Prepare Artifact For Upload
 pwd && ls
 zip -r artifact.zip build
-mv artifact.zip /github/home/artifact.zip
-echo "✔ Export Artifact Available at /github/home/artifact.zip"
-cd /github/home/ && ls
+mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
+echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
+cd ${GITHUB_WORKSPACE} && ls
 echo "::set-output name=export::/github/home/artifact.zip"
