@@ -85,10 +85,9 @@ fi
 chmod +x /usr/local/bin/godot && godot -e -q
 
 echo "✔ Godot Editor First Launch."
-# The file is located in src directory
-cd .. && pwd && ls
 cat ${TRES_PATH}
-cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
+# The file is located in src directory
+cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
 FINAL_EXPORT_PATH=$(pwd)/build/${EXPORT_PLATFORM}
 
 # Android Export
@@ -103,15 +102,17 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_keystore = "/root/android-sdk/debug.keystore"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
-    echo "✔ Android Project Export Setup Ready"
-    pwd
-    # Debug
-    godot --verbose --export-debug "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.debug.apk
+    echo "✔ Android Project Export Setup Ready"    
 
+    # Debug
     if [ "${ANDROID_RELEASE}" == "true" ]
+    then        
+        godot --verbose --export-debug "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.debug.apk
+    
+    # Release
+    elif [ "${ANDROID_RELEASE}" == "true" ]
     then
-        # Release
-        echo $K8S_SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/release.keystore 
+        echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
         sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
         sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
         sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
