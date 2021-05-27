@@ -20,6 +20,10 @@ TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # Godot Sub Directory
 # GODOT_DL_SUBDIR=$GODOT_VERSION
 
+echo "✔ Validating Environment Variables."
+echo ${GODOT_VERSION} ${GODOT_RELEASE} ${ROOT_PATH}
+printenv
+
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
 # locales-all
