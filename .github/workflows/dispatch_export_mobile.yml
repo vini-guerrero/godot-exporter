@@ -1,4 +1,4 @@
-name: "Mobile Project Export 🍏🤖"
+name: "Mobile Project Export"
 on:
   workflow_dispatch:
     inputs:
