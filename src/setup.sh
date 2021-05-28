@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
-
+echo -e Current directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+echo ${SCRIPT_DIR}
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
 cp -r src/upload_artifacts upload_artifacts
