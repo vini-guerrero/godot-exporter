@@ -98,7 +98,7 @@ do
     
     if [[ $platform == "Linux" ]]
     then                
-        godot --verbose --export "${EXPORT_PLATFORM}" build/${platform}/${EXPORT_NAME}.x86_64
+        godot --verbose --export "Linux" build/${platform}/${EXPORT_NAME}.x86_64
     elif [[ $platform == "MacOS" ]]
     then
         godot --verbose --export "MacOS" build/${platform}/${EXPORT_NAME}.zip
