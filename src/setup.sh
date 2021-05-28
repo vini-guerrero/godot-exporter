@@ -88,32 +88,32 @@ then
 fi
 
 # Validate Editor Settings
-cat ${TRES_PATH} && cd .. && cd ${EXPORT_PATH} 
+cat ${TRES_PATH} && cd .. && cd ${EXPORT_PATH} && ls
 
 # Export Platforms  
 for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
 do
     echo "✔ Exporting ${platform} Platform"
-    mkdir -v -p build/${platform}
+    mkdir -v -p build/"${platform}"
     
     if [[ $platform == "Linux/X11" ]]
     then                
-        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}.x86_64
+        godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.x86_64"
     elif [[ $platform == "Mac OSX" ]]
     then
-        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}.zip
+        godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.zip"
     elif [[ $platform == "Windows Desktop" ]]
     then
-        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}.exe
+        godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.exe"
     elif [[ $platform == "HTML5" ]]
     then
-        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}/index.html
+        godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}/index.html"
     elif [[ $platform == "Android" ]]
     then
         # Debug
         if [ "${ANDROID_RELEASE}" == "false" ]
         then        
-            godot --verbose --export-debug "Android" build/${platform}/${EXPORT_NAME}.debug.apk
+            godot --verbose --export-debug "Android" "build/${platform}/${EXPORT_NAME}.debug.apk"
 
         # Release
         elif [ "${ANDROID_RELEASE}" == "true" ]
@@ -122,7 +122,7 @@ do
             sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
             sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
             sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
-            godot --verbose --export "Android" build/${platform}/${EXPORT_NAME}.release.apk
+            godot --verbose --export "Android" "build/${platform}/${EXPORT_NAME}.release.apk"
         fi        
     fi
 done
