@@ -6,7 +6,11 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 echo ${SCRIPT_DIR}
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
+
 cp -r src/upload_artifacts upload_artifacts
+cp -r ./src/upload_artifacts upload_artifacts
+cp -r ../src/upload_artifacts upload_artifacts
+
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
