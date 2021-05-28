@@ -15,5 +15,6 @@ COPY . .
 
 RUN chmod +x ./src/setup.sh
 
-ENTRYPOINT ["bash", "./src/setup.sh"]
+
+ENTRYPOINT ["bash", "/github/workspace/src/setup.sh"]
 
