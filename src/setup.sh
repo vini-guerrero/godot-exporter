@@ -94,7 +94,7 @@ cat ${TRES_PATH} && cd .. && cd ${EXPORT_PATH} && ls
 for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
 do
     echo "✔ Exporting ${platform} Platform"
-    mkdir -v -p build/"${platform}"
+    mkdir -v -p "build/${platform}"
     
     if [[ $platform == "Linux/X11" ]]
     then                
