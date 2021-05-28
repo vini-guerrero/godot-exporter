@@ -10,6 +10,6 @@ const options = {
 }
 async function start() {
     const uploadResult = await artifactClient.uploadArtifact(artifactName, files, rootDirectory, options);
-    console.log(result);
+    console.log(uploadResult);
 }
 start();
