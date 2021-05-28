@@ -20,7 +20,7 @@ sudo apt -y install nodejs
 # locales-all
 
 rm -rf /var/lib/apt/lists/*
-if [ "${GODOT_RELEASE}" == "stable" ]
+if [ " ${GODOT_RELEASE} " == "stable" ]
 then
     LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip"
     LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
@@ -49,7 +49,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 echo "✔ Engine & Export Templates Successfully Installed."
 
 # Android Export
-if [ "${EXPORT_PLATFORM}" == "Android" ]
+if [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Android" ]
 then 
     # Android SDK
     sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
@@ -78,7 +78,7 @@ cat ${TRES_PATH}
 cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
 
 # Android Export
-if [ "${EXPORT_PLATFORM}" == "Android" ]
+if [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Android" ]
 then 
     # Set Editor Settings For Android Export
     sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' ${TRES_PATH} \
@@ -107,16 +107,16 @@ then
 
 else
     # PC Platforms
-    if [ "${EXPORT_PLATFORM}" == "Linux" ]
+    if [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Linux" ]
     then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.x86_64
-    elif [ "${EXPORT_PLATFORM}" == "MacOS" ]
+    elif [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "MacOS" ]
     then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.zip
-    elif [ "${EXPORT_PLATFORM}" == "Windows" ]
+    elif [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Windows" ]
     then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.exe
-    elif [ "${EXPORT_PLATFORM}" == "Web" ]
+    elif [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Web" ]
     then
         godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}/index.html
     fi
