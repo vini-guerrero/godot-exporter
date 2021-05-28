@@ -1,6 +1,6 @@
 name: "Godot Exporter"
 description: "Godot Engine Automation Pipeline Android – Linux – MacOS – Windows – WebHTML5 – Itch.io."
-author: Vinicius Guerrero
+author: Vinicius Guerrero & Andrea Miele
 runs:
   using: docker
   image: Dockerfile
