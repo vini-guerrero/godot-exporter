@@ -1,31 +1,28 @@
 # Godot-Exporter
+
 Godot Engine Automation Pipeline
 
 ## Automated Export Pipeline Supports
+
 - Android
-- Linux 
+- Linux
 - MacOS
 - Windows
 - WebHTML5
 
 ## Action Environment Variables
 
-- **GODOT_VERSION:** *"3.3.2" | string*
-- **GODOT_RELEASE:** *"stable" | string*
-- **EXPORT_NAME:** *"GameFileName" | string*
-- **EXPORT_PATH:** *"game" | string*
-- **EXPORT_RETENTION_DAYS:** *"15" | string*
-- **EXPORT_ANDROID:** *"true" | string*
-- **EXPORT_LINUX:** *"true" | string*
-- **EXPORT_MACOS:** *"true" | string*
-- **EXPORT_WINDOWS:** *"true" | string*
-- **EXPORT_WEB:** *"true" | string*
+- **GODOT_VERSION:** _"3.3.2" | string_
+- **GODOT_RELEASE:** _"stable" | string_
+- **EXPORT_NAME:** _"GameFileName" | string_
+- **EXPORT_PATH:** _"game" | string_
+- **EXPORT_PLATFORMS:** _"Android|Linux|Mac OSX|Windows Desktop|HTML5" | string_
 
 ## Docker Container Environment Variables
 
-- **DEBIAN_FRONTEND:** *"noninteractive" | string*
-- **ROOT_PATH:** *"/github/home" | string*
+- **DEBIAN_FRONTEND:** _"noninteractive" | string_
+- **ROOT_PATH:** _"/github/home" | string_
 
 ## Publishing Platform Integration
 
-- **Itch.io:** *(Android|Linux|MacOS|Windows|Web)*
+- **Itch.io:** _(Android|Linux|MacOS|Windows|Web)_

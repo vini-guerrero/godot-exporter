@@ -4,8 +4,15 @@ LABEL author="Vinicius Guerrero"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY setup.sh /setup.sh
+# ENV GODOT_VERSION=3.2.2
+# ENV EXPORT_NAME=game
+# ENV EXPORT_PATH=/game
+# ENV ROOT_PATH=/root
 
-RUN chmod +x entrypoint.sh
+# COPY setup.sh /src/setup.sh
+COPY . .
 
-ENTRYPOINT ["sh", "./setup.sh"]
+RUN chmod +x ./src/setup.sh
+
+ENTRYPOINT ["bash", "./src/setup.sh"]
+
