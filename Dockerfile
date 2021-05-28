@@ -12,6 +12,7 @@ ENV ROOT_PATH=/github/home
 
 # COPY setup.sh /src/setup.sh
 COPY . .
+RUN pwd
 
 RUN chmod +x ./src/setup.sh
 
