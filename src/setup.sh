@@ -107,7 +107,7 @@ do
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.exe"
     elif [[ $platform == "HTML5" ]]
     then
-        godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}/index.html"
+        godot --verbose --export "${platform}" "build/${platform}/index.html"
     elif [[ $platform == "Android" ]]
     then
         # Debug
