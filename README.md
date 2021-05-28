@@ -17,11 +17,8 @@ Godot Engine Automation Pipeline
 - **EXPORT_NAME:** _"GameFileName" | string_
 - **EXPORT_PATH:** _"game" | string_
 - **EXPORT_PLATFORMS:** _"Android|Linux|Mac OSX|Windows Desktop|HTML5" | string_
-
-## Docker Container Environment Variables
-
-- **DEBIAN_FRONTEND:** _"noninteractive" | string_
-- **ROOT_PATH:** _"/github/home" | string_
+- **EXPORT_MODE:** _"release or debug" | string_
+- **PUBLISH_ITCH_IO:** _"true or false" | string_
 
 ## Publishing Platform Integration
 
