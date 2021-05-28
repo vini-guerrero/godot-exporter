@@ -96,18 +96,18 @@ do
     echo "✔ Exporting ${platform} Platform"
     mkdir -v -p build/${platform}
     
-    if [[ $platform == "Linux" ]]
+    if [[ $platform == "Linux/X11" ]]
     then                
-        godot --verbose --export "Linux" build/${platform}/${EXPORT_NAME}.x86_64
-    elif [[ $platform == "MacOS" ]]
+        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}.x86_64
+    elif [[ $platform == "Mac OSX" ]]
     then
-        godot --verbose --export "MacOS" build/${platform}/${EXPORT_NAME}.zip
-    elif [[ $platform == "Windows" ]]
+        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}.zip
+    elif [[ $platform == "Windows Desktop" ]]
     then
-        godot --verbose --export "Windows" build/${platform}/${EXPORT_NAME}.exe
-    elif [[ $platform == "Web" ]]
+        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}.exe
+    elif [[ $platform == "HTML5" ]]
     then
-        godot --verbose --export "Web" build/${platform}/${EXPORT_NAME}/index.html
+        godot --verbose --export "${platform}" build/${platform}/${EXPORT_NAME}/index.html
     elif [[ $platform == "Android" ]]
     then
         # Debug
