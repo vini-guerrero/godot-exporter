@@ -14,7 +14,9 @@ ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 
 # Download and Install Packages
-apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
+apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt -y install nodejs npm
 # locales-all
 
 rm -rf /var/lib/apt/lists/*
@@ -126,3 +128,6 @@ zip -r artifact.zip build
 mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
 echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
 cd ${GITHUB_WORKSPACE} && ls
+mv upload_artifacts/* .
+sudo npm install
+sudo node index.js
