@@ -7,7 +7,7 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
-TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
+TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
 
 # Expected Env Format - EXPORT_PLATFORMS="Android|Linux|MacOS"
 IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
@@ -69,13 +69,9 @@ then
 fi
 
 # Godot Executable From Path
+echo "✔ Godot Editor First Launch."
 #!/usr/bin/godot
 chmod +x /usr/local/bin/godot && godot -e -q
-
-echo "✔ Godot Editor First Launch."
-cat ${TRES_PATH}
-# The file is located in src directory
-cd .. && cd ${EXPORT_PATH} 
 
 # Prepare Android Export
 if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "Android" ]]
@@ -91,6 +87,8 @@ then
     echo "✔ Android Project Export Setup Ready"    
 fi
 
+# Validate Editor Settings
+cat ${TRES_PATH} && cd .. && cd ${EXPORT_PATH} 
 
 # Export Platforms  
 for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
