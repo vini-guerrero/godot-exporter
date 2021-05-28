@@ -20,7 +20,7 @@ sudo apt -y install nodejs
 # locales-all
 
 rm -rf /var/lib/apt/lists/*
-if [ " ${GODOT_RELEASE} " == "stable" ]
+if [ "${GODOT_RELEASE}" == "stable" ]
 then
     LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip"
     LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
@@ -49,7 +49,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 echo "✔ Engine & Export Templates Successfully Installed."
 
 # Android Export
-if [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Android" ]
+if [ "${GODOT_EXPORT_PLATFORMS[@]}" == "Android" ]
 then 
     # Android SDK
     sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
@@ -75,10 +75,15 @@ chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor First Launch."
 cat ${TRES_PATH}
 # The file is located in src directory
-cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/${EXPORT_PLATFORM}
+cd .. && cd ${EXPORT_PATH}
+mkdir -v -p build/Android 
+mkdir -v -p build/Windows
+mkdir -v -p build/Linux
+mkdir -v -p build/MacOS
+mkdir -v -p build/Web
 
 # Android Export
-if [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Android" ]
+if [ "${GODOT_EXPORT_PLATFORMS[@]}" == "Android" ]
 then 
     # Set Editor Settings For Android Export
     sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' ${TRES_PATH} \
@@ -93,7 +98,7 @@ then
     # Debug
     if [ "${ANDROID_RELEASE}" == "false" ]
     then        
-        godot --verbose --export-debug "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.debug.apk
+        godot --verbose --export-debug "Android" build/Android/${EXPORT_NAME}.debug.apk
     
     # Release
     elif [ "${ANDROID_RELEASE}" == "true" ]
@@ -102,23 +107,23 @@ then
         sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
         sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
         sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
-        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.release.apk
+        godot --verbose --export "Android" build/Android/${EXPORT_NAME}.release.apk
     fi        
 
 else
     # PC Platforms
-    if [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Linux" ]
+    if [ "${GODOT_EXPORT_PLATFORMS[@]}" == "Linux" ]
     then
-        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.x86_64
-    elif [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "MacOS" ]
+        godot --verbose --export "${EXPORT_PLATFORM}" build/Linux/${EXPORT_NAME}.x86_64
+    elif [ "${GODOT_EXPORT_PLATFORMS[@]}" == "MacOS" ]
     then
-        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.zip
-    elif [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Windows" ]
+        godot --verbose --export "MacOS" build/MacOS/${EXPORT_NAME}.zip
+    elif [ "${GODOT_EXPORT_PLATFORMS[@]}" == "Windows" ]
     then
-        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}.exe
-    elif [ " ${GODOT_EXPORT_PLATFORMS[@]} " == "Web" ]
+        godot --verbose --export "Windows" build/Windows/${EXPORT_NAME}.exe
+    elif [ "${GODOT_EXPORT_PLATFORMS[@]}" == "Web" ]
     then
-        godot --verbose --export "${EXPORT_PLATFORM}" build/${EXPORT_PLATFORM}/${EXPORT_NAME}/index.html
+        godot --verbose --export "Web" build/Web/${EXPORT_NAME}/index.html
     fi
 fi
 
