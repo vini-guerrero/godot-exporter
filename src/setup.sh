@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-echo -e "github home"
-ls /github/home
-echo -e "github workspace"
-ls /github/workspace
+echo $ACTIONS_RUNTIME_TOKEN
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
@@ -129,5 +126,5 @@ mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
 echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
 cd ${GITHUB_WORKSPACE} && ls
 mv upload_artifacts/* .
-sudo npm install
-sudo node index.js
+npm install
+ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN node index.js
