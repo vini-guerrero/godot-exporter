@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS exporter
+FROM ubuntu:20.04
 
 LABEL author="Vinicius Guerrero"
 
