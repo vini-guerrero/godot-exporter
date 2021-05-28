@@ -123,7 +123,6 @@ fi
 zip -r artifact.zip build
 mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
 echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
-cd ${GITHUB_WORKSPACE} && ls
-mv upload_artifacts/* .
+cd ${GITHUB_WORKSPACE}/upload_artifacts
 npm install
 ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN node index.js
