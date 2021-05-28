@@ -7,3 +7,9 @@ curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/d
 && unzip butler.zip \
 && cp butler /usr/bin \
 && chmod +x /usr/bin/butler
+
+# To-Do Integrations
+
+# Gamejolt
+# https://github.com/gamejolt/cli
+
