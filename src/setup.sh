@@ -141,8 +141,3 @@ do
 done
 
 
-# Prepare Artifact For Upload
-
-mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
-echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
-ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN node index.js
