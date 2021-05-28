@@ -108,6 +108,7 @@ fi
 
 
 # PC Platforms  
+echo "✔ Exporting PC Platforms"
 for platform in $GODOT_EXPORT_PLATFORMS
 do
     if [[ $platform == "Linux" ]]
