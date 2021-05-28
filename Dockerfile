@@ -15,10 +15,5 @@ COPY . .
 
 RUN chmod +x ./src/setup.sh
 
-RUN bash ./src/setup.sh
+ENTRYPOINT ["bash", "./src/setup.sh"]
 
-FROM node:12
-COPY --from=exporter artifact.zip .
-COPY upload_artifacts .
-RUN npm install
-ENTRYPOINT node index.js
