@@ -1,9 +1,7 @@
-name: "Push Export"
+name: "Godot Project Export"
 on:
   push:
     branches:
-      - main
-      - master
       - dev
 
 env:
@@ -12,26 +10,18 @@ env:
   EXPORT_NAME: export
   EXPORT_PATH: game
   EXPORT_PLATFORMS: Android|Linux|Mac OSX|Windows Desktop|HTML5
-  ANDROID_RELEASE: true
-  ITCH_IO_GAME: false
-  ROOT_PATH: /github/home
+  EXPORT_MODE: "release"
+  PUBLISH_ITCH_IO: false
   K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
   K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
   K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
 
 jobs:
   export:
-    name: "Test Export"
+    name: "Godot Project Export"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Export
         uses: ./
-      # # Android Artifact
-      # - name: Android Artifact Upload
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: Android
-      #     path: ${{ github.workspace }}/artifact.zip
-      #     # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}

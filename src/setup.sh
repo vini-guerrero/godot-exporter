@@ -4,7 +4,7 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
-cp -r src/upload_artifacts upload_artifacts
+mv /src/upload_artifacts /upload_artifacts
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
@@ -86,7 +86,7 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"    
 fi
-cd ${GITHUB_WORKSPACE}/upload_artifacts
+cd /upload_artifacts
 npm install
 # Validate Editor Settings
 cat ${TRES_PATH} && cd ${GITHUB_WORKSPACE} && cd ${EXPORT_PATH} && ls
@@ -101,33 +101,33 @@ do
     then                
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.x86_64"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
     elif [[ $platform == "Mac OSX" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.zip"
         zip -r "${platform}.zip" "build/${platform}"
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
     elif [[ $platform == "Windows Desktop" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.exe"
         zip -r "${platform}.zip" "build/${platform}"
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
     elif [[ $platform == "HTML5" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/index.html"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
     elif [[ $platform == "Android" ]]
     then
         # Debug
-        if [ "${ANDROID_RELEASE}" == "false" ]
+        if [ ${EXPORT_MODE} == "debug" ]
         then        
             godot --verbose --export-debug "Android" "build/${platform}/${EXPORT_NAME}.debug.apk"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
 
         # Release
-        elif [ "${ANDROID_RELEASE}" == "true" ]
+        elif [ ${EXPORT_MODE} == "release" ]
         then
             echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
             sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
@@ -135,7 +135,7 @@ do
             sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
             godot --verbose --export "Android" "build/${platform}/${EXPORT_NAME}.release.apk"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
         fi        
     fi
 done
