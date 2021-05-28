@@ -4,7 +4,7 @@ const artifactName = 'my-artifact';
 const files = [
     '/github/workflow/artifact.zip'
 ]
-const rootDirectory = '/github/workflow/'
+const rootDirectory = '/github/workspace/'
 const options = {
     continueOnError: true
 }
