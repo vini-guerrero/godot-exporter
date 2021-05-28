@@ -12,7 +12,7 @@ env:
   EXPORT_NAME: export
   EXPORT_PATH: game
   EXPORT_PLATFORMS: Android|Linux|Mac OSX|Windows Desktop|HTML5
-  ANDROID_RELEASE: false
+  ANDROID_RELEASE: true
   ITCH_IO_GAME: false
   ROOT_PATH: /github/home
   K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
