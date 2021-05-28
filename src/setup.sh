@@ -100,22 +100,22 @@ do
     if [[ $platform == "Linux/X11" ]]
     then                
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.x86_64"
-        zip -r ${platform}.zip build/${platform}
+        zip -r "${platform}.zip" build/${platform}
         ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux X11" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
     elif [[ $platform == "Mac OSX" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.zip"
-        zip -r ${platform}.zip build/${platform}
+        zip -r "${platform}.zip" build/${platform}
         ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
     elif [[ $platform == "Windows Desktop" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.exe"
-        zip -r ${platform}.zip build/${platform}
+        zip -r "${platform}.zip" build/${platform}
         ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
     elif [[ $platform == "HTML5" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/index.html"
-        zip -r ${platform}.zip build/${platform}
+        zip -r "${platform}.zip" build/${platform}
         ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
     elif [[ $platform == "Android" ]]
     then
