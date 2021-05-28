@@ -97,11 +97,11 @@ do
     echo "✔ Exporting ${platform} Platform"
     mkdir -v -p "build/${platform}"
     
-    if [[ $platform == "Linux/X11" ]]
+    if [[ $platform == "Linux" ]]
     then                
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.x86_64"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux X11" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
     elif [[ $platform == "Mac OSX" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.zip"
