@@ -48,7 +48,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 
 echo "✔ Engine & Export Templates Successfully Installed."
 
-# Android Export
+# Android Export Dependencies
 if [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Android" ]]
 then 
     # Android SDK
@@ -77,7 +77,7 @@ cat ${TRES_PATH}
 # The file is located in src directory
 cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/Android  && mkdir -v -p build/Windows && mkdir -v -p build/Linux && mkdir -v -p build/MacOS && mkdir -v -p build/Web
 
-# Android Export
+# Prepare Android Export
 if [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Android" ]]
 then 
     # Set Editor Settings For Android Export
@@ -89,39 +89,40 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"    
-
-    # Debug
-    if [ "${ANDROID_RELEASE}" == "false" ]
-    then        
-        godot --verbose --export-debug "Android" build/Android/${EXPORT_NAME}.debug.apk
-    
-    # Release
-    elif [ "${ANDROID_RELEASE}" == "true" ]
-    then
-        echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
-        sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
-        sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
-        sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
-        godot --verbose --export "Android" build/Android/${EXPORT_NAME}.release.apk
-    fi        
 fi
 
 
 # PC Platforms  
 for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
 do
-    if [[ "$platform" == "Linux" ]]
+    if [[ $platform == "Linux" ]]
     then        
         godot --verbose --export "${EXPORT_PLATFORM}" build/${platform}/${EXPORT_NAME}.x86_64
-    elif [[ "$platform" == "MacOS" ]]
+    elif [[ $platform == "MacOS" ]]
     then
         godot --verbose --export "MacOS" build/${platform}/${EXPORT_NAME}.zip
-    elif [[ "$platform" == "Windows" ]]
+    elif [[ $platform == "Windows" ]]
     then
         godot --verbose --export "Windows" build/${platform}/${EXPORT_NAME}.exe
-    elif [[ "$platform" == "Web" ]]
+    elif [[ $platform == "Web" ]]
     then
         godot --verbose --export "Web" build/${platform}/${EXPORT_NAME}/index.html
+    elif [[ $platform == "Android" ]]
+    then
+        # Debug
+        if [ "${ANDROID_RELEASE}" == "false" ]
+        then        
+            godot --verbose --export-debug "Android" build/${platform}/${EXPORT_NAME}.debug.apk
+
+        # Release
+        elif [ "${ANDROID_RELEASE}" == "true" ]
+        then
+            echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
+            sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
+            sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i export_presets.cfg
+            sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
+            godot --verbose --export "Android" build/${platform}/${EXPORT_NAME}.release.apk
+        fi        
     fi
     echo "✔ Exporting ${platform} Platform"
 done
