@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # ENV ROOT_PATH=/root
 
 # COPY setup.sh /src/setup.sh
-COPY src/upload_artifacts/ upload_artifacts/
+COPY src/upload_artifacts upload_artifacts
 COPY . .
 
 RUN chmod +x ./src/setup.sh
