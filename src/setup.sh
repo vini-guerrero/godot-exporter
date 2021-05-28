@@ -16,7 +16,7 @@ TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt -y install nodejs npm node-gyp
+sudo apt -y install nodejs 
 # locales-all
 
 rm -rf /var/lib/apt/lists/*
