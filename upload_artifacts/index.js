@@ -1,10 +1,10 @@
 const artifact = require('@actions/artifact');
 const artifactClient = artifact.create()
-const artifactName = 'my-artifact';
+const artifactName = process.env.NAME;
 const files = [
-    '/github/workspace/artifact.zip'
+    process.env.FILES
 ]
-const rootDirectory = '/github/workspace/'
+const rootDirectory = process.env.ROOT_DIR
 const options = {
     continueOnError: true
 }
