@@ -49,7 +49,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 echo "✔ Engine & Export Templates Successfully Installed."
 
 # Android Export Dependencies
-if [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Android" ]]
+if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "Android" ]]
 then 
     # Android SDK
     sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
@@ -75,10 +75,10 @@ chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor First Launch."
 cat ${TRES_PATH}
 # The file is located in src directory
-cd .. && cd ${EXPORT_PATH} && mkdir -v -p build/Android  && mkdir -v -p build/Windows && mkdir -v -p build/Linux && mkdir -v -p build/MacOS && mkdir -v -p build/Web
+cd .. && cd ${EXPORT_PATH} 
 
 # Prepare Android Export
-if [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Android" ]]
+if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "Android" ]]
 then 
     # Set Editor Settings For Android Export
     sed -i '/\[resource\]/a export\/android\/android_sdk_path = "/root/android-sdk"' ${TRES_PATH} \
@@ -92,11 +92,14 @@ then
 fi
 
 
-# PC Platforms  
+# Export Platforms  
 for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
 do
+    echo "✔ Exporting ${platform} Platform"
+    mkdir -v -p build/${platform}
+    
     if [[ $platform == "Linux" ]]
-    then        
+    then                
         godot --verbose --export "${EXPORT_PLATFORM}" build/${platform}/${EXPORT_NAME}.x86_64
     elif [[ $platform == "MacOS" ]]
     then
@@ -124,7 +127,6 @@ do
             godot --verbose --export "Android" build/${platform}/${EXPORT_NAME}.release.apk
         fi        
     fi
-    echo "✔ Exporting ${platform} Platform"
 done
 
 
