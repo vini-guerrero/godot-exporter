@@ -30,10 +30,10 @@ jobs:
         uses: actions/checkout@v2
       - name: Export
         uses: ./
-      # Android Artifact
-      - name: Android Artifact Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: Android
-          path: ${{ github.workspace }}/artifact.zip
-          # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}
+     # # Android Artifact
+     # - name: Android Artifact Upload
+     #   uses: actions/upload-artifact@v2
+     #   with:
+     #     name: Android
+     #     path: ${{ github.workspace }}/artifact.zip
+     #     # retention-days: ${{ env.EXPORT_RETENTION_DAYS }}

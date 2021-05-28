@@ -1,0 +1,14 @@
+{
+  "name": "upload_artifacts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@actions/artifact": "0.5.1"
+  },
+  "author": "Andrea Miele and Vinicius Guerrero",
+  "license": "MIT"
+}

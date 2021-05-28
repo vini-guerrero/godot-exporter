@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-echo -e "github home"
-ls /github/home
-echo -e "github workspace"
-ls /github/workspace
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
@@ -14,7 +10,9 @@ ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 
 # Download and Install Packages
-apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano
+apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt -y install nodejs 
 # locales-all
 
 rm -rf /var/lib/apt/lists/*
@@ -125,4 +123,6 @@ fi
 zip -r artifact.zip build
 mv artifact.zip ${GITHUB_WORKSPACE}/artifact.zip
 echo "✔ Export Artifact Available at ${GITHUB_WORKSPACE}/artifact.zip"
-cd ${GITHUB_WORKSPACE} && ls
+cd ${GITHUB_WORKSPACE}/upload_artifacts
+npm install
+ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN node index.js
