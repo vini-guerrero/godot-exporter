@@ -8,9 +8,8 @@ ENV ROOT_PATH=/github/home
 
 COPY . .
 
-RUN pwd && ls
+RUN ls && pwd
 
 RUN chmod +x ./src/setup.sh
 
-ENTRYPOINT ["bash", "./src/setup.sh"]
-
+ENTRYPOINT ["bash", "/src/setup.sh"]
