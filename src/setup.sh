@@ -104,23 +104,26 @@ then
         sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
         godot --verbose --export "Android" build/Android/${EXPORT_NAME}.release.apk
     fi        
+fi
 
-else
-    # PC Platforms
-    if [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Linux" ]]
+
+# PC Platforms  
+for platform in $GODOT_EXPORT_PLATFORMS
+do
+    if [[ $platform == "Linux" ]]
     then
         godot --verbose --export "${EXPORT_PLATFORM}" build/Linux/${EXPORT_NAME}.x86_64
-    elif [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "MacOS" ]]
+    elif [[ $platform == "MacOS" ]]
     then
         godot --verbose --export "MacOS" build/MacOS/${EXPORT_NAME}.zip
-    elif [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Windows" ]]
+    elif [[ $platform == "Windows" ]]
     then
         godot --verbose --export "Windows" build/Windows/${EXPORT_NAME}.exe
-    elif [[ ${GODOT_EXPORT_PLATFORMS[*]} =~ "Web" ]]
+    elif [[ $platform == "Web" ]]
     then
         godot --verbose --export "Web" build/Web/${EXPORT_NAME}/index.html
     fi
-fi
+done
 
 
 # Prepare Artifact For Upload
