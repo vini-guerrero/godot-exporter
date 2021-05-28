@@ -120,14 +120,14 @@ do
     elif [[ $platform == "Android" ]]
     then
         # Debug
-        if [ "${ANDROID_RELEASE}" == "false" ]
+        if [ "${EXPORT_MODE}" == "debug" ]
         then        
             godot --verbose --export-debug "Android" "build/${platform}/${EXPORT_NAME}.debug.apk"
             zip -r ${platform}.zip build/${platform}
             ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node ${GITHUB_WORKSPACE}/upload_artifacts/index.js
 
         # Release
-        elif [ "${ANDROID_RELEASE}" == "true" ]
+        elif [ "${EXPORT_MODE}" == "release" ]
         then
             echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
             sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i export_presets.cfg 
