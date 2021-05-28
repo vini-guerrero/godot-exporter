@@ -13,7 +13,7 @@ env:
   EXPORT_PATH: game
   # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
   EXPORT_ANDROID: true
-  GODOT_EXPORT_PLATFORMS: Android|Linux|MacOS|Windows
+  EXPORT_PLATFORMS: Android|Linux|MacOS|Windows
   EXPORT_PLATFORM: Android
   ANDROID_RELEASE: false
   ITCH_IO_GAME: false
