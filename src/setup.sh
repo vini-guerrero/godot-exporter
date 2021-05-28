@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-echo $ACTIONS_RUNTIME_TOKEN
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
