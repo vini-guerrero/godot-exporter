@@ -9,6 +9,10 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=$ROOT_PATH/.config/godot/editor_settings-3.tres
 
+# Expected Env Format - EXPORT_PLATFORMS="Android|Linux|MacOS"
+IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
+echo "✔ Export Platforms: ${GODOT_EXPORT_PLATFORMS[@]} - Total ${#GODOT_EXPORT_PLATFORMS[@]}."
+
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
