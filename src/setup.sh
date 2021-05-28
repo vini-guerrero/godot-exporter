@@ -123,7 +123,7 @@ do
     then
         godot --verbose --export "Web" build/Web/${EXPORT_NAME}/index.html
     fi
-    echo "✔ Exporting ${$platform} Platform"
+    echo "✔ Exporting ${platform} Platform"
 done
 
 
