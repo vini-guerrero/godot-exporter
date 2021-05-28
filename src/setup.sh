@@ -108,20 +108,20 @@ fi
 
 
 # PC Platforms  
-for platform in $GODOT_EXPORT_PLATFORMS
+for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
 do
     if [[ "$platform" == "Linux" ]]
     then        
-        godot --verbose --export "${EXPORT_PLATFORM}" build/Linux/${EXPORT_NAME}.x86_64
+        godot --verbose --export "${EXPORT_PLATFORM}" build/${platform}/${EXPORT_NAME}.x86_64
     elif [[ "$platform" == "MacOS" ]]
     then
-        godot --verbose --export "MacOS" build/MacOS/${EXPORT_NAME}.zip
+        godot --verbose --export "MacOS" build/${platform}/${EXPORT_NAME}.zip
     elif [[ "$platform" == "Windows" ]]
     then
-        godot --verbose --export "Windows" build/Windows/${EXPORT_NAME}.exe
+        godot --verbose --export "Windows" build/${platform}/${EXPORT_NAME}.exe
     elif [[ "$platform" == "Web" ]]
     then
-        godot --verbose --export "Web" build/Web/${EXPORT_NAME}/index.html
+        godot --verbose --export "Web" build/${platform}/${EXPORT_NAME}/index.html
     fi
     echo "✔ Exporting ${platform} Platform"
 done
