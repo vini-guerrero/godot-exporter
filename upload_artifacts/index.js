@@ -8,5 +8,8 @@ const rootDirectory = '.'
 const options = {
     continueOnError: true
 }
-
-const uploadResult = await artifactClient.uploadArtifact(artifactName, files, rootDirectory, options)
+async function start() {
+    const uploadResult = await artifactClient.uploadArtifact(artifactName, files, rootDirectory, options);
+    console.log(result);
+}
+start();
