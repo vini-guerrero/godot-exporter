@@ -11,7 +11,6 @@ env:
   GODOT_RELEASE: stable
   EXPORT_NAME: export
   EXPORT_PATH: game
-  # EXPORT_RETENTION_DAYS: ${{ github.event.inputs.retention_days }}
   EXPORT_PLATFORMS: Android|Linux|Mac OSX|Windows Desktop|HTML5
   ANDROID_RELEASE: false
   ITCH_IO_GAME: false
