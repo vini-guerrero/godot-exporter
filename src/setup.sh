@@ -142,6 +142,19 @@ do
             ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
         fi        
     fi
+    elif [[ $platform == "iOS" ]]
+    then
+        # Debug
+        if [ ${EXPORT_MODE} == "debug" ]
+        then        
+            echo "✔ Exporting iOS Debug XCodeProj"
+    
+        # Release
+        elif [ ${EXPORT_MODE} == "release" ]
+        then
+            echo "✔ Exporting iOS Release XCodeProj"
+        fi
+    fi
 done
 
 
