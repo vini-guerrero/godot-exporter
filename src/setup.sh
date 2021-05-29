@@ -6,9 +6,9 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 # /bin/bash
 mv /src/upload_artifacts /upload_artifacts
 # Environment Variables
+ROOT_PATH="${ROOT_PATH:="/github/home"}"
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
-ROOT_PATH="${ROOT_PATH:="/github/home"}"
 # Expected Env Format - EXPORT_PLATFORMS="Android|Linux|MacOS"
 IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
 echo "✔ Export Platforms: ${GODOT_EXPORT_PLATFORMS[@]} - Total ${#GODOT_EXPORT_PLATFORMS[@]}."
