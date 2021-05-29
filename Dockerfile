@@ -6,10 +6,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV ROOT_PATH=/github/home
 
-COPY . /github/workspace/
+COPY . .
 
-RUN ls /github/workspace
+RUN ls && pwd
 
-RUN chmod +x /github/workspace/src/setup.sh
+RUN chmod +x /src/setup.sh
 
-ENTRYPOINT ["bash", "/github/workspace/src/setup.sh"]
+ENTRYPOINT ["bash", "/src/setup.sh"]
+
