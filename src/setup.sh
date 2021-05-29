@@ -156,6 +156,9 @@ do
         elif [ ${EXPORT_MODE} == "release" ]
         then
             echo "✔ Exporting iOS Release XCodeProj"
+            godot --verbose --export "iOS" "build/${platform}/${EXPORT_NAME}.release.ipa"
+            zip -r ${platform}.zip build/${platform}
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
         fi
     fi
 done
