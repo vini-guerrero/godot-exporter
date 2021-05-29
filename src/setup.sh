@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
-
+echo -e Current directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+echo ${SCRIPT_DIR}
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
-mv /src/upload_artifacts /upload_artifacts
+
+mv /github/workspace/src/upload_artifacts /github/workspace/upload_artifacts
+
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
