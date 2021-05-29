@@ -148,6 +148,9 @@ do
         if [ ${EXPORT_MODE} == "debug" ]
         then        
             echo "✔ Exporting iOS Debug XCodeProj"
+            godot --verbose --export-debug "iOS" "build/${platform}/${EXPORT_NAME}.debug.ipa"
+            zip -r ${platform}.zip build/${platform}
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
     
         # Release
         elif [ ${EXPORT_MODE} == "release" ]
