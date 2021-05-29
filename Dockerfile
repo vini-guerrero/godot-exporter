@@ -4,8 +4,6 @@ LABEL author="Vinicius Guerrero"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV ROOT_PATH=/github/home
-
 COPY . .
 
 RUN ls && pwd
