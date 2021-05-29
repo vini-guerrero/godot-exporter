@@ -4,7 +4,7 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
-mv /src/upload_artifacts /upload_artifacts
+
 # Environment Variables
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
 ANDROID_HOME="/root/android-sdk"
@@ -86,8 +86,12 @@ then
     && sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     echo "✔ Android Project Export Setup Ready"    
 fi
+
+# Upload Artifact Setup Requirements
+mv /src/upload_artifacts /upload_artifacts
 cd /upload_artifacts
 npm install
+
 # Validate Editor Settings
 cat ${TRES_PATH} && cd ${GITHUB_WORKSPACE} && cd ${EXPORT_PATH} && ls
 
