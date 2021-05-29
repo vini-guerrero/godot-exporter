@@ -7,9 +7,7 @@ echo ${SCRIPT_DIR}
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
 
-cp -r src/upload_artifacts upload_artifacts
-cp -r ./src/upload_artifacts upload_artifacts
-cp -r ../src/upload_artifacts upload_artifacts
+mv /github/workspace/src/upload_artifacts /github/workspace/upload_artifacts
 
 # Environment Variables
 ANDROID_HOME="/root/android-sdk"
