@@ -32,6 +32,13 @@ ls /root/android-sdk/debug.keystore
 echo "✔ Debug Key Generated."
 
 
+# Itch.io - Butler Integration
+curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default \
+&& unzip butler.zip \
+&& cp butler /usr/bin \
+&& chmod +x /usr/bin/butler
+
+
 # Upload Artifact Setup Requirements
 mv /src/upload_artifacts /upload_artifacts
 cd /upload_artifacts
