@@ -5,6 +5,7 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 # apt-get update && apt-get install sudo -y && chmod +x setup.sh 
 # /bin/bash
 
+
 # Environment Variables
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
 ANDROID_HOME="/root/android-sdk"
@@ -13,11 +14,13 @@ TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
 IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
 echo "✔ Export Platforms: ${GODOT_EXPORT_PLATFORMS[@]} - Total ${#GODOT_EXPORT_PLATFORMS[@]}."
 
+
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates graphicsmagick
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt -y install nodejs 
 # locales-all
+
 
 rm -rf /var/lib/apt/lists/*
 if [ "${GODOT_RELEASE}" == "stable" ]
@@ -33,11 +36,13 @@ else #using subdirectory
     LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_RELEASE}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 fi
 
+
 # Download & Setup
 wget ${LINK_GODOT}
 wget ${LINK_TEMPLATES}
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
+
 
 # Engine
 unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot
@@ -48,12 +53,14 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 
 echo "✔ Engine & Export Templates Successfully Installed."
 
+
 # Android Export Dependencies
 if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "Android" ]]
 then 
     # Android SDK
     sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
-    curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
+    # curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
+    wget "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
     unzip -q commandlinetools-linux-*.zip
     rm commandlinetools-linux-*.zip
     mv cmdline-tools latest
@@ -68,10 +75,12 @@ then
     echo "✔ Debug Key Generated."
 fi
 
+
 # Godot Executable From Path
 echo "✔ Godot Editor First Launch."
 #!/usr/bin/godot
 chmod +x /usr/local/bin/godot && godot -e -q
+
 
 # Prepare Android Export
 if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "Android" ]]
@@ -87,13 +96,24 @@ then
     echo "✔ Android Project Export Setup Ready"    
 fi
 
+
+# Prepare iOS Export
+if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "iOS" ]]
+then 
+    echo "✔ iOS Project Export Setup Ready"
+fi
+
+
+
 # Upload Artifact Setup Requirements
 mv /src/upload_artifacts /upload_artifacts
 cd /upload_artifacts
 npm install
 
+
 # Validate Editor Settings
 cat ${TRES_PATH} && cd ${GITHUB_WORKSPACE} && cd ${EXPORT_PATH} && ls
+
 
 # Export Platforms  
 for platform in "${GODOT_EXPORT_PLATFORMS[@]}"
