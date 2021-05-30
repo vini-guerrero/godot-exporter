@@ -23,7 +23,7 @@ echo "✔ Export Platforms: ${GODOT_EXPORT_PLATFORMS[@]} - Total ${#GODOT_EXPORT
 # locales-all
 
 
-rm -rf /var/lib/apt/lists/*
+#rm -rf /var/lib/apt/lists/*
 if [ "${GODOT_RELEASE}" == "stable" ]
 then
     LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip"
@@ -51,30 +51,6 @@ unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv 
 unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz && sudo mv templates/* $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 # Clean
 sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip
-
-echo "✔ Engine & Export Templates Successfully Installed."
-
-
-# Android Export Dependencies
-if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "Android" ]]
-then 
-    # Android SDK
-    sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
-    # curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
-    wget "https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_VERSION}_latest.zip"
-    unzip -q commandlinetools-linux-*.zip
-    rm commandlinetools-linux-*.zip
-    mv cmdline-tools latest
-    mkdir -p -v /root/.android && echo "count=0" > /root/.android/repositories.cfg
-    yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
-    yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
-    cd /root && rm -rf /root/android-sdk-installer    
-    echo "✔ Android SDK Successfully Installed."
-    # Key Generation
-    keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
-    ls /root/android-sdk/debug.keystore
-    echo "✔ Debug Key Generated."
-fi
 
 
 # Godot Executable From Path
