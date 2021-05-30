@@ -69,13 +69,6 @@ then
 fi
 
 
-
-# Upload Artifact Setup Requirements
-mv /src/upload_artifacts /upload_artifacts
-cd /upload_artifacts
-npm install
-
-
 # Validate Editor Settings
 cat ${TRES_PATH} && cd /github/workspace && cd ${EXPORT_PATH} && ls
 
