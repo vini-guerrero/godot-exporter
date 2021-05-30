@@ -141,7 +141,6 @@ do
             zip -r ${platform}.zip build/${platform}
             ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
         fi        
-    fi
     elif [[ $platform == "iOS" ]]
     then
         # Debug
