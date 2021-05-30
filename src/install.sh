@@ -13,9 +13,7 @@ sudo apt -y install nodejs
 rm -rf /var/lib/apt/lists/*
 
 
-# Android Export Dependencies
-
-# Android SDK
+# Android SDK Export Dependencies
 sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
 # curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
 wget "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
@@ -31,3 +29,9 @@ echo "✔ Android SDK Successfully Installed."
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
 ls /root/android-sdk/debug.keystore
 echo "✔ Debug Key Generated."
+
+
+# Upload Artifact Setup Requirements
+mv /src/upload_artifacts /upload_artifacts
+cd /upload_artifacts
+npm install
