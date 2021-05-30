@@ -16,9 +16,6 @@ rm -rf /var/lib/apt/lists/*
 # Android SDK Export Dependencies
 sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
 # curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
-wget https://developer.android.com/studio
-MATCH=$( cat /studio | grep -o "commandlinetools-linux-\d\d\d\d\d\d\d_latest\.zip" | head -n 1 )
-wget "https://dl.google.com/android/repository/$MATCH"
 unzip -q commandlinetools-linux-*.zip
 rm commandlinetools-linux-*.zip
 mv cmdline-tools latest
