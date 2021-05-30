@@ -10,7 +10,7 @@ COPY . .
 
 # RUN sudo apt -y install nodejs 
 
-# RUN chmod +x /src/setup.sh
+RUN chmod +x /src/setup.sh
 
 ENTRYPOINT ["bash", "/src/setup.sh"]
 
