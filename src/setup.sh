@@ -2,28 +2,16 @@
 set -e
 echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
-# apt-get update && apt-get install sudo -y && chmod +x setup.sh 
-# /bin/bash
-
 
 # Environment Variables
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
-ANDROID_SDK_VERSION="6858069"
-ANDROID_HOME="/root/android-sdk"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
+
 # Expected Env Format - EXPORT_PLATFORMS="Android|Linux|MacOS"
 IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
 echo "✔ Export Platforms: ${GODOT_EXPORT_PLATFORMS[@]} - Total ${#GODOT_EXPORT_PLATFORMS[@]}."
 
 
-# Download and Install Packages
-# apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates graphicsmagick
-# curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-# sudo apt -y install nodejs 
-# locales-all
-
-
-#rm -rf /var/lib/apt/lists/*
 if [ "${GODOT_RELEASE}" == "stable" ]
 then
     LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux_headless.64.zip"
