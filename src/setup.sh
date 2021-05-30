@@ -112,7 +112,7 @@ npm install
 
 
 # Validate Editor Settings
-cat ${TRES_PATH} && cd ${GITHUB_WORKSPACE} && cd ${EXPORT_PATH} && ls
+cat ${TRES_PATH} && cd /github/workspace && cd ${EXPORT_PATH} && ls
 
 
 # Export Platforms  
@@ -125,22 +125,22 @@ do
     then                
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.x86_64"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
     elif [[ $platform == "Mac OSX" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.zip"
         zip -r "${platform}.zip" "build/${platform}"
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
     elif [[ $platform == "Windows Desktop" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.exe"
         zip -r "${platform}.zip" "build/${platform}"
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
     elif [[ $platform == "HTML5" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/index.html"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
     elif [[ $platform == "Android" ]]
     then
         # Debug
@@ -148,7 +148,7 @@ do
         then        
             godot --verbose --export-debug "Android" "build/${platform}/${EXPORT_NAME}.debug.apk"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
 
         # Release
         elif [ ${EXPORT_MODE} == "release" ]
@@ -159,7 +159,7 @@ do
             sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
             godot --verbose --export "Android" "build/${platform}/${EXPORT_NAME}.release.apk"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
         fi        
     elif [[ $platform == "iOS" ]]
     then
@@ -169,7 +169,7 @@ do
             echo "✔ Exporting iOS Debug XCodeProj"
             godot --verbose --export-debug "iOS" "build/${platform}/${EXPORT_NAME}.debug.ipa"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
     
         # Release
         elif [ ${EXPORT_MODE} == "release" ]
@@ -177,7 +177,7 @@ do
             echo "✔ Exporting iOS Release XCodeProj"
             godot --verbose --export "iOS" "build/${platform}/${EXPORT_NAME}.release.ipa"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="${GITHUB_WORKSPACE}" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
         fi
     fi
 done
