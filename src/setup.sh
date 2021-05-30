@@ -8,6 +8,7 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # Environment Variables
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
+ANDROID_SDK_PATH="https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
 ANDROID_HOME="/root/android-sdk"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
 # Expected Env Format - EXPORT_PLATFORMS="Android|Linux|MacOS"
@@ -60,7 +61,7 @@ then
     # Android SDK
     sudo mkdir -p -v /root/android-sdk-installer/cmdline-tools && cd /root/android-sdk-installer/cmdline-tools
     # curl -fsSLO "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
-    wget "https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
+    wget ${ANDROID_SDK_PATH}
     unzip -q commandlinetools-linux-*.zip
     rm commandlinetools-linux-*.zip
     mv cmdline-tools latest
