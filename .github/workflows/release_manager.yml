@@ -41,9 +41,10 @@ jobs:
         uses: alice-biometrics/release-creator/@v1.0.5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          version: ${RELEASE_VERSION}
-          branch: ${RELEASE_BRANCH}
-          description: ${RELEASE_DESCRIPTION}
-          prerelease: ${RELEASE_PRERELEASE}
-          draft: ${RELEASE_DRAFT}
+          version: ${{ env.RELEASE_VERSION }}
+          branch: ${{ env.RELEASE_BRANCH }}
+          description: ${{ env.RELEASE_DESCRIPTION }}
+          prerelease: ${{ env.RELEASE_PRERELEASE }}
+          draft: ${{ env.RELEASE_DRAFT }}
+          repo: 'vini-guerrero/godot-exporter'
         
