@@ -6,8 +6,8 @@ echo "\n\n ✔ Install Script Triggered Successfully. \n\n "
 ANDROID_HOME="/root/android-sdk"
 
 # Download and Install Packages
-apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip curl openjdk-8-jdk apksigner nano curl dirmngr apt-transport-https lsb-release ca-certificates graphicsmagick
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release ca-certificates # graphicsmagick
+wget https://deb.nodesource.com/setup_12.x | sudo bash
 sudo apt -y install nodejs 
 # locales-all
 rm -rf /var/lib/apt/lists/*
@@ -33,7 +33,7 @@ echo "✔ Debug Key Generated."
 
 
 # Itch.io - Butler Integration
-curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default \
+wget butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default \
 && unzip butler.zip \
 && cp butler /usr/bin \
 && chmod +x /usr/bin/butler
