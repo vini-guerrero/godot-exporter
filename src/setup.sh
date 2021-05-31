@@ -44,7 +44,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 # Godot Executable From Path
 echo "✔ Godot Editor First Launch."
 #!/usr/bin/godot
-chmod +x /usr/local/bin/godot && ./usr/local/bin/godot -e -q
+chmod +x /usr/local/bin/godot && /usr/local/bin/godot -e -q
 
 
 # Prepare Android Export
