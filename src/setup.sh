@@ -44,6 +44,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 # Godot Executable From Path
 echo "✔ Godot Editor First Launch."
 chmod +x /usr/local/bin/godot && godot -e -q
+echo "✔ Godot Editor Launched."
 
 
 # Prepare Android Export
@@ -69,6 +70,7 @@ fi
 
 
 # Upload Artifact Setup Requirements
+echo "✔ Preparing Artifact Uploader."
 mv /src/upload_artifacts /upload_artifacts
 cd /upload_artifacts
 npm install
