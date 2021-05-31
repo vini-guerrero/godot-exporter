@@ -43,7 +43,7 @@ sudo rm -f Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz Godot_v
 
 # Godot Executable From Path
 echo "✔ Godot Editor First Launch."
-chmod +x /usr/local/bin/godot && godot -e -q
+cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor Launched."
 
 
