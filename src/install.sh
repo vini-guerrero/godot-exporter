@@ -37,10 +37,3 @@ curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/d
 && unzip butler.zip \
 && cp butler /usr/bin \
 && chmod +x /usr/bin/butler
-
-
-# Upload Artifact Setup Requirements
-mv /src/upload_artifacts /upload_artifacts
-cd /upload_artifacts
-npm install
-echo "✔ Artifact Uploader Installed."
