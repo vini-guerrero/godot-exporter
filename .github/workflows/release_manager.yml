@@ -46,4 +46,5 @@ jobs:
           description: ${RELEASE_DESCRIPTION}
           prerelease: ${RELEASE_PRERELEASE}
           draft: ${RELEASE_DRAFT}
+          repo: 'vini-guerrero/godot-exporter'
         
