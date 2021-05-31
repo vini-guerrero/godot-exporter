@@ -1,0 +1,49 @@
+name: "Create Action Release"
+on:
+  workflow_dispatch:
+    inputs:
+      description:
+        description: "Description"
+        required: true
+        default: "Description"
+      version:
+        description: "Version"
+        required: true
+        default: "v0.0.1"
+      branch:
+        description: "Branch"
+        required: true
+        default: "dev"
+      prerelease:
+        description: "Pre Release"
+        required: true
+        default: "true"
+      draft:
+        description: "Draft"
+        required: true
+        default: "true"
+
+env:
+  RELEASE_VERSION: ${{ github.event.inputs.version }}
+  RELEASE_BRANCH: ${{ github.event.inputs.branch }}
+  RELEASE_DESCRIPTION: ${{ github.event.inputs.description }}
+  RELEASE_PRERELEASE: ${{ github.event.inputs.prerelease }}
+  RELEASE_DRAFT: ${{ github.event.inputs.draft }}
+
+jobs:
+  export:
+    name: "Create Action Release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate Release
+        uses: alice-biometrics/release-creator/@v1.0.5
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          version: ${RELEASE_VERSION}
+          branch: ${RELEASE_BRANCH}
+          description: ${RELEASE_DESCRIPTION}
+          prerelease: ${RELEASE_PRERELEASE}
+          draft: ${RELEASE_DRAFT}
+        
