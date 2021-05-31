@@ -6,7 +6,7 @@ echo "\n\n ✔ Install Script Triggered Successfully. \n\n "
 ANDROID_HOME="/root/android-sdk"
 
 # Download and Install Packages
-apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release ca-certificates # graphicsmagick
+apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release # graphicsmagick
 wget https://deb.nodesource.com/setup_12.x | sudo bash
 sudo apt -y install nodejs 
 # locales-all
