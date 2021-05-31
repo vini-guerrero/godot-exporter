@@ -4,6 +4,7 @@ echo "\n\n ✔ Install Script Triggered Successfully. \n\n "
 
 
 ANDROID_HOME="/root/android-sdk"
+USE_BUTLER="false"
 
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release # graphicsmagick
@@ -33,7 +34,10 @@ echo "✔ Debug Key Generated."
 
 
 # Itch.io - Butler Integration
-wget butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default \
-&& unzip butler.zip \
-&& cp butler /usr/bin \
-&& chmod +x /usr/bin/butler
+if [[ ${USE_BUTLER} == "true" ]]
+then  
+  wget butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default \
+  && unzip butler.zip \
+  && cp butler /usr/bin \
+  && chmod +x /usr/bin/butler  
+fi
