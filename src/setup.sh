@@ -66,6 +66,8 @@ fi
 if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "iOS" ]]
 then 
     echo "✔ iOS Project Export Setup Ready"
+    sed -i '/filesystem/import/pvrtc_fast_conversion = true' \    
+    && sed -i '/filesystem/import/pvrtc_texture_tool = ""' \
 fi
 
 
