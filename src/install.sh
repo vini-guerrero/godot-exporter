@@ -33,6 +33,14 @@ ls /root/android-sdk/debug.keystore
 echo "✔ Debug Key Generated."
 
 
+# Upload Artifact Setup Requirements
+echo "✔ Preparing Artifact Uploader."
+mv /src/upload_artifacts /upload_artifacts
+cd /upload_artifacts
+npm install
+echo "✔ Artifact Uploader Installed."
+
+
 # Itch.io - Butler Integration
 if [[ ${USE_BUTLER} == "true" ]]
 then  
