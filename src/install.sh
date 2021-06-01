@@ -7,9 +7,9 @@ ANDROID_HOME="/root/android-sdk"
 USE_BUTLER="false"
 
 # Download and Install Packages
-apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release nodejs npm # graphicsmagick
-# wget https://deb.nodesource.com/setup_12.x | sudo bash
-# sudo apt -y install nodejs 
+apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates curl git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release # graphicsmagick
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt -y install nodejs 
 # locales-all
 rm -rf /var/lib/apt/lists/*
 
