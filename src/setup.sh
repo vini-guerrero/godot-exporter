@@ -66,8 +66,7 @@ fi
 if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "iOS" ]]
 then 
     ICON_PATH="res://assets/sprites/icon.png"
-    echo "✔ iOS Project Export Setup Ready"
-    sed -i '/\filesystem/import/\pvrtc_fast_conversion = true' ${TRES_PATH}   
+    sed -i '/\filesystem/import/\pvrtc_fast_conversion = "true"' ${TRES_PATH}   
     sed -i '/\filesystem/import/\pvrtc_texture_tool = ""' ${TRES_PATH} 
     sed -i '/\required_icons//\iphone_120x120="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg 
     sed -i '/\required_icons/\ipad_76x76="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg 
@@ -77,6 +76,7 @@ then
     sed -i '/\required_icons/\ipad_167x167="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg     
     sed -i '/\required_icons/\spotlight_40x40="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg     
     sed -i '/\required_icons/\spotlight_80x80="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg         
+    echo "✔ iOS Project Export Setup Ready"
 fi
 
 
