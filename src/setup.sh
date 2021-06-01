@@ -62,6 +62,10 @@ then
 fi
 
 
+# Validate Editor Settings
+cat ${TRES_PATH}
+
+
 # Prepare iOS Export
 if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "iOS" ]]
 then 
@@ -81,7 +85,8 @@ fi
 
 
 # Validate Editor Settings
-cat ${TRES_PATH} && cd /github/workspace && cd ${EXPORT_PATH} && ls
+cat ${TRES_PATH}
+cd /github/workspace/${EXPORT_PATH} && ls
 
 
 # Export Platforms  
