@@ -67,8 +67,7 @@ if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "iOS" ]]
 then 
     # Set Editor Settings For iOS Export
     ICON_PATH="res:\/\/assets\/sprites\/icon.png"
-    sed -i '/\[resource\]/a filesystem\/import\/pvrtc_fast_conversion = true' ${TRES_PATH} \
-    && sed -i '/\[resource\]/a filesystem\/import\/pvrtc_texture_tool = ""' ${TRES_PATH} \
+    sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' /github/workspace/${EXPORT_PATH}/project.godot \
     && sed -i '/\required_icons/\iphone_120x120="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
     && sed -i '/\required_icons/\ipad_76x76="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
     && sed -i '/\required_icons/\app_store_1024x1024="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
