@@ -159,12 +159,12 @@ done
 
 
 # iOS Icons Generate Script
-if [ -z "${ICON_PATH}" ];
+if [ -z "${IOS_ICON_PATH}" ];
 then 
     echo "✔ iOS Icons Generator Started."
     which gm
 
-    wget -O icon.png ${ICON_PATH}
+    wget -O icon.png ${IOS_ICON_PATH}
     source_file=icon.png
     icons_folder="icons"
     output_file_prefix=app_icon_
