@@ -159,7 +159,7 @@ done
 
 
 # iOS Icons Generate Script
-if [ -z "${IOS_ICON_PATH}" ];
+if [[ -z "${IOS_ICON_PATH}" ]];
 then 
     echo "✔ iOS Icons Generator Started."
     which gm
