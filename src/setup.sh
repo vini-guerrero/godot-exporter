@@ -158,3 +158,8 @@ do
 done
 
 
+# iOS Icons Generate Script
+ls && pwd && chmod +x ios_icons.sh.sh && ./ios_icons.sh
+
+
+
