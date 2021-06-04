@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -e
-
+echo -e "environment variables"
+printenv
 sudo apt-get update -y && sudo apt-get install -y zip graphicsmagick
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt -y install nodejs 
