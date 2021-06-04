@@ -2,6 +2,10 @@
 
 Godot Engine Automation Pipeline
 
+## CI/CD Artifacts Example
+
+![CI/CD](/screenshots/Artifacts.png?raw=true "Artifacts")
+
 ## Automated Export Pipeline Supports
 
 - Android
