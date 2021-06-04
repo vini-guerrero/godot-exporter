@@ -18,11 +18,11 @@
 set -e
 
 if [ -z "$1" ]; then
-    echo "usage: make-ios-app-icons filename [output-file-prefix] [gm-path]"
+    echo "usage: ios_icons filename [output-file-prefix] [gm-path]"
     exit 1
 fi
 
-sudo apt-get update -y && sudo apt-get install -y graphicsmagick
+sudo apt-get update -y && sudo apt-get install -y graphicsmagick && which gm
 
 source_file=$1
 output_file_prefix=app_icon_
