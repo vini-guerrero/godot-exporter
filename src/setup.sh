@@ -5,7 +5,9 @@ echo "\n\n ✔ Environment Setup Script Triggered Successfully. \n\n "
 
 # Environment Variables
 ROOT_PATH="${ROOT_PATH:="/github/home"}"
+WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
 TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
+
 
 # Expected Env Format - EXPORT_PLATFORMS="Android|Linux|MacOS"
 IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
@@ -67,15 +69,15 @@ if [[ ${GODOT_EXPORT_PLATFORMS[@]} =~ "iOS" ]]
 then 
     # Set Editor Settings For iOS Export
     ICON_PATH="res:\/\/assets\/sprites\/icon\.png"
-    sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' /github/workspace/${EXPORT_PATH}/project.godot \
-    && sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    && sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    && sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    #&& sed -i '/\required_icons/\iphone_180x180="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    #&& sed -i '/\required_icons/\ipad_152x152="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    #&& sed -i '/\required_icons/\ipad_167x167="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    #&& sed -i '/\required_icons/\spotlight_40x40="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg \
-    #&& sed -i '/\required_icons/\spotlight_80x80="'${ICON_PATH}'"' /github/workspace/${EXPORT_PATH}/export_presets.cfg
+    sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${WORKSPACE_PATH}/${EXPORT_PATH}/project.godot \
+    && sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    && sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    && sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    #&& sed -i '/\required_icons/\iphone_180x180="'${ICON_PATH}'"' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    #&& sed -i '/\required_icons/\ipad_152x152="'${ICON_PATH}'"' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    #&& sed -i '/\required_icons/\ipad_167x167="'${ICON_PATH}'"' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    #&& sed -i '/\required_icons/\spotlight_40x40="'${ICON_PATH}'"' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg \
+    #&& sed -i '/\required_icons/\spotlight_80x80="'${ICON_PATH}'"' ${WORKSPACE_PATH}/${EXPORT_PATH}/export_presets.cfg
     echo "✔ iOS Project Export Setup Ready"
 fi
 
@@ -85,7 +87,7 @@ cat ${TRES_PATH}
 
 
 # Move To Export Path
-cd /github/workspace/${EXPORT_PATH} && ls
+cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
 
 
 # Export Platforms  
@@ -98,22 +100,22 @@ do
     then                
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.x86_64"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Linux" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
     elif [[ $platform == "Mac OSX" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.zip"
         zip -r "${platform}.zip" "build/${platform}"
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Mac OSX" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
     elif [[ $platform == "Windows Desktop" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/${EXPORT_NAME}.exe"
         zip -r "${platform}.zip" "build/${platform}"
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Windows Desktop" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
     elif [[ $platform == "HTML5" ]]
     then
         godot --verbose --export "${platform}" "build/${platform}/index.html"
         zip -r "${platform}.zip" build/${platform}
-        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+        ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
     elif [[ $platform == "Android" ]]
     then
         # Debug
@@ -121,7 +123,7 @@ do
         then        
             godot --verbose --export-debug "Android" "build/${platform}/${EXPORT_NAME}.debug.apk"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
 
         # Release
         elif [ ${EXPORT_MODE} == "release" ]
@@ -132,7 +134,7 @@ do
             sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i export_presets.cfg
             godot --verbose --export "Android" "build/${platform}/${EXPORT_NAME}.release.apk"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Android" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
         fi        
     elif [[ $platform == "iOS" ]]
     then
@@ -142,7 +144,7 @@ do
             echo "✔ Exporting iOS Debug XCodeProj"
             godot --verbose --export-debug "iOS" "build/${platform}/${EXPORT_NAME}.debug.ipa"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
     
         # Release
         elif [ ${EXPORT_MODE} == "release" ]
@@ -150,7 +152,7 @@ do
             echo "✔ Exporting iOS Release XCodeProj"
             godot --verbose --export "iOS" "build/${platform}/${EXPORT_NAME}.release.ipa"
             zip -r ${platform}.zip build/${platform}
-            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="/github/workspace/" node /upload_artifacts/index.js
+            ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="iOS" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
         fi
     fi
 done

@@ -5,10 +5,11 @@ Godot Engine Automation Pipeline
 ## Automated Export Pipeline Supports
 
 - Android
+- iOS
 - Linux
-- MacOS
-- Windows
-- WebHTML5
+- Mac OSX
+- Windows Desktop
+- HTML5
 
 ## Action Environment Variables
 
@@ -32,8 +33,8 @@ env:
   GODOT_RELEASE: stable
   EXPORT_NAME: export
   EXPORT_PATH: game
-  EXPORT_PLATFORMS: Android|Linux|Mac OSX|Windows Desktop|HTML5
-  EXPORT_MODE: "release"
+  EXPORT_PLATFORMS: Android|iOS|Linux|Mac OSX|Windows Desktop|HTML5
+  EXPORT_MODE: "debug"
   PUBLISH_ITCH_IO: false
   K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
   K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
@@ -47,5 +48,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Export
-        uses: vini-guerrero/godot-exporter@v0.0.1
+        uses: vini-guerrero/godot-exporter@master
 ```
