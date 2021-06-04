@@ -31,6 +31,9 @@ Godot Engine Automation Pipeline
 
 ## Environment Example
 
+#### Create action file: 
+repository_name/.github/workflows/example.yml
+
 ```
 name: "Example Dispatch Trigger Export"
 on:
