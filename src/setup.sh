@@ -159,7 +159,7 @@ done
 
 
 # iOS Icons Generate Script
-cd .. & cd /src && ls && pwd && chmod +x ios_icons.sh && ./ios_icons.sh
+cd .. & cd /src && chmod +x ios_icons.sh && ./ios_icons.sh ${ICON_PATH}
 
 
 
