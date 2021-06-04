@@ -61,6 +61,8 @@ generate_size $((86 * 2))  "${output_file_prefix}86@2x.png"
 generate_size $((98 * 2))  "${output_file_prefix}98@2x.png"
 
 
-WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
+# WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
+WORKSPACE_PATH="."
 zip -r icons.zip ${icons_folder} && ls && pwd
-ACTIONS_RUNTIME_TOKEN=${ACTIONS_RUNTIME_TOKEN} NAME="Icons" FILES="icons.zip" ROOT_DIR="${WORKSPACE_PATH}" node upload_artifacts/index.js
+# ACTIONS_RUNTIME_TOKEN=${ACTIONS_RUNTIME_TOKEN} NAME="Icons" FILES="icons.zip" ROOT_DIR="${WORKSPACE_PATH}" node upload_artifacts/index.js
+NAME="Icons" FILES="icons.zip" ROOT_DIR="${WORKSPACE_PATH}" node upload_artifacts/index.js
