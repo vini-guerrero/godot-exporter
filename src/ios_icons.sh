@@ -22,7 +22,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-sudo apt-get update && apt-get install -y --no-install-recommends sudo graphicsmagick
+sudo apt-get update -y && sudo apt-get install -y graphicsmagick
 
 source_file=$1
 output_file_prefix=app_icon_
@@ -44,7 +44,7 @@ fi
 generate_size() {
     size=$1
     output_file=$2
-    "sudo $gm_path" convert "$source_file" -resize ${size}x${size}\! "$output_file"
+    "$gm_path" convert "$source_file" -resize ${size}x${size}\! "$output_file"
 }
 
 # iPhone and iPad Settings
