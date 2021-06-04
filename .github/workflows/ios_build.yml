@@ -18,6 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Icon Generation Script
+        shell: bash
         run: |
           cd src && ls && pwd &&
-          sudo chmod u+x ios_icons.sh bash ios_icons.sh
+          chmod u+x ios_icons.sh && ios_icons.sh
