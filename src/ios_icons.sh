@@ -22,11 +22,11 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-sudo apt-get update -y && sudo apt-get install -y graphicsmagick && which gm
+sudo apt-get update -y && sudo apt-get install -y graphicsmagick
 
 source_file=$1
 output_file_prefix=app_icon_
-gm_path=/usr/local/bin/gm
+gm_path=/usr/bin/gm
 
 if [ ! -z "$2" ]; then
     output_file_prefix=$2
