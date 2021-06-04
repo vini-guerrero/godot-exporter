@@ -6,6 +6,7 @@ echo "\n\n ✔ Install Script Triggered Successfully. \n\n "
 ANDROID_HOME="/root/android-sdk"
 USE_BUTLER="false"
 
+
 # Download and Install Packages
 apt-get update && apt-get install -y --no-install-recommends sudo ca-certificates curl git python python-openssl unzip wget zip openjdk-8-jdk apksigner dirmngr apt-transport-https lsb-release # graphicsmagick
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -26,6 +27,7 @@ yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --licenses
 yes | /root/android-sdk-installer/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
 cd /root && rm -rf /root/android-sdk-installer    
 echo "✔ Android SDK Successfully Installed."
+
 
 # Key Generation
 keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /root/android-sdk/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 
