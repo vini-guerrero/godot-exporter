@@ -2,13 +2,7 @@
 
 set -e
 
-echo -e "Environment Variables"
-printenv
-
-sudo apt-get update -y && sudo apt-get install -y zip graphicsmagick
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt -y install nodejs 
-cd src/upload_artifacts && npm install && cd ..
+echo -e "\n\n ✔ iOS Icons Script Triggered Successfully. \n\n"
 
 wget -O icon.png ${ICON_PATH}
 source_file=icon.png
@@ -64,9 +58,8 @@ generate_size $((86 * 2))  "${output_file_prefix}86@2x.png"
 generate_size $((98 * 2))  "${output_file_prefix}98@2x.png"
 
 
-# WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
-WORKSPACE_PATH="${GITHUB_WORKSPACE}"
+WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
+# WORKSPACE_PATH="${GITHUB_WORKSPACE}"
 ARTIFACT_NAME="Icons"
 zip -r ${ARTIFACT_NAME}.zip ${icons_folder} && ls && pwd
-export ACTION_RUNTIME_TOKEN=$ACTION_RUNTIME_TOKEN
-ACTION_RUNTIME_TOKEN=$ACTION_RUNTIME_TOKEN NAME="${ARTIFACT_NAME}" FILES="${ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}" node upload_artifacts/index.js
+ACTION_RUNTIME_TOKEN=$ACTION_RUNTIME_TOKEN NAME="${ARTIFACT_NAME}" FILES="${ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}" node /upload_artifacts/index.js
