@@ -8,6 +8,9 @@ const rootDirectory = process.env.ROOT_DIR
 const options = {
     continueOnError: true
 }
+console.log(artifactName)
+condole.log(files)
+console.log(rootDirectory)
 async function start() {
     const uploadResult = await artifactClient.uploadArtifact(artifactName, files, rootDirectory, options);
     console.log(uploadResult);
