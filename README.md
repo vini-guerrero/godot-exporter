@@ -27,7 +27,7 @@ Godot Engine Automation Pipeline
 
 ## Publishing Platform Integration
 
-- **Itch.io:** _(Android|iOS|Linux|MacOS|Windows|Web)_
+- **Itch.io:** _(Android|iOS|Linux|MacOS|Windows|Web)_ - Work-In-Progress
 
 ## Environment Example
 
