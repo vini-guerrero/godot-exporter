@@ -3,6 +3,8 @@
 set -e
 
 sudo apt-get update -y && sudo apt-get install -y zip graphicsmagick
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt -y install nodejs 
 cd src/upload_artifacts && npm install
 
 wget -O icon.png ${ICON_PATH}
