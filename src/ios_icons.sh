@@ -1,11 +1,13 @@
 #!/bin/bash
 
 set -e
-echo -e "environment variables"
+
+echo -e "Environment Variables"
 printenv
-sudo apt-get update -y && sudo apt-get install -y zip graphicsmagick
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt -y install nodejs 
+
+apt-get update -y && apt-get install -y zip graphicsmagick
+curl -sL https://deb.nodesource.com/setup_12.x | -E bash -
+apt -y install nodejs 
 cd src/upload_artifacts && npm install && cd ..
 
 wget -O icon.png ${ICON_PATH}
