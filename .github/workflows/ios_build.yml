@@ -5,7 +5,7 @@ on:
       icon_path:
         description: "Icon Path"
         required: true
-        default: ""
+        default: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
 
 env:
   ICON_PATH: ${{ github.event.inputs.icon_path }}
@@ -19,4 +19,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Icon Generation Script
         run: |
+          wget ${ env.ICON_PATH }
           ls && pwd
