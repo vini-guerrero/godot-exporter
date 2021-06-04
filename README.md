@@ -9,7 +9,7 @@ Godot Engine Automation Pipeline
 ## Automated Export Pipeline Supports
 
 - Android
-- iOS
+- iOS (XCode Project)
 - Linux
 - Mac OSX
 - Windows Desktop
