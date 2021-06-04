@@ -4,9 +4,9 @@ set -e
 
 echo -e "\n\n ✔ iOS Icons Script Triggered Successfully. \n\n"
 
-if [[ ${ICON_PATH} ]]
+if [ -z "$1" ];
 then 
-    wget -O icon.png ${ICON_PATH}
+    wget -O icon.png $1
     source_file=icon.png
     icons_folder="icons"
     output_file_prefix=app_icon_
