@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       icon_path:
-        description: "Icon Path"
+        description: "Icon Path - PNG"
         required: true
         default: "https://raw.githubusercontent.com/vini-guerrero/godot-exporter/master/screenshots/Logo.png"
 
@@ -19,5 +19,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Icon Generation Script
         run: |
-          wget -O icon.png ${ICON_PATH} && ls && pwd && 
-          chmod u+x src/ios_icons.sh && bash src/ios_icons.sh icon.png && ls
+          wget -O icon.png ${ICON_PATH} && 
+          chmod u+x src/ios_icons.sh && 
+          bash src/ios_icons.sh icon.png && ls && pwd
