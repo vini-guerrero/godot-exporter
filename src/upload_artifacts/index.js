@@ -8,10 +8,6 @@ const rootDirectory = process.env.ROOT_DIR
 const options = {
     continueOnError: true
 }
-console.log(artifactName)
-console.log(files)
-console.log(rootDirectory)
-console.log(process.env.ACTION_RUNTIME_TOKEN)
 async function start() {
     const uploadResult = await artifactClient.uploadArtifact(artifactName, files, rootDirectory, options);
     console.log(uploadResult);
