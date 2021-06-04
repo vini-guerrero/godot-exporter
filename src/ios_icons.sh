@@ -22,6 +22,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+apt-get update && apt-get install -y --no-install-recommends sudo graphicsmagick
+
 source_file=$1
 output_file_prefix=app_icon_
 gm_path=/usr/local/bin/gm
