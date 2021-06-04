@@ -1,40 +1,15 @@
 #!/bin/bash
-#
-# Given a source image, create icons in all sizes needed for an iOS app icon.
-# See <https://developer.apple.com/library/ios/qa/qa1686/_index.html> for details.
-#
-# First (required) argument is path to source file.
-#
-# Second (optional) argument is the prefix to be used for the output files.
-# If not specified, defaults to "app_icon_".
-# 
-# Third (optional) argument is path to the GraphicsMagick gm executable.
-# If not specified, defaults to /usr/local/bin/gm.
-#
-# Requires GraphicsMagick. ("brew install graphicsmagick" on macOS)
-
-# Source - https://gist.github.com/kristopherjohnson/a4009dd3ea594255c6f1840888194a47
 
 set -e
 
-if [ -z "$1" ]; then
-    echo "usage: ios_icons filename [output-file-prefix] [gm-path]"
-    exit 1
-fi
+sudo apt-get update -y && sudo apt-get install -y zip graphicsmagick
+cd src/upload_artifacts && npm install
 
-sudo apt-get update -y && sudo apt-get install -y graphicsmagick
-
-source_file=$1
-output_file_prefix=app_icon_
+wget -O icon.png ${ICON_PATH}
+source_file=icon.png
+icons_folder="icons"
+output_file_prefix=${icons_folder}/app_icon_
 gm_path=/usr/bin/gm
-
-if [ ! -z "$2" ]; then
-    output_file_prefix=$2
-fi
-
-if [ ! -z "$3" ]; then
-    gm_path=$3
-fi
 
 if [ ! -e "$gm_path" ]; then
     echo "error: GraphicsMagick executable not found at $gm_path"
@@ -79,3 +54,8 @@ generate_size 55           "${output_file_prefix}27_5@2x.png"
 # Apple Watch Short-Look
 generate_size $((86 * 2))  "${output_file_prefix}86@2x.png"
 generate_size $((98 * 2))  "${output_file_prefix}98@2x.png"
+
+
+WORKSPACE_PATH="${WORKSPACE_PATH:="/github/workspace"}"
+zip -r icons.zip ${icons_folder}
+ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="Icons" FILES="icons.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js

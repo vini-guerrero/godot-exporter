@@ -19,6 +19,4 @@ jobs:
         uses: actions/checkout@v2
       - name: Icon Generation Script
         run: |
-          wget -O icon.png ${ICON_PATH} && 
-          sudo chmod u+x src/ios_icons.sh && 
-          bash src/ios_icons.sh icon.png && ls && pwd
+          sudo chmod u+x src/ios_icons.sh bash src/ios_icons.sh
