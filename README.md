@@ -27,14 +27,14 @@ Godot Engine Automation Pipeline
 
 ## Publishing Platform Integration
 
-- **Itch.io:** _(Android|iOS|Linux|MacOS|Windows|Web)_ - Work-In-Progress
+- **Itch.io:** _(Android|iOS|Linux|MacOS|Windows|Web)_ **- Work-In-Progress**
 
 ## Environment Example
 
 #### Create action file: 
 repository_name/.github/workflows/example.yml
 
-```
+```yml
 name: "Example Dispatch Trigger Export"
 on:
   workflow_dispatch:
