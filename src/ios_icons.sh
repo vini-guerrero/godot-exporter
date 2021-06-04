@@ -68,4 +68,4 @@ generate_size $((98 * 2))  "${output_file_prefix}98@2x.png"
 WORKSPACE_PATH="${GITHUB_WORKSPACE}"
 ARTIFACT_NAME="Icons"
 zip -r ${ARTIFACT_NAME}.zip ${icons_folder} && ls && pwd
-ACTION_RUNTIME_TOKEN=$ACTION_RUNTIME_TOKEN NAME="${ARTIFACT_NAME}" FILES="${ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}" sudo node upload_artifacts/index.js
+ACTION_RUNTIME_TOKEN=$ACTION_RUNTIME_TOKEN NAME="${ARTIFACT_NAME}" FILES="${ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}" node upload_artifacts/index.js
