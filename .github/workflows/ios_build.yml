@@ -20,5 +20,5 @@ jobs:
       - name: Icon Generation Script
         run: |
           wget -O icon.png ${ICON_PATH} && 
-          chmod u+x src/ios_icons.sh && 
+          sudo chmod u+x src/ios_icons.sh && 
           bash src/ios_icons.sh icon.png && ls && pwd

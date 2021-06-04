@@ -44,7 +44,7 @@ fi
 generate_size() {
     size=$1
     output_file=$2
-    "$gm_path" convert "$source_file" -resize ${size}x${size}\! "$output_file"
+    "sudo $gm_path" convert "$source_file" -resize ${size}x${size}\! "$output_file"
 }
 
 # iPhone and iPad Settings
