@@ -8,7 +8,7 @@ cd src/upload_artifacts && npm install
 wget -O icon.png ${ICON_PATH}
 source_file=icon.png
 icons_folder="icons"
-output_file_prefix=${icons_folder}/app_icon_
+output_file_prefix=app_icon_
 gm_path=/usr/bin/gm
 
 if [ ! -e "$gm_path" ]; then
@@ -19,8 +19,11 @@ fi
 generate_size() {
     size=$1
     output_file=$2
-    "$gm_path" convert "$source_file" -resize ${size}x${size}\! "$output_file"
+    "$gm_path" convert "$source_file" -resize ${size}x${size}\! "${icons_folder}/$output_file"
 }
+
+# Create base Icons Folder
+mkdir ${icons_folder}
 
 # iPhone and iPad Settings
 generate_size 29           "${output_file_prefix}29.png"
