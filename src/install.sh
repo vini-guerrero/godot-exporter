@@ -4,7 +4,7 @@ echo "\n\n ✔ Install Script Triggered Successfully. \n\n "
 
 
 ANDROID_HOME="/root/android-sdk"
-USE_BUTLER="false"
+USE_BUTLER="true"
 
 
 # Download and Install Packages
