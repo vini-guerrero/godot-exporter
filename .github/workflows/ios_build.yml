@@ -18,7 +18,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: XCode Icons Generation
-        env:
-          ACTIONS_RUNTIME_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           chmod u+x src/ios_icons.sh && bash src/ios_icons.sh
