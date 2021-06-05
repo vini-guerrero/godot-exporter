@@ -78,11 +78,14 @@ then
     generate_size 40           "${output_file_prefix}40x40.png"
     generate_size 58           "${output_file_prefix}58x58.png"
     generate_size 60           "${output_file_prefix}60x60.png"
+    generate_size 76           "${output_file_prefix}76x76.png"
     generate_size 80           "${output_file_prefix}80x80.png"
     generate_size 87           "${output_file_prefix}87x87.png"
+    generate_size 120          "${output_file_prefix}120x120.png"
     generate_size 152          "${output_file_prefix}152x152.png"
     generate_size 167          "${output_file_prefix}1670x167.png"
     generate_size 180          "${output_file_prefix}180x180.png"
+    generate_size 1024         "${output_file_prefix}1024x1024.png"
 
     # Upload Icons as Artifact
     zip -r ${ICONS_ARTIFACT_NAME}.zip ${icons_folder}
