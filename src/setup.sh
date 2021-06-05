@@ -71,31 +71,19 @@ then
     }
     # Create base Icons Folder
     mkdir ${icons_folder}
-    # iPhone and iPad Settings
-    generate_size 29           "${output_file_prefix}29.png"
-    generate_size $((29 * 2))  "${output_file_prefix}29@2x.png"
-    generate_size $((29 * 3))  "${output_file_prefix}29@3x.png"
-    # iPhone and iPad Spotlight
-    generate_size 40           "${output_file_prefix}40.png"
-    generate_size $((40 * 2))  "${output_file_prefix}40@2x.png"
-    generate_size $((40 * 3))  "${output_file_prefix}40@3x.png"
-    # iPhone home screen
-    generate_size $((60 * 2))  "${output_file_prefix}60@2x.png"
-    generate_size $((60 * 3))  "${output_file_prefix}60@3x.png"
-    # iPad home screen
-    generate_size 76           "${output_file_prefix}76.png"
-    generate_size $((76 * 2))  "${output_file_prefix}76@2x.png"
-    # iPad Pro home screen
-    generate_size 167          "${output_file_prefix}83_5@2x.png"
-    # iTunes
-    generate_size 512          "iTunesArtwork"
-    generate_size $((512 * 2)) "iTunesArtwork@2x"
-    # Apple Watch Notification Center
-    generate_size 48           "${output_file_prefix}24@2x.png"
-    generate_size 55           "${output_file_prefix}27_5@2x.png"
-    # Apple Watch Short-Look
-    generate_size $((86 * 2))  "${output_file_prefix}86@2x.png"
-    generate_size $((98 * 2))  "${output_file_prefix}98@2x.png"
+
+    # Optional Icons Export Session 
+    generate_size 20           "${output_file_prefix}20x20.png"
+    generate_size 29           "${output_file_prefix}29x29.png"
+    generate_size 40           "${output_file_prefix}40x40.png"
+    generate_size 58           "${output_file_prefix}58x58.png"
+    generate_size 60           "${output_file_prefix}60x60.png"
+    generate_size 80           "${output_file_prefix}80x80.png"
+    generate_size 87           "${output_file_prefix}87x87.png"
+    generate_size 152          "${output_file_prefix}152x152.png"
+    generate_size 167          "${output_file_prefix}1670x167.png"
+    generate_size 180          "${output_file_prefix}180x180.png"
+
     # Upload Icons as Artifact
     zip -r ${ICONS_ARTIFACT_NAME}.zip ${icons_folder}
     ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="${ICONS_ARTIFACT_NAME}" FILES="${ICONS_ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
