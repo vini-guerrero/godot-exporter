@@ -53,14 +53,14 @@ echo "✔ Godot Editor Launched."
 cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
 
 
-# iOS Icons Generate Script
+# iOS Icons Generation
 if [[ ! -z "${IOS_ICON_PATH}" ]]
 then 
     echo "✔ iOS Icons Generator Started."    
-
     wget -O icon.png ${IOS_ICON_PATH}
     source_file=icon.png
     icons_folder="icons"
+    ICONS_ARTIFACT_NAME="Icons"
     output_file_prefix=app_icon_
     gm_path=/usr/bin/gm
     
@@ -96,10 +96,9 @@ then
     # Apple Watch Short-Look
     generate_size $((86 * 2))  "${output_file_prefix}86@2x.png"
     generate_size $((98 * 2))  "${output_file_prefix}98@2x.png"
-
-    ARTIFACT_NAME="Icons"
-    zip -r ${ARTIFACT_NAME}.zip ${icons_folder}
-    ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="${ARTIFACT_NAME}" FILES="${ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
+    # Upload Icons as Artifact
+    zip -r ${ICONS_ARTIFACT_NAME}.zip ${icons_folder}
+    ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="${ICONS_ARTIFACT_NAME}" FILES="${ICONS_ARTIFACT_NAME}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
 fi
 
 
