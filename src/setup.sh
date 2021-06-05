@@ -162,7 +162,7 @@ done
 if [[ ! -z "${IOS_ICON_PATH}" ]]
 then 
     echo "✔ iOS Icons Generator Started."    
-    cd .. && cd /src chmod +x ios_icons.sh && ./ios_icons.sh ${IOS_ICON_PATH}
+    cd .. && cd /src chmod +x ios_icons.sh && ./ios_icons.sh
 
     # wget -O icon.png ${IOS_ICON_PATH}
     # source_file=icon.png
