@@ -49,6 +49,10 @@ cd / && chmod +x /usr/local/bin/godot && godot -e -q
 echo "✔ Godot Editor Launched."
 
 
+# Move To Export Path
+cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
+
+
 # iOS Icons Generate Script
 if [[ ! -z "${IOS_ICON_PATH}" ]]
 then 
@@ -134,10 +138,6 @@ fi
 
 # Validate Editor Settings
 cat ${TRES_PATH}
-
-
-# Move To Export Path
-cd ${WORKSPACE_PATH}/${EXPORT_PATH} && ls
 
 
 # Export Platforms  
