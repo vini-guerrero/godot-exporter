@@ -33,7 +33,7 @@ wget ${LINK_GODOT}
 wget ${LINK_TEMPLATES}
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
-if [[ ! -z ${GODOT_VERSION} ]]
+if [ -z ${GODOT_VERSION+x} ]
 then
     echo -e "Godot version env variable doesn't exist, using latest godot"
     GODOT_VERSION=$(curl https://godotexporterapi.andreamiele.repl.co/api/godot-version)
