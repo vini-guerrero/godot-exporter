@@ -35,7 +35,7 @@ sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 LATEST=$(curl https://godotexporterapi.andreamiele.repl.co/api/godot-version)
-GODOT_VERSION=${GODOT_VERSION:=LATEST}
+GODOT_VERSION=${GODOT_VERSION:=$LATEST}
 
 # Engine
 unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot
