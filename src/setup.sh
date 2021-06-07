@@ -13,6 +13,11 @@ TRES_PATH=${ROOT_PATH}/.config/godot/editor_settings-3.tres
 IFS="|" read -a GODOT_EXPORT_PLATFORMS <<< $EXPORT_PLATFORMS
 echo "✔ Export Platforms: ${GODOT_EXPORT_PLATFORMS[@]} - Total ${#GODOT_EXPORT_PLATFORMS[@]}."
 
+if [ -z "${GODOT_VERSION}" ]
+then
+    echo -e "Godot version env variable doesn't exist, using latest godot"
+    GODOT_VERSION=$(curl https://godotexporterapi.andreamiele.repl.co/api/godot-version)
+fi
 
 if [ "${GODOT_RELEASE}" == "stable" ]
 then
@@ -27,17 +32,11 @@ else #using subdirectory
     LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_RELEASE}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 fi
 
-
 # Download & Setup
 wget ${LINK_GODOT}
 wget ${LINK_TEMPLATES}
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
-if [ -z "${GODOT_VERSION}" ]
-then
-    echo -e "Godot version env variable doesn't exist, using latest godot"
-    GODOT_VERSION=$(curl https://godotexporterapi.andreamiele.repl.co/api/godot-version)
-fi
 
 # Engine
 unzip Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip && sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 /usr/local/bin/godot
