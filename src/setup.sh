@@ -33,7 +33,7 @@ wget ${LINK_GODOT}
 wget ${LINK_TEMPLATES}
 sudo mkdir -p -v $ROOT_PATH/.cache && sudo mkdir -p -v $ROOT_PATH/.config/godot
 sudo mkdir -p -v $ROOT_PATH/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
-if [ -z ${GODOT_VERSION+x} ]
+if [ -z "$GODOT_VERSION" ]
 then
     echo -e "Godot version env variable doesn't exist, using latest godot"
     GODOT_VERSION=$(curl https://godotexporterapi.andreamiele.repl.co/api/godot-version)
@@ -161,9 +161,11 @@ do
         zip -r "${platform}.zip" build/${platform}
         ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="HTML5" FILES="${platform}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node /upload_artifacts/index.js
     elif [[ $platform == "Android" ]]
+
     then
         # Debug
-        if [ ${EXPORT_MODE} == "debug" ]
+  
+      if [ ${EXPORT_MODE} == "debug" ]
         then        
             godot --verbose --export-debug "Android" "build/${platform}/${EXPORT_NAME}.debug.apk"
             zip -r ${platform}.zip build/${platform}
