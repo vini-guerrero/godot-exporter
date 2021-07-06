@@ -2,11 +2,11 @@
 
 Godot Engine Automation Pipeline
 
-[![Alphtech Studio Discord Server](https://badgen.net/discord/members/PrsJvMeVfp)](https://discord.gg/PrsJvMeVfp)
-[![](https://img.shields.io/github/license/vini-guerrero/godot-exporter?style=plastic)](https://github.com/vini-guerrero/godot-exporter)
-
 [![GitHub Stars](https://img.shields.io/github/stars/vini-guerrero/godot-exporter.svg?style=social&label=Stars&maxAge=2592000)](https://github.com/vini-guerrero/godot-exporter)
 [![GitHub Contributors](https://img.shields.io/github/contributors/vini-guerrero/godot-exporter.svg?style=social&label=Contributors&maxAge=2592000)](https://github.com/vini-guerrero/godot-exporter)
+[![](https://img.shields.io/github/license/vini-guerrero/godot-exporter?style=plastic)](https://github.com/vini-guerrero/godot-exporter)
+[![](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/vini-guerrero/godot-exporter)
+[![Alphtech Studio Discord Server](https://badgen.net/discord/members/PrsJvMeVfp)](https://discord.gg/PrsJvMeVfp)
 
 ## CI/CD Artifacts Example
 
