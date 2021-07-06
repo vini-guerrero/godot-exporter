@@ -2,6 +2,9 @@
 
 Godot Engine Automation Pipeline
 
+[![](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)](https://github.com/vini-guerrero/godot-exporter)
+[![](https://img.shields.io/badge/githubactions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/vini-guerrero/godot-exporter)
+
 [![GitHub Stars](https://img.shields.io/github/stars/vini-guerrero/godot-exporter.svg?style=social&label=Stars&maxAge=2592000)](https://github.com/vini-guerrero/godot-exporter)
 [![GitHub Contributors](https://img.shields.io/github/contributors/vini-guerrero/godot-exporter.svg?style=social&label=Contributors&maxAge=2592000)](https://github.com/vini-guerrero/godot-exporter)
 [![](https://img.shields.io/github/license/vini-guerrero/godot-exporter?style=plastic)](https://github.com/vini-guerrero/godot-exporter)
