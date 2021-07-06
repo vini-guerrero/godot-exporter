@@ -2,7 +2,7 @@
 
 Godot Engine Automation Pipeline
 
-![Alphtech Studio Discord Server](https://badgen.net/discord/members/PrsJvMeVfp)
+[![Alphtech Studio Discord Server](https://badgen.net/discord/members/PrsJvMeVfp)](https://discord.gg/PrsJvMeVfp)
 
 [![GitHub Stars](https://img.shields.io/github/stars/vini-guerrero/godot-exporter.svg?style=social&label=Stars&maxAge=2592000)](https://github.com/vini-guerrero/godot-exporter)
 [![GitHub Contributors](https://img.shields.io/github/contributors/vini-guerrero/godot-exporter.svg?style=social&label=Contributors&maxAge=2592000)](https://github.com/vini-guerrero/godot-exporter)
