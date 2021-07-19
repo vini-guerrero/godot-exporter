@@ -64,7 +64,7 @@ fi
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo -e "✔ Export Path."
-cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
+mkdir -v -p "${EXPORT_PATH}/build/${EXPORT_PLATFORM}"
 
 if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
@@ -89,8 +89,8 @@ then
 fi
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --export-debug "${PLATFORM_EXPORT_NAME}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
-zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
+sudo godot --verbose --debug --export-debug "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
+zip -r ${EXPORT_PATH}/${EXPORT_PLATFORM}.zip ${EXPORT_PATH}/build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
 pwd && ls -l
