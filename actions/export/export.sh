@@ -5,7 +5,7 @@ echo -e "✔ Export Script Triggered Successfully."
 
 # Install Export Dependencies
 # sudo apt-get update
-sudo apt-get install -y -qq apksigner locales
+sudo apt-get install -y -qq locales # apksigner
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 sudo dpkg-reconfigure --frontend=noninteractive locales
 sudo update-locale LANG=en_US.UTF-8
