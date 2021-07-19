@@ -14,6 +14,8 @@ LANG=en_US.UTF-8
 # Environment Variables
 EXPORT_PLATFORM=$1
 EXPORT_PATH=$2
+JARSIGNER_PATH=$(eval "which jarsigner")
+APKSIGNER_PATH=$(eval "which apksigner")    
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
@@ -45,8 +47,6 @@ echo -e "✔ Godot Editor Launched."
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
-    JARSIGNER_PATH=$(eval "which jarsigner")
-    APKSIGNER_PATH=$(eval "which apksigner")
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n✔ ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
