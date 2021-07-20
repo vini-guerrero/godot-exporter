@@ -17,8 +17,8 @@ then
     versionArgument="--userversion-file ${VERSION_FILE}"
 fi
 
-$PACKAGE = $1
-export CHANNEL=""
+PACKAGE=$1
+CHANNEL=""
 
 if [ "$2" == "Linux" ]; then CHANNEL=linux; fi
 if [ "$2" == "MacOS" ]; then CHANNEL=mac; fi
