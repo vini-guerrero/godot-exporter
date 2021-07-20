@@ -13,6 +13,7 @@ LANG=en_US.UTF-8
 
 # Environment Variables
 EXPORT_PLATFORM=$1
+GAME_NAME="${GAME_NAME:="game"}"
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
@@ -84,27 +85,31 @@ cd ${PROJECT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
 
 # Platform Export
+GAME_EXTENSION=""
+
 if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
     PLATFORM_EXPORT_NAME="Linux"
-    EXPORT_NAME="game.x86_64"
+    GAME_EXTENSION=".x86_64"
 elif [[ "${EXPORT_PLATFORM}" == "MacOS" ]]
 then
     PLATFORM_EXPORT_NAME="Mac OSX"
-    EXPORT_NAME="game.zip"
+    GAME_EXTENSION=".zip"
 elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]
 then
     PLATFORM_EXPORT_NAME="Windows Desktop"
-    EXPORT_NAME="game.exe"
+    GAME_EXTENSION=".exe"
 elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]
 then
     PLATFORM_EXPORT_NAME="iOS"
-    EXPORT_NAME="game.debug.ipa"
+    GAME_EXTENSION=".debug.ipa"
 elif [[ "${EXPORT_PLATFORM}" == "Android" ]]
 then
     PLATFORM_EXPORT_NAME="Android"
-    EXPORT_NAME="game.debug.apk"
+    GAME_EXTENSION=".debug.apk"
 fi
+
+EXPORT_NAME=$GAME_NAME+$GAME_EXTENSION
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
 sudo godot --verbose --export-debug "${PLATFORM_EXPORT_NAME}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
