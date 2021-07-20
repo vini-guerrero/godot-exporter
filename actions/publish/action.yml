@@ -20,7 +20,7 @@ runs:
       run: |
         echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
         echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&
-        PLATFORM_CHANNEL=""
+        $PLATFORM_CHANNEL=""
         if [ "${{inputs.channel}}" == "Linux" ]; then $PLATFORM_CHANNEL=linux; fi
         if [ "${{inputs.channel}}" == "MacOS" ]; then $PLATFORM_CHANNEL=mac; fi
         if [ "${{inputs.channel}}" == "Windows" ]; then $PLATFORM_CHANNEL=windows; fi
