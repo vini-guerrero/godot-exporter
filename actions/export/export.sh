@@ -13,9 +13,9 @@ LANG=en_US.UTF-8
 
 # Environment Variables
 EXPORT_PLATFORM=$1
+PROJECT_PATH="${PROJECT_PATH:="game"}"
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
-EXPORT_PATH="${EXPORT_PATH:="game"}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
@@ -39,7 +39,7 @@ sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_
 echo -e "✔ Godot Editor First Launch." 
 sudo chmod +x /usr/local/
 sudo chmod +x ${ANDROID_HOME}
-sudo chmod +x ${EXPORT_PATH}
+sudo chmod +x ${PROJECT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
 
@@ -64,7 +64,7 @@ fi
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo -e "✔ Export Path."
-cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
+cd ${PROJECT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
 if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
