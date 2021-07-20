@@ -43,9 +43,6 @@ sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_
 
 # Permissions
 echo -e "✔ Godot Editor First Launch." 
-sudo chmod +x /usr/local/
-sudo chmod +x ${ANDROID_HOME}
-sudo chmod +x ${PROJECT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
 
@@ -129,4 +126,3 @@ fi
 
 zip -r ${EXPORT_PLATFORM}.zip ${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}
 echo -e "✔ Exported Builds"
-pwd && ls -l
