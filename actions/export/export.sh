@@ -26,12 +26,12 @@ sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_REL
 echo -e "✔ Setup Godot Editor And Export Templates." 
 
 # Engine
-curl -L -o ${LINK_GODOT}
+wget -q ${LINK_GODOT}
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip 
 sudo mv Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64 ${GODOT_PATH}/godot
 
 # Templates
-curl -L -o ${LINK_TEMPLATES}
+wget -q ${LINK_TEMPLATES}
 unzip -qq Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz 
 sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
