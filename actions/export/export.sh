@@ -58,7 +58,10 @@ then
     && sudo sed -i '/\[resource\]/a export\/android\/apksigner = "'"${APKSIGNER_PATH}"'"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_keystore = "/usr/local/lib/android/debug.keystore"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
-    && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
+    && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH} \
+    # Prepare Project Level Settings
+    echo -e "✔ Project Level Setup."    
+    && sudo sed -i '/\keystore/\debug="' ${PROJECT_PATH}/export_presets.cfg
 fi
 
 # Validate Editor Settings
