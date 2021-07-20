@@ -20,6 +20,6 @@ runs:
       run: |
         echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
         echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&
-        wget -q -O https://raw.githubusercontent.com/vini-guerrero/godot-exporter/dev/actions/publish/publish.sh ${{inputs.platform}} ${{inputs.project_path}} | bash
+        chmod +x actions/publish/export.sh && bash actions/export_env/publish.sh ${{inputs.platform}} ${{inputs.project_path}}
       shell: bash 
  
