@@ -18,7 +18,7 @@ then
 fi
 
 $PACKAGE = $1
-CHANNEL=""
+export CHANNEL=""
 
 if [ "$2" == "Linux" ]; then CHANNEL=linux; fi
 if [ "$2" == "MacOS" ]; then CHANNEL=mac; fi
