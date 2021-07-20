@@ -18,7 +18,7 @@ then
 fi
 
 PACKAGE=$1
-CHANNEL=""
+CHANNEL="None"
 declare -a SUPPORTED_CHANNELS=("Linux" "MacOS" "Windows", "Android")
 
 if [ "$2" == "Linux" ]; then CHANNEL=linux; fi
@@ -26,10 +26,10 @@ if [ "$2" == "MacOS" ]; then CHANNEL=mac; fi
 if [ "$2" == "Windows" ]; then CHANNEL=win-final; fi
 if [ "$2" == "Android" ]; then CHANNEL=android; fi
 
-if [[ ! -z "$CHANNEL" ]]; 
+if [ "$CHANNEL" != "None" ]; 
 then
-    if [[ ${SUPPORTED_CHANNELS[@]} =~ "${CHANNEL}" ]]; then 
-        echo -e "\n ✔ Exporting $1 To Channel ${CHANNEL} \n"
+    if [[ ${SUPPORTED_CHANNELS[@]} =~ "$2" ]]; then 
+        echo -e "\n ✔ Upload $1 To Itch.io On Channel ${CHANNEL} \n"
         echo "butler push \"$PACKAGE\" $ITCH_USER/$ITCH_GAME:$CHANNEL ${versionArgument}"
         butler push "$PACKAGE" $ITCH_USER/$ITCH_GAME:$CHANNEL ${versionArgument}  
     fi
