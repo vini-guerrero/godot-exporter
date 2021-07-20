@@ -1,0 +1,24 @@
+name: "Publish Exports"
+description: "Publishes exported projects to supported integrations."
+inputs:
+  project_path:
+    description: "Godot Exported Project"
+    required: true
+    default: ""
+  platform:
+    description: "Publisher Platform"
+    required: true
+    default: "Itch"
+  channel:
+    description: "Executable Version"
+    required: true
+    default: "Linux"
+runs:
+  using: "composite"
+  steps:
+    - name: Publish Export
+      run: |
+        echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
+        echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&        
+        chmod +x actions/publish/publish.sh && bash actions/publish/publish.sh ${{inputs.platform}} ${{inputs.export_path}}
+      shell: bash
