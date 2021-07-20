@@ -18,7 +18,12 @@ then
 fi
 
 $PACKAGE = $1
-$CHANNEL = $2
+CHANNEL=""
+
+if [ "$2" == "Linux" ]; then CHANNEL=linux; fi
+if [ "$2" == "MacOS" ]; then CHANNEL=mac; fi
+if [ "$2" == "Windows" ]; then CHANNEL=windows; fi
+if [ "$2" == "Android" ]; then CHANNEL=android; fi
 
 echo "butler push \"$PACKAGE\" $ITCH_USER/$ITCH_GAME:$CHANNEL ${versionArgument}"
 butler push "$PACKAGE" $ITCH_USER/$ITCH_GAME:$CHANNEL ${versionArgument}
