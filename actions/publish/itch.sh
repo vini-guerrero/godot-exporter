@@ -27,6 +27,7 @@ if [ "$2" == "Windows" ]; then CHANNEL=win-final; fi
 if [ "$2" == "Android" ]; then CHANNEL=android; fi
 
 if [[ ${SUPPORTED_CHANNELS[@]} =~ "${CHANNEL}" ]]; then 
+    echo -e "\n ✔ Exporting $1 To Channel ${CHANNEL} \n"
     echo "butler push \"$PACKAGE\" $ITCH_USER/$ITCH_GAME:$CHANNEL ${versionArgument}"
     butler push "$PACKAGE" $ITCH_USER/$ITCH_GAME:$CHANNEL ${versionArgument}  
 fi
