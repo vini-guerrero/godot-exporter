@@ -43,8 +43,8 @@ sudo chmod +x ${PROJECT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
 
-if [[ "$EXPORT_PLATFORM" == "Android" ]]
-then     
+if [[ "$EXPORT_PLATFORM" == "Android" ]]; then 
+    # Signers Paths
     JARSIGNER_PATH=$(eval "which jarsigner")
     APKSIGNER_PATH=$(eval "which apksigner")
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n✔ ApkSigner Path: ${APKSIGNER_PATH}"
@@ -59,9 +59,19 @@ then
     && sudo sed -i '/\[resource\]/a export\/android\/debug_keystore = "/usr/local/lib/android/debug.keystore"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
-    # Prepare Project Level Settings
-    echo -e "✔ Project Level Setup."    
+    # Prepare Project Level Settings        
     sudo sed -i 's/keystore\/debug.*/keystore\/debug=""/g' ${PROJECT_PATH}/export_presets.cfg
+    echo "✔ Android Project Export Setup Ready"
+fi
+
+if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then 
+    # Set Editor Settings For iOS Export
+    ICON_PATH="res:\/\/assets\/sprites\/icon\.png"
+    sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${PROJECT_PATH}/project.godot \
+    && sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' ${PROJECT_PATH}/export_presets.cfg \
+    && sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' ${PROJECT_PATH}/export_presets.cfg \
+    && sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' ${PROJECT_PATH}/export_presets.cfg \
+    echo "✔ iOS Project Export Setup Ready"
 fi
 
 # Validate Editor Settings
