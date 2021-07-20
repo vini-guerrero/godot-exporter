@@ -61,7 +61,7 @@ then
     && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     # Prepare Project Level Settings
     echo -e "✔ Project Level Setup."    
-    sudo sed -i 's@keystore/\debug="' ${PROJECT_PATH}/export_presets.cfg
+    sudo sed -i 's/keystore\/debug.*/keystore\/debug=""/g' ${PROJECT_PATH}/export_presets.cfg
 fi
 
 # Validate Editor Settings
