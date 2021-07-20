@@ -46,7 +46,6 @@ echo -e "✔ Godot Editor Launched."
 
 ls -l ${EXPORTS_PRESET_PATH}
 ls -l ${EXPORTS_PRESET_PATH}/GITHUB_REPOSITORY/GITHUB_REPOSITORY
-ls -l realpath(${GITHUB_WORKSPACE})
 
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]; then 
