@@ -92,24 +92,28 @@ mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}"
 # Platform Export
 GAME_EXTENSION=""
 
-if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
-then 
+if [[ "${EXPORT_PLATFORM}" == "Linux" ]]; then 
     PLATFORM_EXPORT_NAME="Linux"
     GAME_EXTENSION=".x86_64"
-elif [[ "${EXPORT_PLATFORM}" == "MacOS" ]]
-then
+
+elif [[ "${EXPORT_PLATFORM}" == "MacOS" ]]; then
     PLATFORM_EXPORT_NAME="Mac OSX"
     GAME_EXTENSION=".zip"
-elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]
-then
+    
+elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]; then
     PLATFORM_EXPORT_NAME="Windows Desktop"
     GAME_EXTENSION=".exe"
-elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]
-then
+    
+elif [[ "${EXPORT_PLATFORM}" == "HTML5" ]]; then
+    PLATFORM_EXPORT_NAME="HTML5"
+    GAME_NAME="index"
+    GAME_EXTENSION=".html"
+    
+elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]; then
     PLATFORM_EXPORT_NAME="iOS"
     GAME_EXTENSION=".ipa"
-elif [[ "${EXPORT_PLATFORM}" == "Android" ]]
-then
+    
+elif [[ "${EXPORT_PLATFORM}" == "Android" ]]; then
     PLATFORM_EXPORT_NAME="Android"
     GAME_EXTENSION=".apk"
 fi
