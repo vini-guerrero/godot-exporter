@@ -12,16 +12,19 @@ sudo update-locale LANG=en_US.UTF-8
 LANG=en_US.UTF-8 
 
 # Environment Variables
-EXPORT_PLATFORM=$1
-EXPORT_DEBUG="${EXPORT_DEBUG:="true"}"
-GAME_NAME="${GAME_NAME:="game"}"
-PROJECT_PATH="${PROJECT_PATH:="game"}"
-PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
+
+# Project Variables
+EXPORT_PLATFORM=$1
+EXPORT_DEBUG="${EXPORT_DEBUG:="true"}"
+GAME_NAME="${GAME_NAME:="game"}"
+PROJECT_PATH="${PROJECT_PATH:="game"}"
+PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
+IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
 
 sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
@@ -70,7 +73,6 @@ fi
 
 if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then 
     # Set Editor Settings For iOS Export
-    IOS_ICONS_PATH="res:\/\/assets\/sprites\/icon\.png"
     sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${PROJECT_REPO_PATH}/project.godot \
     && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${IOS_ICONS_PATH}'"@g' ${PROJECT_REPO_PATH}/export_presets.cfg \
     && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${IOS_ICONS_PATH}'"@g' ${PROJECT_REPO_PATH}/export_presets.cfg \
@@ -80,7 +82,12 @@ fi
 
 
 # Validate Editor Settings
-sudo cat ${TRES_PATH} && sudo cat ${PROJECT_REPO_PATH}/export_presets.cfg
+EXPORT_SETTINGS="${PROJECT_REPO_PATH}/export_settings" 
+mkdir -v -p EXPORT_SETTINGS
+cp ${PROJECT_REPO_PATH}/export_presets.cfg EXPORT_SETTINGS
+cp ${TRES_PATH} EXPORT_SETTINGS
+zip -r export_settings.zip EXPORT_SETTINGS 
+
 echo -e "✔ Export Path."
 mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}" 
 
