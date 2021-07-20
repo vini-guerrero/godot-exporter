@@ -24,6 +24,7 @@ sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo -e "✔ Setup Godot Editor And Export Templates." 
+echo -e ${GITHUB_WORKSPACE} && pwd && ls -l
 
 # Engine
 wget -q ${LINK_GODOT}
@@ -67,15 +68,14 @@ fi
 if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then 
     # Set Editor Settings For iOS Export
     ICON_PATH="res:\/\/assets\/sprites\/icon\.png"
-    sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${GITHUB_WORKSPACE}/${PROJECT_PATH}/project.godot \
-    && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' ${GITHUB_WORKSPACE}/${PROJECT_PATH}/export_presets.cfg \
-    && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' ${GITHUB_WORKSPACE}/${PROJECT_PATH}/export_presets.cfg \
-    && sudo sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' ${GITHUB_WORKSPACE}/${PROJECT_PATH}/export_presets.cfg \
+    sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' /${PROJECT_PATH}/project.godot \
+    && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' /${PROJECT_PATH}/export_presets.cfg \
+    && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' /${PROJECT_PATH}/export_presets.cfg \
+    && sudo sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' /${PROJECT_PATH}/export_presets.cfg \
     echo "✔ iOS Project Export Setup Ready"
 fi
 
 # Validate Editor Settings
-echo -e ${GITHUB_WORKSPACE} && pwd && ls -l
 sudo cat ${TRES_PATH} 
 sudo cat ${GITHUB_WORKSPACE}/${PROJECT_PATH}/export_presets.cfg
 echo -e "✔ Export Path."
