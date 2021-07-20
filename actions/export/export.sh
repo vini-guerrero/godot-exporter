@@ -42,6 +42,7 @@ sudo chmod +x ${ANDROID_HOME}
 sudo chmod +x ${PROJECT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
+ls -l
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]; then 
     # Signers Paths
