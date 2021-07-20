@@ -16,11 +16,11 @@ EXPORT_PLATFORM=$1
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
-WORKIN_DIR=$(dirname $(readlink -f $0))
-EXPORTS_PRESET_PATH="${WORKIN_DIR}/${PROJECT_PATH}"
-TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
+# WORKIN_DIR=$(dirname $(readlink -f $0))
+# EXPORTS_PRESET_PATH="${WORKIN_DIR}/${PROJECT_PATH}"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
+TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 
 sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
@@ -44,7 +44,13 @@ sudo chmod +x ${ANDROID_HOME}
 sudo chmod +x ${PROJECT_PATH}
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
 echo -e "✔ Godot Editor Launched."
-ls -l ${EXPORTS_PRESET_PATH}
+
+# Validate Editor Settings
+sudo cat ${TRES_PATH} 
+echo -e "✔ Export Path."
+cd ${PROJECT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
+sudo cat export_presets.cfg && ls -l
+
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]; then 
     # Signers Paths
@@ -70,18 +76,15 @@ fi
 if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then 
     # Set Editor Settings For iOS Export
     ICON_PATH="res:\/\/assets\/sprites\/icon\.png"
-    sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${EXPORTS_PRESET_PATH}/project.godot \
-    && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' ${EXPORTS_PRESET_PATH}/export_presets.cfg \
-    && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' ${EXPORTS_PRESET_PATH}/export_presets.cfg \
-    && sudo sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' ${EXPORTS_PRESET_PATH}/export_presets.cfg \
+    sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' project.godot \
+    && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' export_presets.cfg \
+    && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' export_presets.cfg \
+    && sudo sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' export_presets.cfg \
     echo "✔ iOS Project Export Setup Ready"
 fi
 
-# Validate Editor Settings
-sudo cat ${TRES_PATH} 
-sudo cat ${EXPORTS_PRESET_PATH}/export_presets.cfg
-echo -e "✔ Export Path."
-cd ${PROJECT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
+
+# Platform Export
 
 if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
