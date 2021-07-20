@@ -13,6 +13,7 @@ LANG=en_US.UTF-8
 
 # Environment Variables
 EXPORT_PLATFORM=$1
+EXPORT_DEBUG="${EXPORT_DEBUG:="true"}"
 GAME_NAME="${GAME_NAME:="game"}"
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
@@ -102,19 +103,23 @@ then
 elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]
 then
     PLATFORM_EXPORT_NAME="iOS"
-    GAME_EXTENSION=".debug.ipa"
+    GAME_EXTENSION=".ipa"
 elif [[ "${EXPORT_PLATFORM}" == "Android" ]]
 then
     PLATFORM_EXPORT_NAME="Android"
-    GAME_EXTENSION=".debug.apk"
+    GAME_EXTENSION=".apk"
 fi
 
 EXPORT_NAME=$GAME_NAME+$GAME_EXTENSION
 EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --path ${PROJECT_REPO_PATH} --export-debug "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}"
-zip -r ${EXPORT_PLATFORM}.zip ${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}
+if [ "$EXPORT_DEBUG" == "true" ]; then 
+    sudo godot --verbose --path ${PROJECT_REPO_PATH} --export-debug "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}"
+elif [ "$EXPORT_DEBUG" == "false" ]; then 
+    sudo godot --verbose --path ${PROJECT_REPO_PATH} --export "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}"
+fi
 
+zip -r ${EXPORT_PLATFORM}.zip ${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}
 echo -e "✔ Exported Builds"
 pwd && ls -l
