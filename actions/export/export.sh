@@ -16,7 +16,8 @@ EXPORT_PLATFORM=$1
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
-EXPORTS_PRESET_PATH="$(realpath ${GITHUB_WORKSPACE}/${PROJECT_PATH})"
+WORKIN_DIR=$(dirname $(readlink -f $0))
+EXPORTS_PRESET_PATH="${WORKIN_DIR}/${PROJECT_PATH}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
