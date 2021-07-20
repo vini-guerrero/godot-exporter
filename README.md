@@ -1,6 +1,6 @@
 # Godot-Exporter
 
-Godot Engine CI/CD Automation Pipeline 
+Godot Engine CI/CD Automation Pipeline
 For <a href="https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions" target="_blank">Public and Private</a> Repositories
 
 [![](https://img.shields.io/badge/GODOT-%23FFFFFF.svg?style=for-the-badge&logo=godot-engine)](https://github.com/vini-guerrero/godot-exporter)
@@ -30,51 +30,63 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 ## Action Environment Variables
 
 - **GODOT_VERSION:** _"3.3.2" | string_
-- **GODOT_RELEASE:** _"stable" | string_
-- **EXPORT_NAME:** _"GameFileName" | string_
-- **EXPORT_PATH:** _"gameDirectory" | string_
-- **EXPORT_PLATFORMS:** _"Android|iOS|Linux|Mac OSX|Windows Desktop|HTML5" | string_
-- **EXPORT_MODE:** _"release or debug" | string_
-- **PUBLISH_ITCH_IO:** _"true or false" | string_
+- **GAME_NAME:** _"GameFileName" | string_
+- **PROJECT_PATH:** _"gameDirectory" | string_
+- **IOS_ICON_PATH:** _"PathToGenerateOptionalIOSIcon" | string_
+- **ITCH_GAME:** _"ItchIoGameName" | string_
+- **ITCH_USER:** _"ItchIoUserName" | string_
 
 ## Publishing Platform Integration
 
-- **Itch.io:** _(Android|iOS|Linux|MacOS|Windows|Web)_ **- Work-In-Progress**
+- **Itch.io:** _(Android|Linux|MacOS|Windows|Web)_
 
 ## Environment Example
 
-#### Create action file: 
+#### Create action file:
+
 repository_name/.github/workflows/example.yml
 
 ```yml
 name: "Example Dispatch Trigger Export"
-on:
-  workflow_dispatch:
-    inputs:
-      export_platforms:
-        description: "Export Platforms"
-        required: true
-        default: "Android|iOS|Linux|Mac OSX|Windows Desktop|HTML5"
+on: [workflow_dispatch]:
 
 env:
   GODOT_VERSION: 3.3.2
-  GODOT_RELEASE: stable
-  EXPORT_NAME: game
-  EXPORT_PATH: gameDir
-  EXPORT_PLATFORMS: ${{ github.event.inputs.export_platforms }}
-  EXPORT_MODE: "debug"
-  PUBLISH_ITCH_IO: "false"
-  K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
-  K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
-  K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
+  GAME_NAME: godot_exporter
+  PROJECT_PATH: game
+  IOS_ICON_PATH: "icon_path"
+  ITCH_GAME: itchio-game
+  ITCH_USER: itchio-user
 
 jobs:
   export:
     name: "Godot Project Export"
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [iOS, Android, Linux, MacOS, Windows, HTML5]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Export Game
-        uses: vini-guerrero/godot-exporter@master
+
+      # Export Godot Project
+      - name: Export ${{ matrix.platform }} Version
+        id: export
+        uses: vini-guerrero/godot-exporter/actions/export@dev
+        with:
+          platform: ${{ matrix.platform }}
+
+      # Publish Platforms
+      - name: Publish Platforms
+        uses: vini-guerrero/godot-exporter/actions/publish@dev
+        with:
+          platform: "Itch"
+          channel: ${{ matrix.platform }}
+          project_path: ${{ steps.export.outputs.artifact-path }}
+
+      # Upload Artifact
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: ${{ steps.export.outputs.artifact-path }}
 ```
