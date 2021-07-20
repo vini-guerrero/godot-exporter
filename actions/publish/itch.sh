@@ -23,7 +23,7 @@ declare -a SUPPORTED_CHANNELS=("Linux" "MacOS" "Windows", "Android")
 
 if [ "$2" == "Linux" ]; then CHANNEL=linux; fi
 if [ "$2" == "MacOS" ]; then CHANNEL=mac; fi
-if [ "$2" == "Windows" ]; then CHANNEL=windows; fi
+if [ "$2" == "Windows" ]; then CHANNEL=win-final; fi
 if [ "$2" == "Android" ]; then CHANNEL=android; fi
 
 if [[ ${SUPPORTED_CHANNELS[@]} =~ "${CHANNEL}" ]]; then 
