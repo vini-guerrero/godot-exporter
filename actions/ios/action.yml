@@ -1,0 +1,22 @@
+name: "iOS Project Management"
+description: "iOS Project Management"
+inputs:
+  project_path:
+    description: "Godot Project Path"
+    required: true
+    default: ""
+outputs:
+  icons:
+    description: "iOS Icons"
+    value: ${{ steps.ios-icons.outputs.icons }}
+runs:
+  using: "composite"
+  steps:
+    - name: iOS Project Management
+      run: |
+        echo -e "\n Godot Project Path Received ${{inputs.project_path}} \n" &&
+        chmod +x ${{ github.action_path }}/ios_icons.sh && ${{ github.action_path }}/ios_icons.sh ${{inputs.project_path}}
+      shell: bash
+    - id: ios-icons
+      run: echo "::set-output name=icons::$(echo Icons.zip)"
+      shell: bash
