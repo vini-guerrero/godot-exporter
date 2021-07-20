@@ -20,5 +20,5 @@ runs:
       run: |
         echo -e "\n Export Platform ${{inputs.platform}} \n" &&
         echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&  
-        wget -q -O https://raw.githubusercontent.com/vini-guerrero/godot-exporter/dev/actions/export/export.sh ${{inputs.platform}} ${{inputs.export_path}} | bash 
+        chmod +x actions/export_env/export.sh && bash actions/export_env/export.sh ${{inputs.platform}} 
       shell: bash 
