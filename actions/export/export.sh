@@ -81,7 +81,7 @@ fi
 # Validate Editor Settings
 sudo cat ${TRES_PATH} && sudo cat ${PROJECT_REPO_PATH}/export_presets.cfg
 echo -e "✔ Export Path."
-cd ${PROJECT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}" 
+mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}" 
 
 
 # Platform Export
@@ -110,10 +110,11 @@ then
 fi
 
 EXPORT_NAME=$GAME_NAME+$GAME_EXTENSION
+EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --export-debug "${PLATFORM_EXPORT_NAME}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
-zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
+sudo godot --verbose --path ${PROJECT_REPO_PATH} --export-debug "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}"
+zip -r ${EXPORT_PLATFORM}.zip ${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
 pwd && ls -l
