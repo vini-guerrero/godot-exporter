@@ -4,7 +4,7 @@ set -e
 
 echo -e "\n\n ✔ iOS Icons Script Triggered Successfully. \n\n"
 
-sudo apt-get install -y -qq graphicsmagick && ls -l
+sudo apt-get install -y -qq graphicsmagick
 wget -O icon.png ${IOS_ICON_PATH}
 
 source_file=icon.png
