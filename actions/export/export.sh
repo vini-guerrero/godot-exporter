@@ -5,7 +5,7 @@ echo -e "✔ Export Script Triggered Successfully."
 
 # Install Export Dependencies
 # sudo apt-get update
-sudo apt-get install -y -qq locales # apksigner
+sudo apt-get install -y -qq apksigner locales
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 sudo dpkg-reconfigure --frontend=noninteractive locales
 sudo update-locale LANG=en_US.UTF-8
@@ -13,11 +13,9 @@ LANG=en_US.UTF-8
 
 # Environment Variables
 EXPORT_PLATFORM=$1
-EXPORT_PATH=$2
-JARSIGNER_PATH=$(eval "which jarsigner")
-APKSIGNER_PATH=$(eval "which apksigner")    
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
+EXPORT_PATH="${EXPORT_PATH:="game"}"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
@@ -47,6 +45,8 @@ echo -e "✔ Godot Editor Launched."
 
 if [[ "$EXPORT_PLATFORM" == "Android" ]]
 then     
+    JARSIGNER_PATH=$(eval "which jarsigner")
+    APKSIGNER_PATH=$(eval "which apksigner")
     echo -e "✔ Jarsigner Path: ${JARSIGNER_PATH} \n✔ ApkSigner Path: ${APKSIGNER_PATH}"
     # Generate Debug Keystore
     sudo keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore /usr/local/lib/android/debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999
@@ -64,7 +64,7 @@ fi
 # Validate Editor Settings
 sudo cat ${TRES_PATH} 
 echo -e "✔ Export Path."
-mkdir -v -p "${EXPORT_PATH}/build/${EXPORT_PLATFORM}"
+cd ${EXPORT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}"
 
 if [[ "${EXPORT_PLATFORM}" == "Linux" ]]
 then 
@@ -89,8 +89,8 @@ then
 fi
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-sudo godot --verbose --debug --export-debug "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
-zip -r ${EXPORT_PATH}/${EXPORT_PLATFORM}.zip ${EXPORT_PATH}/build/${EXPORT_PLATFORM}
+sudo godot --verbose --export-debug "${PLATFORM_EXPORT_NAME}" "build/${EXPORT_PLATFORM}/${EXPORT_NAME}"
+zip -r ${EXPORT_PLATFORM}.zip build/${EXPORT_PLATFORM}
 
 echo -e "✔ Exported Builds"
 pwd && ls -l
