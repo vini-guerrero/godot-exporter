@@ -24,7 +24,7 @@ sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
 echo -e "✔ Setup Godot Editor And Export Templates." 
-ls -l ${GITHUB_WORKSPACE}
+ls -l ${GITHUB_WORKSPACE}/${PROJECT_PATH}
 
 # Engine
 wget -q ${LINK_GODOT}
