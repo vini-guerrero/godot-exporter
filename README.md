@@ -48,7 +48,7 @@ repository_name/.github/workflows/example.yml
 
 ```yml
 name: "Example Dispatch Trigger Export"
-on: [workflow_dispatch]:
+on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -75,6 +75,21 @@ jobs:
         uses: vini-guerrero/godot-exporter/actions/export@dev
         with:
           platform: ${{ matrix.platform }}
+
+      ### OPTIONAL ###
+
+      # Prepare iOS Icons Platforms
+      # - name: iOS Icons
+      #   id: icons
+      #   uses: vini-guerrero/godot-exporter/actions/ios@dev
+      #   with:
+      #     project_path: game
+
+      # Upload Icons
+      # - uses: actions/upload-artifact@v1
+      #   with:
+      #     name: iOS Icons
+      #     path: ${{ steps.icons.outputs.icons }}
 
       # Publish Platforms
       - name: Publish Platforms
