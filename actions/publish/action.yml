@@ -19,6 +19,7 @@ runs:
     - name: Publish Export
       run: |
         echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
-        echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" && ls -l &&     
-        chmod +x actions/publish/publish.sh && bash actions/publish/publish.sh ${{inputs.platform}} ${{inputs.export_path}}
+        echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&
+        wget -q https://github.com/vini-guerrero/godot-exporter/blob/dev/actions/publish/publish.sh   
+        chmod +x publish.sh && bash publish.sh ${{inputs.platform}} ${{inputs.project_path}}
       shell: bash
