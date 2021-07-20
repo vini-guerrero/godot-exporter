@@ -20,5 +20,5 @@ runs:
       run: |
         echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
         echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&
-        chmod +x ${{ github.action_path }}/publish.sh && ${{ github.action_path }}/publish.sh ${{inputs.project_path}}
+        chmod u+x ${{ github.action_path }}/publish.sh && ${{ github.action_path }}/publish.sh ${{inputs.project_path}}
       shell: bash
