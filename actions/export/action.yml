@@ -19,5 +19,5 @@ runs:
         chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh ${{inputs.platform}}
       shell: bash
     - id: exported-artifact
-      run: echo "::set-output name=artifact-path::$(echo build/${{inputs.platform}})"
+      run: echo "::set-output name=artifact-path::$(echo ${EXPORT_PATH}/build/${{inputs.platform}})"
       shell: bash 
