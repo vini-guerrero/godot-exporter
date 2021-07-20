@@ -14,9 +14,9 @@ LANG=en_US.UTF-8
 # Environment Variables
 EXPORT_PLATFORM=$1
 PROJECT_PATH="${PROJECT_PATH:="game"}"
+PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
-EXPORTS_PRESET_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
 LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_export_templates.tpz"
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
@@ -68,18 +68,17 @@ fi
 
 if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then 
     # Set Editor Settings For iOS Export
-    ICON_PATH="res:\/\/assets\/sprites\/icon\.png"
-    sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${EXPORTS_PRESET_PATH}/project.godot \
-    && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${ICON_PATH}'"@g' ${EXPORTS_PRESET_PATH}/export_presets.cfg \
-    && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${ICON_PATH}'"@g' ${EXPORTS_PRESET_PATH}/export_presets.cfg \
-    && sudo sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${ICON_PATH}'"@g' ${EXPORTS_PRESET_PATH}/export_presets.cfg
+    IOS_ICONS_PATH="res:\/\/assets\/sprites\/icon\.png"
+    sudo sed -i '/\[rendering\]/a vram_compression\/import_pvrtc=true' ${PROJECT_REPO_PATH}/project.godot \
+    && sudo sed -i 's@required_icons/iphone_120x120[[:space:]]*=[[:space:]]*".*"@required_icons/iphone_120x120 = "'${IOS_ICONS_PATH}'"@g' ${PROJECT_REPO_PATH}/export_presets.cfg \
+    && sudo sed -i 's@required_icons/ipad_76x76[[:space:]]*=[[:space:]]*".*"@required_icons/ipad_76x76 = "'${IOS_ICONS_PATH}'"@g' ${PROJECT_REPO_PATH}/export_presets.cfg \
+    && sudo sed -i 's@required_icons/app_store_1024x1024[[:space:]]*=[[:space:]]*".*"@required_icons/app_store_1024x1024 = "'${IOS_ICONS_PATH}'"@g' ${PROJECT_REPO_PATH}/export_presets.cfg
     echo "✔ iOS Project Export Setup Ready"
 fi
 
 
 # Validate Editor Settings
-sudo cat ${TRES_PATH} 
-sudo cat ${EXPORTS_PRESET_PATH}/export_presets.cfg
+sudo cat ${TRES_PATH} && sudo cat ${PROJECT_REPO_PATH}/export_presets.cfg
 echo -e "✔ Export Path."
 cd ${PROJECT_PATH} && mkdir -v -p "build/${EXPORT_PLATFORM}" 
 
