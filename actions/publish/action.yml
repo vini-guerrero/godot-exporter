@@ -20,10 +20,10 @@ runs:
       run: |
         echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
         echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&
-        $PLATFORM_CHANNEL=""
-        if [ "${{inputs.channel}}" == "Linux" ]; then $PLATFORM_CHANNEL=linux; fi
-        if [ "${{inputs.channel}}" == "MacOS" ]; then $PLATFORM_CHANNEL=mac; fi
-        if [ "${{inputs.channel}}" == "Windows" ]; then $PLATFORM_CHANNEL=windows; fi
-        if [ "${{inputs.channel}}" == "Android" ]; then $PLATFORM_CHANNEL=android; fi
+        PLATFORM_CHANNEL=""
+        if [ "${{inputs.channel}}" == "Linux" ]; then PLATFORM_CHANNEL=linux; fi
+        if [ "${{inputs.channel}}" == "MacOS" ]; then PLATFORM_CHANNEL=mac; fi
+        if [ "${{inputs.channel}}" == "Windows" ]; then PLATFORM_CHANNEL=windows; fi
+        if [ "${{inputs.channel}}" == "Android" ]; then PLATFORM_CHANNEL=android; fi
         chmod +x ${{ github.action_path }}/publish.sh && ${{ github.action_path }}/publish.sh ${{inputs.project_path}} ${{PLATFORM_CHANNEL}}
       shell: bash
