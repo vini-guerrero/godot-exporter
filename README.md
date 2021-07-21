@@ -18,7 +18,7 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 
 ![CI/CD](/screenshots/Artifacts.png?raw=true "Artifacts")
 
-## Automated Export Pipeline Supports
+## Export Pipeline Platform Support
 
 - Android
 - iOS (XCode Project)
@@ -26,6 +26,7 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 - Mac OSX
 - Windows Desktop
 - HTML5
+- UWP/Xbox (Work-In-Progress)
 
 ## Action Environment Variables
 
