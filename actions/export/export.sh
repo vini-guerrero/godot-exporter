@@ -79,7 +79,7 @@ fi
 
 
 # Validate Editor Settings
-EXPORT_SETTINGS="${PROJECT_REPO_PATH}/export_settings" 
+EXPORT_SETTINGS="${PROJECT_REPO_PATH}/${PROJECT_PATH}/export_settings" 
 mkdir -v -p EXPORT_SETTINGS
 cp ${PROJECT_REPO_PATH}/export_presets.cfg EXPORT_SETTINGS
 cp ${TRES_PATH} EXPORT_SETTINGS
