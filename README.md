@@ -74,13 +74,13 @@ jobs:
       # Export Godot Project
       - name: Export ${{ matrix.platform }} Version
         id: export
-        uses: vini-guerrero/godot-exporter/actions/export@dev
+        uses: vini-guerrero/godot-exporter/actions/export@master
         with:
           platform: ${{ matrix.platform }}
 
       # Publish Platforms
       - name: Publish Platforms
-        uses: vini-guerrero/godot-exporter/actions/publish@dev
+        uses: vini-guerrero/godot-exporter/actions/publish@master
         with:
           platform: "Itch"
           channel: ${{ matrix.platform }}

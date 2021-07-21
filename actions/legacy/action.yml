@@ -3,7 +3,6 @@ description: "Godot Engine Automation Pipeline Android – iOS – Linux – Mac
 author: Vinicius Guerrero & Andrea Miele
 runs:
   using: docker
-  #   image: docker://viiniiguerrero/godot-exporter
   image: Dockerfile
 branding:
   icon: upload
