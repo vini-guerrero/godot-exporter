@@ -21,6 +21,7 @@ runs:
         echo -e "\n Publish Platform ${{inputs.platform}} \n" &&
         echo -e "\n Platform Channel -> ${{inputs.platform}} \n Project Path -> ${{inputs.project_path}} \n" &&        
         if [ "${{inputs.platform}}" == "Itch" ]; then 
+          ls -l ${{inputs.project_path}} &&
           chmod +x ${{ github.action_path }}/itch.sh && ${{ github.action_path }}/itch.sh ${{inputs.project_path}} ${{inputs.channel}}
         fi
       shell: bash
