@@ -9,6 +9,9 @@ outputs:
   artifact-path:
     description: "Exported Artifact"
     value: ${{ steps.exported-artifact.outputs.artifact-path }}
+  exported-project:
+    description: "Exported Project"
+    value: ${{ steps.exported-project.outputs.exported-project }}
   export-settings:
     description: "Exported Settings"
     value: ${{ steps.exported-settings.outputs.export-settings }}
@@ -23,6 +26,9 @@ runs:
       shell: bash
     - id: exported-artifact
       run: echo "::set-output name=artifact-path::$(echo ${PROJECT_PATH}/build/${{inputs.platform}})"
+      shell: bash
+    - id: exported-project
+      run: echo "::set-output name=exported-project::$(echo ${EXPORT_PATH})"
       shell: bash
     - id: exported-settings
       run: echo "::set-output name=export-settings::$(echo ${PROJECT_PATH}/export_settings)"
