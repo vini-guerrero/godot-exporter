@@ -1,7 +1,6 @@
 version: 2
 updates:
-
-#Upload artifacts dependencies
+  # Upload artifacts dependencies
   - package-ecosystem: "npm"
     directory: "src/upload_artifacts"
     schedule:

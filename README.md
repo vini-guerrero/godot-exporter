@@ -76,21 +76,6 @@ jobs:
         with:
           platform: ${{ matrix.platform }}
 
-      ### OPTIONAL ###
-
-      # Prepare iOS Icons Platforms
-      # - name: iOS Icons
-      #   id: icons
-      #   uses: vini-guerrero/godot-exporter/actions/ios@dev
-      #   with:
-      #     project_path: game
-
-      # Upload Icons
-      # - uses: actions/upload-artifact@v1
-      #   with:
-      #     name: iOS Icons
-      #     path: ${{ steps.icons.outputs.icons }}
-
       # Publish Platforms
       - name: Publish Platforms
         uses: vini-guerrero/godot-exporter/actions/publish@dev
