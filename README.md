@@ -32,7 +32,7 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 ## Action Environment Variables
 
 - **GODOT_VERSION:** _"3.3.2" | string_
-- **GAME_NAME:** _"GameFileName" | string_
+- **PROJECT_NAME:** _"GameFileName" | string_
 - **PROJECT_PATH:** _"gameDirectory" | string_
 - **IOS_ICON_PATH:** _"PathToGenerateOptionalIOSIcon" | string_
 - **ITCH_GAME:** _"ItchIoGameName" | string_
@@ -54,7 +54,7 @@ on: [workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
-  GAME_NAME: godot_exporter
+  PROJECT_NAME: godot_exporter
   PROJECT_PATH: game
   IOS_ICON_PATH: "icon_path"
   ITCH_GAME: itchio-game
