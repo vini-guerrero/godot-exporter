@@ -13,7 +13,7 @@ on:
         description: "Export Platforms"
         required: true
         default: "Linux|Android|Mac OSX|Windows Desktop|HTML5"
-        
+
 env:
   GODOT_VERSION: 3.3.2
   GODOT_RELEASE: stable
@@ -34,5 +34,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Export Master
-        uses: vini-guerrero/godot-exporter/actions/legacy@dev
+        uses: vini-guerrero/godot-exporter/actions/legacy@master
 ```
