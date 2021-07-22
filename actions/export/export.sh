@@ -79,8 +79,7 @@ fi
 
 
 # Validate Editor Settings
-ls -l && pwd
-zip -rj ${PROJECT_REPO_PATH}/export_settings.zip ${PROJECT_REPO_PATH}/export_presets.cfg # ${TRES_PATH}
+zip -rj ${PROJECT_REPO_PATH}/export_settings.zip ${PROJECT_REPO_PATH}/export_presets.cfg ${TRES_PATH}
 
 echo -e "✔ Export Path."
 mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}" 
