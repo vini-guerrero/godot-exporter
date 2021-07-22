@@ -12,12 +12,16 @@ LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/God
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 
 # Project Variables
-EXPORT_PLATFORM=$1
 EXPORT_DEBUG="${EXPORT_DEBUG:="true"}"
 PROJECT_NAME="${PROJECT_NAME:="game"}"
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
+
+## Defined in action.yml
+# ${ACTION_PATH}
+# ${EXPORT_PLATFORM}
+
 
 # Install Export Dependencies
 # sudo apt-get update
