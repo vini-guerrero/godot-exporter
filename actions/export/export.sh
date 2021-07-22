@@ -5,7 +5,6 @@ echo -e "✔ Export Script Triggered Successfully."
 
 
 # Environment Variables
-ACTION_PATH=$2
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
