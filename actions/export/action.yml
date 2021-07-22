@@ -19,7 +19,7 @@ runs:
       run: |
         echo -e "\n Export Platform ${{inputs.platform}} \n" &&
         echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&  
-        export ACTION_PATH=${{ github.action_path }} EXPORT_PLATFORM=${{inputs.platform}} &&
+        export ACTION_PATH=${{ github.action_path }} EXPORT_PLATFORM=${{inputs.platform}} ACTIONS_RUNTIME_TOKEN=${ACTIONS_RUNTIME_TOKEN} &&
         chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh
       shell: bash
     - id: exported-artifact

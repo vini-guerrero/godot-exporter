@@ -21,6 +21,7 @@ IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
 ## Defined in action.yml
 # ${ACTION_PATH}
 # ${EXPORT_PLATFORM}
+# ${ACTIONS_RUNTIME_TOKEN}
 
 
 # Install Export Dependencies
