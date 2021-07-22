@@ -15,8 +15,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-        uses: actions/checkout@v2
     - name: Export Environment
       run: |
         echo -e "\n Export Platform ${{inputs.platform}} \n" &&
