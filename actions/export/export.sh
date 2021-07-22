@@ -3,6 +3,13 @@ set -e
 
 echo -e "✔ Export Script Triggered Successfully."
 
+# Install Export Dependencies
+# sudo apt-get update
+sudo apt-get install -y -qq locales apksigner
+sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sudo dpkg-reconfigure --frontend=noninteractive locales
+sudo update-locale LANG=en_US.UTF-8
+LANG=en_US.UTF-8 
 
 # Environment Variables
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
@@ -12,25 +19,13 @@ LINK_TEMPLATES="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/God
 TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 
 # Project Variables
+EXPORT_PLATFORM=$1
 EXPORT_DEBUG="${EXPORT_DEBUG:="true"}"
-PROJECT_NAME="${PROJECT_NAME:="game"}"
+GAME_NAME="${GAME_NAME:="game"}"
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
 
-## Defined in action.yml
-# ${EXPORT_PLATFORM}
-
-
-# Install Export Dependencies
-# sudo apt-get update
-sudo apt-get install -y -qq locales apksigner
-sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-sudo dpkg-reconfigure --frontend=noninteractive locales
-sudo update-locale LANG=en_US.UTF-8
-LANG=en_US.UTF-8 
-
-# Godot Folders
 sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
@@ -84,7 +79,11 @@ fi
 
 
 # Validate Editor Settings
-zip -rj ${PROJECT_REPO_PATH}/export_settings.zip ${PROJECT_REPO_PATH}/export_presets.cfg ${TRES_PATH}
+EXPORT_SETTINGS="${PROJECT_REPO_PATH}/export_settings" 
+mkdir -v -p EXPORT_SETTINGS
+cp ${PROJECT_REPO_PATH}/export_presets.cfg EXPORT_SETTINGS
+cp ${TRES_PATH} EXPORT_SETTINGS
+zip -r export_settings.zip EXPORT_SETTINGS 
 
 echo -e "✔ Export Path."
 mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}" 
@@ -107,7 +106,7 @@ elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]; then
     
 elif [[ "${EXPORT_PLATFORM}" == "HTML5" ]]; then
     PLATFORM_EXPORT_NAME="HTML5"
-    PROJECT_NAME="index"
+    GAME_NAME="index"
     GAME_EXTENSION=".html"
     
 elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]; then
@@ -119,7 +118,7 @@ elif [[ "${EXPORT_PLATFORM}" == "Android" ]]; then
     GAME_EXTENSION=".apk"
 fi
 
-EXPORT_NAME="${PROJECT_NAME}${GAME_EXTENSION}"
+EXPORT_NAME="${GAME_NAME}${GAME_EXTENSION}"
 EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."

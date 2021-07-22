@@ -19,8 +19,7 @@ runs:
       run: |
         echo -e "\n Export Platform ${{inputs.platform}} \n" &&
         echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&  
-        EXPORT_PLATFORM=${{inputs.platform}} &&
-        chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh ${GITHUB_TOKEN} &&
+        chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh ${{inputs.platform}} &&
         sudo npm install --prefix ${{ github.action_path }}/uploader &&
         sudo NAME="${{inputs.platform}}" FILES="${{inputs.platform}}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node ${{ github.action_path }}/uploader.js
       shell: bash
