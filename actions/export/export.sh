@@ -3,16 +3,9 @@ set -e
 
 echo -e "✔ Export Script Triggered Successfully."
 
-# Install Export Dependencies
-# sudo apt-get update
-sudo npm install --prefix /uploader
-sudo apt-get install -y -qq locales apksigner
-sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
-sudo dpkg-reconfigure --frontend=noninteractive locales
-sudo update-locale LANG=en_US.UTF-8
-LANG=en_US.UTF-8 
 
 # Environment Variables
+ACTION_PATH=$2
 GODOT_PATH="${GODOT_PATH:="/usr/local/bin"}"
 GODOT_RELEASE="${GODOT_RELEASE:="stable"}"
 LINK_GODOT="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux_headless.64.zip"
@@ -27,6 +20,16 @@ PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
 
+# Install Export Dependencies
+# sudo apt-get update
+sudo npm install --prefix ${ACTION_PATH}/uploader
+sudo apt-get install -y -qq locales apksigner
+sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sudo dpkg-reconfigure --frontend=noninteractive locales
+sudo update-locale LANG=en_US.UTF-8
+LANG=en_US.UTF-8 
+
+# Godot Folders
 sudo mkdir -p -v /root/.local/share/godot/ .config .cache
 sudo mkdir -p -v /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_RELEASE}
 
