@@ -22,7 +22,9 @@ runs:
         echo -e "\n Export Platform ${{inputs.platform}} \n" &&
         echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&  
         EXPORT_PLATFORM=${{inputs.platform}} &&
-        chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh ${GITHUB_TOKEN}
+        chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh ${GITHUB_TOKEN} &&
+        sudo npm install --prefix ${{ github.action_path }}/uploader &&
+        sudo ACTIONS_RUNTIME_TOKEN=$ACTIONS_RUNTIME_TOKEN NAME="${{inputs.platform}}" FILES="${{inputs.platform}}.zip" ROOT_DIR="${WORKSPACE_PATH}/" node ${{ github.action_path }}/uploader.js
       shell: bash
     - id: exported-artifact
       run: echo "::set-output name=artifact-path::$(echo ${PROJECT_PATH}/build/${{inputs.platform}})"
