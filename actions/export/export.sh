@@ -19,14 +19,11 @@ PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
 
 ## Defined in action.yml
-# ${ACTION_PATH}
 # ${EXPORT_PLATFORM}
-# ${ACTIONS_RUNTIME_TOKEN}
 
 
 # Install Export Dependencies
 # sudo apt-get update
-sudo npm install --prefix ${ACTION_PATH}/uploader
 sudo apt-get install -y -qq locales apksigner
 sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 sudo dpkg-reconfigure --frontend=noninteractive locales
@@ -133,6 +130,4 @@ elif [ "$EXPORT_DEBUG" == "false" ]; then
 fi
 
 zip -r ${EXPORT_PLATFORM}.zip ${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}
-ACTIONS_RUNTIME_TOKEN=$1 NAME=${EXPORT_PLATFORM} FILES=${EXPORT_PLATFORM}.zip ROOT_DIR="${WORKSPACE_PATH}/" node ${ACTION_PATH}/uploader/index.js
-
 echo -e "✔ Exported Builds"
