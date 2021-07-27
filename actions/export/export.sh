@@ -121,8 +121,9 @@ elif [[ "${EXPORT_PLATFORM}" == "Android" ]]; then
     GAME_EXTENSION=".apk"
 fi
 
-EXPORT_NAME="${PROJECT_NAME}${GAME_EXTENSION}"
-EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
+# Reusable In Action Flow
+export EXPORT_NAME="${PROJECT_NAME}${GAME_EXTENSION}"
+export EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
 if [ "$EXPORT_MODE" == "debug" ]; then 
