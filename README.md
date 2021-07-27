@@ -31,13 +31,13 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 
 ## Action Environment Variables
 
-- **GODOT_VERSION:** _"3.3.2" | string_
-- **PROJECT_NAME:** _"GameFileName" | string_
-- **PROJECT_PATH:** _"gameDirectory" | string_
-- **EXPORT_MODE:** _"debug/release" | string_
-- **IOS_ICON_PATH:** _"PathToGenerateOptionalIOSIcon" | string_
-- **ITCH_GAME:** _"ItchIoGameName" | string_
-- **ITCH_USER:** _"ItchIoUserName" | string_
+- **GODOT_VERSION:** _"3.3.2" | string **(required)**_ 
+- **PROJECT_NAME:** _"GameFileName" | string **(required)**_ 
+- **PROJECT_PATH:** _"gameDirectory" | string **(required)**_ 
+- **EXPORT_MODE:** _"debug/release" | string **(optional)**_
+- **IOS_ICON_PATH:** _"iconPath" | string **(optional)**_
+- **ITCH_GAME:** _"ItchIoGameName" | string **(required for publishing)**_
+- **ITCH_USER:** _"ItchIoUserName" | string **(required for publishing)**_
 
 ## Publishing Platform Integration
 
