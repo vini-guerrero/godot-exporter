@@ -34,6 +34,7 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 - **GODOT_VERSION:** _"3.3.2" | string_
 - **PROJECT_NAME:** _"GameFileName" | string_
 - **PROJECT_PATH:** _"gameDirectory" | string_
+- **EXPORT_MODE:** _"debug/release" | string_
 - **IOS_ICON_PATH:** _"PathToGenerateOptionalIOSIcon" | string_
 - **ITCH_GAME:** _"ItchIoGameName" | string_
 - **ITCH_USER:** _"ItchIoUserName" | string_
@@ -56,6 +57,11 @@ env:
   GODOT_VERSION: 3.3.2
   PROJECT_NAME: godot_exporter
   PROJECT_PATH: game
+  EXPORT_MODE: release # If not defined, defaults to debug
+  # Required if exporting in release mode
+  # K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }} 
+  # K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }} 
+  # K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }} 
   IOS_ICON_PATH: "icon_path"
   ITCH_GAME: itchio-game
   ITCH_USER: itchio-user
