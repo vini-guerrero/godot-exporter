@@ -65,7 +65,7 @@ if [[ "$EXPORT_PLATFORM" == "Android" ]]; then
     && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
     # Prepare Release Mode
     if [ "$EXPORT_MODE" == "release" ]; then 
-        echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
+        sudo echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /root/release.keystore 
         sudo sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/root/release.keystore"@g' -i ${PROJECT_REPO_PATH}/export_presets.cfg \
         && sudo sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i ${PROJECT_REPO_PATH}/export_presets.cfg \
         && sudo sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i ${PROJECT_REPO_PATH}/export_presets.cfg
