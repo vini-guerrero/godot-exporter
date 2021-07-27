@@ -29,6 +29,10 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 - UWP/Xbox **(Work-In-Progress)**
 - Custom Engine Builds **(Work-In-Progress)**
 
+## Publishing Platform Integration
+
+- **Itch.io:** _(Android|Linux|MacOS|Windows|Web)_
+
 ## Action Environment Variables
 
 - **GODOT_VERSION:** _"3.3.2" | string **(required)**_ 
@@ -39,9 +43,12 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 - **ITCH_GAME:** _"ItchIoGameName" | string **(required for publishing)**_
 - **ITCH_USER:** _"ItchIoUserName" | string **(required for publishing)**_
 
-## Publishing Platform Integration
+## Action Environment Secrets
 
-- **Itch.io:** _(Android|Linux|MacOS|Windows|Web)_
+- **BUTLER_CREDENTIALS:** _"xxx" | string **(required for publishing)**_
+- **K8S_SECRET_RELEASE_KEYSTORE_BASE64:** _"xxx" | string **(required in release mode)**_
+- **K8S_SECRET_RELEASE_KEYSTORE_USER:** _"xxx" | string **(required in release mode)**_
+- **K8S_SECRET_RELEASE_KEYSTORE_PASSWORD:** _"xxx" | string **(required in release mode)**_
 
 ## Environment Example
 
@@ -58,7 +65,7 @@ env:
   PROJECT_NAME: godot_exporter
   PROJECT_PATH: game
   EXPORT_MODE: release # If not defined, defaults to debug
-  # Required if exporting in release mode
+  # Required if in export mode
   # K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
   # K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
   # K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
