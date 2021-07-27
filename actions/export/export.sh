@@ -44,6 +44,7 @@ sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_
 # Permissions
 echo -e "✔ Godot Editor First Launch." 
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
+sudo chmod a+rwx /usr/local/lib/android/
 echo -e "✔ Godot Editor Launched."
 
 
