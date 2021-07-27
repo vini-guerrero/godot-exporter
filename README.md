@@ -65,7 +65,7 @@ env:
   PROJECT_NAME: godot_exporter
   PROJECT_PATH: game
   EXPORT_MODE: release # If not defined, defaults to debug
-  # Required if in export mode
+  # Required if in release mode
   # K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
   # K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
   # K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
