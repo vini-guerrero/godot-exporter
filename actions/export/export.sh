@@ -21,7 +21,7 @@ TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 # Project Variables
 EXPORT_PLATFORM=$1
 EXPORT_MODE="${EXPORT_MODE:="debug"}"
-GAME_NAME="${GAME_NAME:="game"}"
+PROJECT_NAME="${PROJECT_NAME:="game"}"
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
@@ -113,7 +113,7 @@ elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]; then
     
 elif [[ "${EXPORT_PLATFORM}" == "HTML5" ]]; then
     PLATFORM_EXPORT_NAME="HTML5"
-    GAME_NAME="index"
+    PROJECT_NAME="index"
     GAME_EXTENSION=".html"
     
 elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]; then
@@ -125,7 +125,7 @@ elif [[ "${EXPORT_PLATFORM}" == "Android" ]]; then
     GAME_EXTENSION=".apk"
 fi
 
-EXPORT_NAME="${GAME_NAME}${GAME_EXTENSION}"
+EXPORT_NAME="${PROJECT_NAME}${GAME_EXTENSION}"
 EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
