@@ -50,8 +50,8 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 repository_name/.github/workflows/example.yml
 
 ```yml
-name: "Example Dispatch Trigger Export"
-on: [workflow_dispatch]
+name: "Godot Export Example"
+on: [push, workflow_dispatch]
 
 env:
   GODOT_VERSION: 3.3.2
@@ -59,9 +59,9 @@ env:
   PROJECT_PATH: game
   EXPORT_MODE: release # If not defined, defaults to debug
   # Required if exporting in release mode
-  # K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }} 
-  # K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }} 
-  # K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }} 
+  # K8S_SECRET_RELEASE_KEYSTORE_BASE64: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+  # K8S_SECRET_RELEASE_KEYSTORE_USER: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
+  # K8S_SECRET_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
   IOS_ICON_PATH: "icon_path"
   ITCH_GAME: itchio-game
   ITCH_USER: itchio-user
