@@ -19,6 +19,9 @@ runs:
       run: |
         echo -e "\n Export Platform ${{inputs.platform}} \n" &&
         echo -e "\n android_sdk_path -> ${ANDROID_HOME} \n adb -> ${ANDROID_HOME}/platform-tools \n" &&  
+        K8S_SECRET_RELEASE_KEYSTORE_BASE64=${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_BASE64 }}
+        K8S_SECRET_RELEASE_KEYSTORE_USER=${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_USER }}
+        K8S_SECRET_RELEASE_KEYSTORE_PASSWORD=${{ secrets.K8S_SECRET_RELEASE_KEYSTORE_PASSWORD }}
         chmod +x ${{ github.action_path }}/export.sh && ${{ github.action_path }}/export.sh ${{inputs.platform}}
       shell: bash
     - id: exported-artifact
