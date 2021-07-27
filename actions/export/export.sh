@@ -85,17 +85,12 @@ if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then
     echo "✔ iOS Project Export Setup Ready"
 fi
 
-
 # Validate Editor Settings
-EXPORT_SETTINGS="${PROJECT_REPO_PATH}/export_settings" 
-mkdir -v -p EXPORT_SETTINGS
-cp ${PROJECT_REPO_PATH}/export_presets.cfg EXPORT_SETTINGS
-cp ${TRES_PATH} EXPORT_SETTINGS
-zip -r export_settings.zip EXPORT_SETTINGS 
+zip -rj ${PROJECT_REPO_PATH}/export_settings.zip ${PROJECT_REPO_PATH}/export_presets.cfg ${TRES_PATH}
 
+# Prepare Export Path
 echo -e "✔ Export Path."
 mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}" 
-
 
 # Platform Export
 GAME_EXTENSION=""
