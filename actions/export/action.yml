@@ -25,5 +25,5 @@ runs:
       run: echo "::set-output name=artifact-path::$(echo ${PROJECT_PATH}/build/${{inputs.platform}})"
       shell: bash
     - id: exported-settings
-      run: echo "::set-output name=export-settings::$(echo ${PROJECT_PATH}/export_settings)"
+      run: echo "::set-output name=export-settings::$(echo ${PROJECT_PATH}/export_settings.zip)"
       shell: bash

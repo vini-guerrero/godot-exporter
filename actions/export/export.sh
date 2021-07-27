@@ -20,8 +20,8 @@ TRES_PATH="${HOME}/.config/godot/editor_settings-3.tres"
 
 # Project Variables
 EXPORT_PLATFORM=$1
-EXPORT_DEBUG="${EXPORT_DEBUG:="true"}"
-GAME_NAME="${GAME_NAME:="game"}"
+EXPORT_MODE="${EXPORT_MODE:="debug"}"
+PROJECT_NAME="${PROJECT_NAME:="game"}"
 PROJECT_PATH="${PROJECT_PATH:="game"}"
 PROJECT_REPO_PATH="${GITHUB_WORKSPACE}/${PROJECT_PATH}"
 IOS_ICONS_PATH="${IOS_ICONS_PATH:="res:\/\/assets\/sprites\/icon\.png"}"
@@ -44,6 +44,7 @@ sudo mv templates/* /root/.local/share/godot/templates/${GODOT_VERSION}.${GODOT_
 # Permissions
 echo -e "✔ Godot Editor First Launch." 
 sudo chmod +x ${GODOT_PATH}/godot && sudo ${GODOT_PATH}/godot -e -q
+sudo chmod a+rwx /usr/local/lib/android/
 echo -e "✔ Godot Editor Launched."
 
 
@@ -63,6 +64,13 @@ if [[ "$EXPORT_PLATFORM" == "Android" ]]; then
     && sudo sed -i '/\[resource\]/a export\/android\/debug_keystore = "/usr/local/lib/android/debug.keystore"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_user = "androiddebugkey"' ${TRES_PATH} \
     && sudo sed -i '/\[resource\]/a export\/android\/debug_pass = "android"' ${TRES_PATH}
+    # Prepare Release Mode
+    if [ "$EXPORT_MODE" == "release" ]; then 
+        sudo echo ${K8S_SECRET_RELEASE_KEYSTORE_BASE64} | base64 --decode > /usr/local/lib/android/release.keystore 
+        sudo sed 's@keystore/release[[:space:]]*=[[:space:]]*".*"@keystore/release = "/usr/local/lib/android/release.keystore"@g' -i ${PROJECT_REPO_PATH}/export_presets.cfg \
+        && sudo sed 's@keystore/release_user[[:space:]]*=[[:space:]]*".*"@keystore/release_user="'${K8S_SECRET_RELEASE_KEYSTORE_USER}'"@g' -i ${PROJECT_REPO_PATH}/export_presets.cfg \
+        && sudo sed 's@keystore/release_password[[:space:]]*=[[:space:]]*".*"@keystore/release_password="'${K8S_SECRET_RELEASE_KEYSTORE_PASSWORD}'"@g' -i ${PROJECT_REPO_PATH}/export_presets.cfg
+    fi
     # Prepare Project Level Settings        
     sudo sed -i 's/keystore\/debug.*/keystore\/debug=""/g' ${PROJECT_PATH}/export_presets.cfg
     echo "✔ Android Project Export Setup Ready"
@@ -77,17 +85,12 @@ if [[ "$EXPORT_PLATFORM" == "iOS" ]]; then
     echo "✔ iOS Project Export Setup Ready"
 fi
 
-
 # Validate Editor Settings
-EXPORT_SETTINGS="${PROJECT_REPO_PATH}/export_settings" 
-mkdir -v -p EXPORT_SETTINGS
-cp ${PROJECT_REPO_PATH}/export_presets.cfg EXPORT_SETTINGS
-cp ${TRES_PATH} EXPORT_SETTINGS
-zip -r export_settings.zip EXPORT_SETTINGS 
+zip -rj ${PROJECT_REPO_PATH}/export_settings.zip ${PROJECT_REPO_PATH}/export_presets.cfg ${TRES_PATH}
 
+# Prepare Export Path
 echo -e "✔ Export Path."
 mkdir -v -p "${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}" 
-
 
 # Platform Export
 GAME_EXTENSION=""
@@ -106,7 +109,7 @@ elif [[ "${EXPORT_PLATFORM}" == "Windows" ]]; then
     
 elif [[ "${EXPORT_PLATFORM}" == "HTML5" ]]; then
     PLATFORM_EXPORT_NAME="HTML5"
-    GAME_NAME="index"
+    PROJECT_NAME="index"
     GAME_EXTENSION=".html"
     
 elif [[ "${EXPORT_PLATFORM}" == "iOS" ]]; then
@@ -118,13 +121,13 @@ elif [[ "${EXPORT_PLATFORM}" == "Android" ]]; then
     GAME_EXTENSION=".apk"
 fi
 
-EXPORT_NAME="${GAME_NAME}${GAME_EXTENSION}"
+EXPORT_NAME="${PROJECT_NAME}${GAME_EXTENSION}"
 EXPORT_PATH=${PROJECT_REPO_PATH}/build/${EXPORT_PLATFORM}/${EXPORT_NAME}
 
 echo -e "✔ Exporting ${EXPORT_PLATFORM} Version."
-if [ "$EXPORT_DEBUG" == "true" ]; then 
+if [ "$EXPORT_MODE" == "debug" ]; then 
     sudo godot --verbose --path ${PROJECT_REPO_PATH} --export-debug "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}"
-elif [ "$EXPORT_DEBUG" == "false" ]; then 
+elif [ "$EXPORT_MODE" == "release" ]; then 
     sudo godot --verbose --path ${PROJECT_REPO_PATH} --export "${PLATFORM_EXPORT_NAME}" "${EXPORT_PATH}"
 fi
 
