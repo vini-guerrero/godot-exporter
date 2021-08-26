@@ -32,7 +32,8 @@ runs:
       shell: bash
     - id: exported-game-version
       run: |
-        grep 'game/version' ${PROJECT_PATH}/project.godot > version.txt &&
+        VERSION_TAG="${GAME_VERSION_TAG:="game/version"}"
+        grep ${VERSION_TAG} ${PROJECT_PATH}/project.godot > version.txt &&
         GAME_VERSION=$(eval "grep -Eo '[0-9]\.[0-9]\.[0-9]\.[0-9]+' version.txt") &&
         echo "::set-output name=exported-game-version::$(echo ${GAME_VERSION})"
       shell: bash
