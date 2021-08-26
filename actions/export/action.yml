@@ -12,6 +12,9 @@ outputs:
   export-settings:
     description: "Exported Settings"
     value: ${{ steps.exported-settings.outputs.export-settings }}
+  exported-game-version:
+    description: "Exported Game Version"
+    value: ${{ steps.exported-game-version.outputs.exported-game-version }}
 runs:
   using: "composite"
   steps:
@@ -26,4 +29,10 @@ runs:
       shell: bash
     - id: exported-settings
       run: echo "::set-output name=export-settings::$(echo ${PROJECT_PATH}/export_settings.zip)"
+      shell: bash
+    - id: exported-game-version
+      run: |
+        grep 'game/version' ${PROJECT_PATH}/project.godot > version.txt &&
+        GAME_VERSION=$(eval "grep -Eo '[0-9]\.[0-9]\.[0-9]\.[0-9]+' version.txt") &&
+        echo "::set-output name=exported-game-version::$(echo ${GAME_VERSION})"
       shell: bash
