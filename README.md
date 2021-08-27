@@ -14,11 +14,11 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 [![](https://img.shields.io/badge/PRs-welcome-brightgreen)](https://github.com/vini-guerrero/godot-exporter)
 [![Alphtech Studio Discord Server](https://badgen.net/discord/members/PrsJvMeVfp)](https://discord.gg/PrsJvMeVfp)
 
-## CI/CD Artifacts Example
+### `CI/CD Artifacts Example`
 
 ![CI/CD](/screenshots/Artifacts.png?raw=true "Artifacts")
 
-## Export Pipeline Platform Support
+### `Export Pipeline Platform Support`
 
 - Android
 - iOS (XCode Project)
@@ -29,28 +29,28 @@ For <a href="https://docs.github.com/en/billing/managing-billing-for-github-acti
 - UWP/Xbox **(Work-In-Progress)**
 - Custom Engine Builds **(Work-In-Progress)**
 
-## Publishing Platform Integration
+### `Publishing Platform Integration`
 
 - **Itch.io:** _(Android|Linux|MacOS|Windows|Web)_
 
-## Action Environment Variables
+### `Action Environment Variables`
 
-- **GODOT_VERSION:** _"3.3.2" | string **(required)**_ 
-- **PROJECT_NAME:** _"GameFileName" | string **(required)**_ 
-- **PROJECT_PATH:** _"gameDirectory" | string **(required)**_ 
+- **GODOT_VERSION:** _"3.3.2" | string **(required)**_
+- **PROJECT_NAME:** _"GameFileName" | string **(required)**_
+- **PROJECT_PATH:** _"gameDirectory" | string **(required)**_
 - **EXPORT_MODE:** _"debug/release" | string **(optional)**_
 - **IOS_ICON_PATH:** _"iconPath" | string **(optional)**_
 - **ITCH_GAME:** _"ItchIoGameName" | string **(required for publishing)**_
 - **ITCH_USER:** _"ItchIoUserName" | string **(required for publishing)**_
 
-## Action Environment Secrets
+### `Action Environment Secrets`
 
 - **BUTLER_CREDENTIALS:** _"xxx" | string **(required for publishing)**_
 - **K8S_SECRET_RELEASE_KEYSTORE_BASE64:** _"xxx" | string **(required in release mode)**_
 - **K8S_SECRET_RELEASE_KEYSTORE_USER:** _"xxx" | string **(required in release mode)**_
 - **K8S_SECRET_RELEASE_KEYSTORE_PASSWORD:** _"xxx" | string **(required in release mode)**_
 
-## Environment Example
+### `Environment Example`
 
 #### Create action file:
 
